@@ -19,6 +19,8 @@ class UIController {
     constructor(messageService) {
         this.gameState = GameState.getInstance();
         this.messageService = messageService;
+        this.currentMission = null;
+        this.currentMissionData = null;
     }
 
     /**
@@ -108,28 +110,42 @@ class UIController {
      * @param {Function} onSubmissionClick - Callback for submission click
      */
     showSubmenu(missionId, mission, onSubmissionClick) {
+        // Store current mission for updates
+        this.currentMission = missionId;
+        this.currentMissionData = mission;
+        this.currentOnSubmissionClick = onSubmissionClick;
+
+        this._renderSubmenu();
+    }
+
+    /**
+     * Render submenu items (private helper)
+     * @private
+     */
+    _renderSubmenu() {
         const submenu = document.getElementById('submenu');
         const submenuTitle = document.getElementById('submenu-title');
         const submenuItems = document.getElementById('submenuItems');
 
-        if (!submenu || !submenuTitle || !submenuItems) return;
+        if (!submenu || !submenuTitle || !submenuItems || !this.currentMissionData) return;
 
         // Update submenu
-        submenuTitle.textContent = mission.title;
+        submenuTitle.textContent = this.currentMissionData.title;
         submenuItems.innerHTML = '';
 
         // Add instructions if available
-        if (mission.instructions) {
+        if (this.currentMissionData.instructions) {
             const instructionsEl = document.createElement('div');
             instructionsEl.className = 'submenu-instructions';
-            instructionsEl.textContent = mission.instructions;
+            instructionsEl.textContent = this.currentMissionData.instructions;
             submenuItems.appendChild(instructionsEl);
         }
 
         // Add submission items
-        mission.submissions.forEach((sub) => {
+        this.currentMissionData.submissions.forEach((sub) => {
             const item = document.createElement('div');
             item.className = 'submenu-item';
+            item.setAttribute('data-submission-id', sub.id);
 
             const isCompleted = this.gameState.isMissionCompleted(sub.id);
             if (isCompleted) {
@@ -142,8 +158,8 @@ class UIController {
             `;
 
             item.addEventListener('click', () => {
-                if (onSubmissionClick) {
-                    onSubmissionClick(sub.id, missionId);
+                if (this.currentOnSubmissionClick) {
+                    this.currentOnSubmissionClick(sub.id, this.currentMission);
                 }
             });
 
@@ -156,6 +172,44 @@ class UIController {
         setTimeout(() => {
             submenu.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 100);
+    }
+
+    /**
+     * Update specific activity in submenu after completion
+     * @param {string} submissionId - Submission ID that was completed
+     */
+    updateActivityInSubmenu(submissionId) {
+        const submenuItems = document.getElementById('submenuItems');
+        if (!submenuItems) return;
+
+        // Find the item with matching submission ID
+        const item = submenuItems.querySelector(`[data-submission-id="${submissionId}"]`);
+        if (!item) return;
+
+        // Update the item
+        item.classList.add('completed');
+        const titleDiv = item.querySelector('.submenu-item-title');
+        const descDiv = item.querySelector('.submenu-item-desc');
+        
+        if (titleDiv) {
+            // Remove old checkmark if exists, add new one
+            titleDiv.textContent = titleDiv.textContent.replace(' ✅', '');
+            titleDiv.textContent += ' ✅';
+        }
+        
+        if (descDiv) {
+            descDiv.textContent = 'Completada';
+        }
+    }
+
+    /**
+     * Update current submenu without closing it
+     * @deprecated Use updateActivityInSubmenu instead
+     */
+    updateCurrentSubmenu() {
+        if (this.currentMission && this.currentMissionData) {
+            this._renderSubmenu();
+        }
     }
 
     /**

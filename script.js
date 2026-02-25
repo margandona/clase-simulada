@@ -37,8 +37,8 @@ class AudioService {
             // Create utterance
             this.currentUtterance = new this.SpeechSynthesisUtterance(text);
             this.currentUtterance.lang = 'es-ES';
-            this.currentUtterance.rate = 1.0;
-            this.currentUtterance.pitch = 1.0;
+            this.currentUtterance.rate = 0.8;
+            this.currentUtterance.pitch = 1.1;
             this.currentUtterance.volume = 1.0;
             
             // Handle end event
@@ -816,9 +816,9 @@ function setupModals() {
                     audioService.stop();
                     storyAudioBtn.textContent = '🔊 Escuchar';
                 } else {
-                    // Extract clean text
+                    // Extract clean text (exclude images/figures)
                     const clone = storyText.cloneNode(true);
-                    clone.querySelectorAll('script, style').forEach(el => el.remove());
+                    clone.querySelectorAll('script, style, figure, img').forEach(el => el.remove());
                     const text = clone.textContent.replace(/\s+/g, ' ').trim();
                     
                     console.log('📝 Text length:', text.length);
@@ -845,29 +845,55 @@ function setupModals() {
             
             console.log('🖱️ Concepts audio button clicked');
             
-            const conceptsText = document.querySelector('#conceptsModal .modal-text');
-            if (conceptsText) {
+            const conceptsContainer = document.querySelector('#conceptsModal .modal-text');
+            if (conceptsContainer) {
                 const isPlaying = audioService.isPlaying_status();
                 
                 if (isPlaying) {
                     audioService.stop();
                     conceptsAudioBtn.textContent = '🔊 Escuchar';
                 } else {
-                    // Extract clean text
-                    const clone = conceptsText.cloneNode(true);
-                    clone.querySelectorAll('script, style').forEach(el => el.remove());
-                    const text = clone.textContent.replace(/\s+/g, ' ').trim();
+                    // Extract text from each concept card with structured pauses
+                    const conceptCards = conceptsContainer.querySelectorAll('.concept-card');
+                    const conceptTexts = [];
                     
-                    console.log('📝 Text length:', text.length);
-                    audioService.speak(text);
-                    conceptsAudioBtn.textContent = '⏹️ Detener';
-                    
-                    // Reset button text when finished
-                    setTimeout(() => {
-                        if (!audioService.isPlaying_status()) {
-                            conceptsAudioBtn.textContent = '🔊 Escuchar';
+                    conceptCards.forEach(card => {
+                        const frontFace = card.querySelector('.concept-front');
+                        if (frontFace) {
+                            const clone = frontFace.cloneNode(true);
+                            clone.querySelectorAll('script, style, figure, img').forEach(el => el.remove());
+                            
+                            // Extract title and body separately
+                            const titleEl = clone.querySelector('h3');
+                            const title = titleEl ? titleEl.textContent.trim() : '';
+                            
+                            // Remove title from clone to get only description
+                            if (titleEl) titleEl.remove();
+                            const description = clone.textContent.replace(/\s+/g, ' ').trim();
+                            
+                            // Combine with comma pause between title and description
+                            const concept = title + ', ' + description;
+                            if (concept.length > 5) {
+                                conceptTexts.push(concept);
+                            }
                         }
-                    }, 100);
+                    });
+                    
+                    if (conceptTexts.length > 0) {
+                        // Join concepts with double pauses (comma + period combination)
+                        const fullText = conceptTexts.join(', , , ');
+                        
+                        console.log('📝 Concepts to read:', conceptTexts.length);
+                        audioService.speak(fullText);
+                        conceptsAudioBtn.textContent = '⏹️ Detener';
+                        
+                        // Reset button text when finished
+                        setTimeout(() => {
+                            if (!audioService.isPlaying_status()) {
+                                conceptsAudioBtn.textContent = '🔊 Escuchar';
+                            }
+                        }, 100);
+                    }
                 }
             }
         });
@@ -2229,6 +2255,60 @@ function setupTouchEnhancements() {
 }
 
 /**
+ * Initialize Flip Cards for Concepts
+ * Enables interactive flip cards that reveal real-life examples
+ */
+function initializeFlipCards() {
+    const conceptCards = document.querySelectorAll('.concept-card');
+    
+    conceptCards.forEach(card => {
+        // Add click handler for flip interaction
+        card.addEventListener('click', (e) => {
+            // Prevent event bubbling if clicking on interactive elements
+            if (e.target.closest('button') || e.target.closest('a')) {
+                return;
+            }
+            card.classList.toggle('flipped');
+        });
+        
+        // Add keyboard handler for accessibility
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                card.classList.toggle('flipped');
+            }
+        });
+        
+        // Announce flip action to screen readers
+        card.addEventListener('click', () => {
+            const isFlipped = card.classList.contains('flipped');
+            const announcement = isFlipped 
+                ? 'Mostrando ejemplos reales' 
+                : 'Mostrando definición del concepto';
+            announceToScreenReader(announcement);
+        });
+    });
+    
+    console.log('✅ Flip cards initialized:', conceptCards.length, 'concepts');
+}
+
+/**
+ * Announce text to screen readers
+ */
+function announceToScreenReader(message) {
+    const announcement = document.createElement('div');
+    announcement.setAttribute('role', 'status');
+    announcement.setAttribute('aria-live', 'polite');
+    announcement.setAttribute('aria-atomic', 'true');
+    announcement.className = 'sr-only';
+    announcement.textContent = message;
+    document.body.appendChild(announcement);
+    
+    // Remove after announcement
+    setTimeout(() => announcement.remove(), 1000);
+}
+
+/**
  * Initialize on DOM Ready
  */
 if (document.readyState === 'loading') {
@@ -2236,11 +2316,13 @@ if (document.readyState === 'loading') {
         initApp();
         setupKeyboardNavigation();
         setupTouchEnhancements();
+        initializeFlipCards();
     });
 } else {
     initApp();
     setupKeyboardNavigation();
     setupTouchEnhancements();
+    initializeFlipCards();
 }
 
 /**

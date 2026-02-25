@@ -19,6 +19,7 @@ class MessageService {
     constructor(audioService = null) {
         this.gameState = GameState.getInstance();
         this.audioService = audioService;
+        this.characterController = null;
         this.messageTimer = null;
         this.toastElement = null;
         this.textElement = null;
@@ -47,6 +48,14 @@ class MessageService {
                 this.hide();
             }
         });
+    }
+
+    /**
+     * Set character controller for animations
+     * @param {CharacterController} characterController - Character controller instance
+     */
+    setCharacterController(characterController) {
+        this.characterController = characterController;
     }
 
     /**
@@ -147,6 +156,15 @@ class MessageService {
         if (message) {
             const shouldSpeak = this.audioService && this.audioService.isEnabled();
             this.show(message, 5000, shouldSpeak);
+            
+            // NOVA pulses for important progress messages
+            if (this.characterController) {
+                if (type === 'missionComplete' || type === 'allComplete') {
+                    this.characterController.celebrate();
+                } else if (type === 'firstSubmission') {
+                    this.characterController.pulse(2000);
+                }
+            }
         }
     }
 

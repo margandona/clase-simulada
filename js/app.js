@@ -154,6 +154,35 @@ class NOVAGame {
         if (frames.length > 0) {
             this.characterController.initialize(frames);
         }
+
+        // Add click interaction to NOVA
+        const novaSprite = byId('novaSprite');
+        if (novaSprite) {
+            novaSprite.addEventListener('click', () => {
+                this.handleNovaClick();
+            });
+        }
+    }
+
+    /**
+     * Handle NOVA click interaction
+     */
+    handleNovaClick() {
+        const animations = ['bounce', 'swing', 'pulse'];
+        const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+        
+        this.characterController.setAnimationState(randomAnimation, 1500);
+        
+        const messages = [
+            '¡Hola! 👋',
+            '¿Listo para más misiones? 🚀',
+            'Cada bit cuenta... 💫',
+            '¡Sigamos explorando! 🌟',
+            'Tu ayuda es invaluable 💙'
+        ];
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        
+        this.messageService.show(randomMessage, 2500);
     }
 
     /**
@@ -204,6 +233,9 @@ class NOVAGame {
             console.error('Mission not found:', missionId);
             return;
         }
+
+        // NOVA reacts to mission selection
+        this.characterController.bounce();
 
         this.uiController.showSubmenu(missionId, mission, this.handleSubmissionClick);
     }
@@ -261,6 +293,9 @@ class NOVAGame {
 
         // Open modal
         this.modalController.open('activity');
+
+        // NOVA bounce animation when opening activity
+        this.characterController.bounce();
 
         // Show NOVA message
         if (submission.novaMessage) {
@@ -324,6 +359,9 @@ class NOVAGame {
         const container = byId('activityContent');
         if (!container) return;
 
+        // NOVA thinks while validating
+        this.characterController.think(1500);
+
         const result = this.activityService.validateActivity(activityId, container);
 
         if (!result.isValid) {
@@ -337,7 +375,12 @@ class NOVAGame {
         );
 
         if (result.isCorrect) {
+            // NOVA celebrates correct answer
+            this.characterController.celebrate();
             this.uiController.enableCompleteButton();
+        } else {
+            // NOVA shakes on incorrect answer
+            this.characterController.shake();
         }
     }
 
@@ -360,6 +403,9 @@ class NOVAGame {
             `✅ ¡Completado!\n📍 ${result.submission.name}\n🏆 +${result.rewards} puntos`,
             4000
         );
+
+        // NOVA big celebration on completion
+        this.characterController.celebrate();
 
         // Show NOVA message
         if (result.novaMessage) {
@@ -384,9 +430,11 @@ class NOVAGame {
         // Update mission background
         this.backgroundController.updateBackground();
 
-        // Close modal and submenu
+        // Update submenu to mark activity as completed
+        this.uiController.updateActivityInSubmenu(activityId);
+
+        // Close modal
         this.modalController.close('activity');
-        this.uiController.hideSubmenu();
 
         // Restart auto messages
         this.messageService.startAutoMessages();
@@ -426,6 +474,9 @@ class NOVAGame {
 
         if (toast && text && closeBtn) {
             this.messageService.initialize(toast, text, closeBtn, this.audioService);
+            
+            // Set character controller reference for animations
+            this.messageService.setCharacterController(this.characterController);
         }
     }
 
