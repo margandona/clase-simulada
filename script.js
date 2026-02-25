@@ -626,12 +626,12 @@ function updateMessageInboxOnProgress() {
  * Initialize Application
  */
 function initApp() {
-    setupCharacterAnimation();
     setupModals();
     setupMissionButtons();
     setupMessageSystem();         // Auto-toast messages
     setupMuteToggle();            // Mute toggle button
     loadStateFromStorage();
+    setupNovaSpriteSystem();
     updateUI();
     updateNOVAMessage(); // Display contextual message
     setupProgressIndicator();
@@ -640,38 +640,143 @@ function initApp() {
 }
 
 /**
- * Character Animation - Blink and mouth movement
+ * NOVA Sprite System - Moods and blink animation
  */
-function setupCharacterAnimation() {
-    let frames = [0, 1, 0, 2, 0];
-    let frameIndex = 0;
-    let interval = null;
-    
-    function animateCharacter() {
-        // Show frame
-        showFrame(frames[frameIndex]);
-        
-        // Move to next frame
-        frameIndex = (frameIndex + 1) % frames.length;
-        
-        // Calculate timing (blink = 100ms, mouth = 200ms)
-        let delay = frames[frameIndex] === 0 ? 2500 : 200;
-        
-        interval = setTimeout(animateCharacter, delay);
+const NOVA_SPRITES = {
+    neutral: {
+        frames: ['assets/nova/nova1.png', 'assets/nova/nova2.png'],
+        alt: 'NOVA neutral'
+    },
+    pensativo: {
+        frames: ['assets/nova/pensativo1.png', 'assets/nova/pensativo2.png'],
+        alt: 'NOVA pensativo'
+    },
+    preocupado: {
+        frames: ['assets/nova/preocupado1.png', 'assets/nova/preocupado2.png'],
+        alt: 'NOVA preocupado'
+    },
+    feliz: {
+        frames: ['assets/nova/feliz1.png', 'assets/nova/feliz2.png'],
+        alt: 'NOVA feliz'
+    },
+    celebrando: {
+        frames: ['assets/nova/celebrando1.png', 'assets/nova/celebrando2.png'],
+        alt: 'NOVA celebrando'
     }
-    
-    function showFrame(frame) {
-        document.querySelectorAll('.character-frame').forEach((el, i) => {
-            el.classList.toggle('active', i === frame);
+};
+
+const NOVA_MISSION_MOOD = {
+    1: 'neutral',
+    2: 'pensativo',
+    3: 'pensativo',
+    4: 'preocupado',
+    5: 'feliz',
+    6: 'celebrando'
+};
+
+const novaSpriteState = {
+    mood: 'neutral',
+    blinkTimeoutId: null,
+    isBlinking: false,
+    preloaded: false
+};
+
+function setupNovaSpriteSystem() {
+    const sprite = document.getElementById('novaSprite');
+    if (!sprite) return;
+
+    preloadNovaSprites();
+    sprite.dataset.src = sprite.getAttribute('src') || '';
+    updateNovaMoodFromProgress();
+    scheduleNovaBlink(true);
+}
+
+function preloadNovaSprites() {
+    if (novaSpriteState.preloaded) return;
+    Object.values(NOVA_SPRITES).forEach((mood) => {
+        mood.frames.forEach((src) => {
+            const img = new Image();
+            img.src = src;
         });
+    });
+    novaSpriteState.preloaded = true;
+}
+
+function setNovaMoodByMission(missionId) {
+    const mood = NOVA_MISSION_MOOD[missionId] || 'neutral';
+    setNovaMood(mood);
+}
+
+function setNovaMood(mood) {
+    if (!NOVA_SPRITES[mood]) return;
+    if (novaSpriteState.mood === mood) {
+        updateNovaSpriteAlt(mood);
+        return;
     }
-    
-    // Start animation
-    showFrame(0);
-    setTimeout(animateCharacter, 2500);
-    
-    // Store interval ID for cleanup
-    window.characterAnimationInterval = interval;
+
+    novaSpriteState.mood = mood;
+    updateNovaSpriteAlt(mood);
+    updateNovaSpriteFrame(0, true);
+    scheduleNovaBlink(true);
+}
+
+function updateNovaMoodFromProgress() {
+    const completedMissionsCount = Math.floor(STATE.completedMissions.length / 3);
+    const missionId = Math.min(completedMissionsCount + 1, 6);
+    setNovaMoodByMission(missionId);
+}
+
+function updateNovaSpriteAlt(mood) {
+    const sprite = document.getElementById('novaSprite');
+    if (!sprite) return;
+    sprite.alt = NOVA_SPRITES[mood].alt || 'NOVA';
+}
+
+function updateNovaSpriteFrame(frameIndex, withFade) {
+    const sprite = document.getElementById('novaSprite');
+    if (!sprite) return;
+
+    const frames = NOVA_SPRITES[novaSpriteState.mood]?.frames || [];
+    const frameSrc = frames[frameIndex];
+    if (!frameSrc) return;
+    if (sprite.dataset.src === frameSrc) return;
+
+    if (withFade) {
+        sprite.classList.add('nova-sprite--fade');
+        setTimeout(() => {
+            sprite.src = frameSrc;
+            sprite.dataset.src = frameSrc;
+            requestAnimationFrame(() => {
+                sprite.classList.remove('nova-sprite--fade');
+            });
+        }, 120);
+    } else {
+        sprite.src = frameSrc;
+        sprite.dataset.src = frameSrc;
+    }
+}
+
+function scheduleNovaBlink(resetTimer) {
+    if (resetTimer && novaSpriteState.blinkTimeoutId) {
+        clearTimeout(novaSpriteState.blinkTimeoutId);
+    }
+
+    const delay = 2000 + Math.random() * 2000;
+    novaSpriteState.blinkTimeoutId = setTimeout(() => {
+        runNovaBlink();
+    }, delay);
+}
+
+function runNovaBlink() {
+    if (novaSpriteState.isBlinking) return;
+    novaSpriteState.isBlinking = true;
+
+    updateNovaSpriteFrame(1, false);
+    setTimeout(() => {
+        updateNovaSpriteFrame(0, false);
+        novaSpriteState.isBlinking = false;
+        scheduleNovaBlink(false);
+    }, 120);
 }
 
 /**
@@ -1116,6 +1221,8 @@ function toggleMissionAccordion(missionId) {
     if (!isOpen) {
         panel.classList.add('active');
         button.classList.add('active');
+
+        setNovaMoodByMission(missionId);
         
         // Populate activities if empty or refresh
         populateMissionActivities(missionId, mission, activitiesContainer);
@@ -2024,6 +2131,9 @@ function updateUI() {
     
     // Update current phase
     updateCurrentPhase();
+
+    // Sync NOVA mood with overall progress
+    updateNovaMoodFromProgress();
 }
 
 /**

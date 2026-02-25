@@ -11,87 +11,51 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header with NOVA Character -->
-    <header class="top-header">
-        <div class="header-top">
-            <h1 class="game-title">NOVA</h1>
-            <div class="stats-bar">
-                <span class="stat-item">📊 <span id="missionCount">0</span>/6</span>
-                <span class="stat-item">🌡️ <span id="systemProgress">0</span>%</span>
-                <span class="stat-item">🏆 <span id="rewardsCount">0</span></span>
-            </div>
-        </div>
-
-        <!-- NOVA Character Container -->
-        <div class="character-section">
-            <div class="character-wrapper">
-                <div class="character-placeholder" id="novaCharacter" aria-label="NOVA - Mascota educativa">
-                    <!-- Frame 1: Normal -->
-                    <div class="character-frame active" id="frame-0">
-                        <svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="60" cy="40" r="30" fill="#4a9eff" opacity="0.8"/>
-                            <circle cx="50" cy="35" r="8" fill="#ffffff"/>
-                            <circle cx="70" cy="35" r="8" fill="#ffffff"/>
-                            <circle cx="50" cy="35" r="5" fill="#000000"/>
-                            <circle cx="70" cy="35" r="5" fill="#000000"/>
-                            <path d="M 60 55 Q 55 65 60 70 Q 65 65 60 55" fill="#ff69b4"/>
-                            <rect x="40" y="75" width="40" height="50" rx="8" fill="#6bc5ff" opacity="0.9"/>
-                            <circle cx="50" cy="95" r="8" fill="#ffffff"/>
-                            <circle cx="70" cy="95" r="8" fill="#ffffff"/>
-                        </svg>
-                    </div>
-                    <!-- Frame 2: Blink -->
-                    <div class="character-frame" id="frame-1">
-                        <svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="60" cy="40" r="30" fill="#4a9eff" opacity="0.8"/>
-                            <line x1="45" y1="35" x2="55" y2="35" stroke="#000000" stroke-width="2"/>
-                            <line x1="65" y1="35" x2="75" y2="35" stroke="#000000" stroke-width="2"/>
-                            <path d="M 60 55 Q 55 65 60 70 Q 65 65 60 55" fill="#ff69b4"/>
-                            <rect x="40" y="75" width="40" height="50" rx="8" fill="#6bc5ff" opacity="0.9"/>
-                            <circle cx="50" cy="95" r="8" fill="#ffffff"/>
-                            <circle cx="70" cy="95" r="8" fill="#ffffff"/>
-                        </svg>
-                    </div>
-                    <!-- Frame 3: Open mouth -->
-                    <div class="character-frame" id="frame-2">
-                        <svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="60" cy="40" r="30" fill="#4a9eff" opacity="0.8"/>
-                            <circle cx="50" cy="35" r="8" fill="#ffffff"/>
-                            <circle cx="70" cy="35" r="8" fill="#ffffff"/>
-                            <circle cx="50" cy="35" r="5" fill="#000000"/>
-                            <circle cx="70" cy="35" r="5" fill="#000000"/>
-                            <ellipse cx="60" cy="62" rx="12" ry="15" fill="#ff1493"/>
-                            <rect x="40" y="75" width="40" height="50" rx="8" fill="#6bc5ff" opacity="0.9"/>
-                            <circle cx="50" cy="95" r="8" fill="#ffffff"/>
-                            <circle cx="70" cy="95" r="8" fill="#ffffff"/>
-                        </svg>
-                    </div>
+    <div class="pokedex-frame">
+        <!-- Header with NOVA Character -->
+        <header class="top-header">
+            <div class="header-top">
+                <h1 class="game-title">NOVA</h1>
+                <div class="stats-bar">
+                    <span class="stat-item">📊 <span id="missionCount">0</span>/6</span>
+                    <span class="stat-item">🌡️ <span id="systemProgress">0</span>%</span>
+                    <span class="stat-item">🏆 <span id="rewardsCount">0</span></span>
                 </div>
             </div>
-        </div>
 
-        <!-- Info Box with Messages -->
-        <div class="info-box">
-            <div class="info-content">
-                <!-- Messages Section -->
-                <div class="info-messages">
-                    <h4 class="messages-title">📬 Mensajes</h4>
-                    <div class="messages-list" id="messagesInbox">
-                        <div class="message-item">
-                            <span class="message-icon">💭</span>
-                            <div class="message-content">
-                                <p class="message-text">Analizando sistemas...</p>
-                                <span class="message-time">ahora</span>
+            <div class="nova-screen">
+                <!-- NOVA Character Container -->
+                <div class="character-section">
+                    <div class="character-wrapper">
+                        <div class="character-placeholder">
+                            <img id="novaSprite" class="nova-sprite" src="assets/nova/nova1.png" alt="NOVA">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Box with Messages -->
+                <div class="info-box">
+                    <div class="info-content">
+                        <!-- Messages Section -->
+                        <div class="info-messages">
+                            <h4 class="messages-title">📬 Mensajes</h4>
+                            <div class="messages-list" id="messagesInbox">
+                                <div class="message-item">
+                                    <span class="message-icon">💭</span>
+                                    <div class="message-content">
+                                        <p class="message-text">Analizando sistemas...</p>
+                                        <span class="message-time">ahora</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
+        <!-- Main Content -->
+        <main class="main-content">
         
         <!-- Narrative Modal Trigger -->
         <section class="story-section">
@@ -191,6 +155,7 @@
         </nav>
 
     </main>
+    </div>
 
     <!-- Modal: Story -->
     <div class="modal" id="storyModal" aria-hidden="true" role="dialog" aria-labelledby="story-modal-title">
