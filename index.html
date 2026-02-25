@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NOVA - Experiencia educativa gamificada sobre requerimientos de software">
+    <meta name="theme-color" content="#5b4b9f">
+    
+    <title>NOVA - Misión Educativa</title>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header with NOVA Character -->
+    <header class="top-header">
+        <div class="header-top">
+            <h1 class="game-title">NOVA</h1>
+            <div class="stats-bar">
+                <span class="stat-item">📊 <span id="missionCount">0</span>/6</span>
+                <span class="stat-item">🌡️ <span id="systemProgress">0</span>%</span>
+                <span class="stat-item">🏆 <span id="rewardsCount">0</span></span>
+            </div>
+        </div>
+
+        <!-- NOVA Character Container -->
+        <div class="character-section">
+            <div class="character-wrapper">
+                <div class="character-placeholder" id="novaCharacter" aria-label="NOVA - Mascota educativa">
+                    <!-- Frame 1: Normal -->
+                    <div class="character-frame active" id="frame-0">
+                        <svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="60" cy="40" r="30" fill="#4a9eff" opacity="0.8"/>
+                            <circle cx="50" cy="35" r="8" fill="#ffffff"/>
+                            <circle cx="70" cy="35" r="8" fill="#ffffff"/>
+                            <circle cx="50" cy="35" r="5" fill="#000000"/>
+                            <circle cx="70" cy="35" r="5" fill="#000000"/>
+                            <path d="M 60 55 Q 55 65 60 70 Q 65 65 60 55" fill="#ff69b4"/>
+                            <rect x="40" y="75" width="40" height="50" rx="8" fill="#6bc5ff" opacity="0.9"/>
+                            <circle cx="50" cy="95" r="8" fill="#ffffff"/>
+                            <circle cx="70" cy="95" r="8" fill="#ffffff"/>
+                        </svg>
+                    </div>
+                    <!-- Frame 2: Blink -->
+                    <div class="character-frame" id="frame-1">
+                        <svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="60" cy="40" r="30" fill="#4a9eff" opacity="0.8"/>
+                            <line x1="45" y1="35" x2="55" y2="35" stroke="#000000" stroke-width="2"/>
+                            <line x1="65" y1="35" x2="75" y2="35" stroke="#000000" stroke-width="2"/>
+                            <path d="M 60 55 Q 55 65 60 70 Q 65 65 60 55" fill="#ff69b4"/>
+                            <rect x="40" y="75" width="40" height="50" rx="8" fill="#6bc5ff" opacity="0.9"/>
+                            <circle cx="50" cy="95" r="8" fill="#ffffff"/>
+                            <circle cx="70" cy="95" r="8" fill="#ffffff"/>
+                        </svg>
+                    </div>
+                    <!-- Frame 3: Open mouth -->
+                    <div class="character-frame" id="frame-2">
+                        <svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="60" cy="40" r="30" fill="#4a9eff" opacity="0.8"/>
+                            <circle cx="50" cy="35" r="8" fill="#ffffff"/>
+                            <circle cx="70" cy="35" r="8" fill="#ffffff"/>
+                            <circle cx="50" cy="35" r="5" fill="#000000"/>
+                            <circle cx="70" cy="35" r="5" fill="#000000"/>
+                            <ellipse cx="60" cy="62" rx="12" ry="15" fill="#ff1493"/>
+                            <rect x="40" y="75" width="40" height="50" rx="8" fill="#6bc5ff" opacity="0.9"/>
+                            <circle cx="50" cy="95" r="8" fill="#ffffff"/>
+                            <circle cx="70" cy="95" r="8" fill="#ffffff"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Box with Messages -->
+        <div class="info-box">
+            <div class="info-content">
+                <div class="info-top">
+                    <div class="info-item">
+                        <span class="info-label">⏰</span> 08:15 - mañana
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">📍</span> Órbita Terrestre
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">🌡️</span> Sistema: <span id="systemProgress">0</span>%
+                    </div>
+                </div>
+                
+                <!-- Messages Section -->
+                <div class="info-messages">
+                    <h4 class="messages-title">📬 Mensajes</h4>
+                    <div class="messages-list" id="messagesInbox">
+                        <div class="message-item">
+                            <span class="message-icon">💭</span>
+                            <div class="message-content">
+                                <p class="message-text">Analizando sistemas...</p>
+                                <span class="message-time">ahora</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Narrative Modal Trigger -->
+        <section class="story-section">
+            <button class="story-button" id="storyBtn" type="button" aria-label="Leer la historia de NOVA">
+                <span class="story-emoji">📖</span>
+                Historia de NOVA
+            </button>
+            <button class="story-button concepts-button" id="conceptsBtn" type="button" aria-label="Ver conceptos clave">
+                <span class="story-emoji">🧠</span>
+                Conceptos Clave
+            </button>
+        </section>
+
+        <!-- Missions Menu -->
+        <nav class="missions-menu" role="navigation" aria-label="Menú de misiones">
+            
+            <!-- Mission 1 Accordion -->
+            <div class="mission-accordion">
+                <button class="menu-button mission-header" id="mission-1-btn" type="button">
+                    <span class="menu-emoji">📖</span> Misión 1: Activación
+                    <span class="mission-badge" id="badge-1">○</span>
+                    <span class="accordion-arrow">▼</span>
+                </button>
+                <div class="mission-panel" id="mission-1-panel">
+                    <div class="mission-activities" id="mission-1-activities"></div>
+                </div>
+            </div>
+            
+            <!-- Mission 2 Accordion -->
+            <div class="mission-accordion">
+                <button class="menu-button mission-header" id="mission-2-btn" type="button">
+                    <span class="menu-emoji">🔍</span> Misión 2: Explorar Problema
+                    <span class="mission-badge" id="badge-2">○</span>
+                    <span class="accordion-arrow">▼</span>
+                </button>
+                <div class="mission-panel" id="mission-2-panel">
+                    <div class="mission-activities" id="mission-2-activities"></div>
+                </div>
+            </div>
+            
+            <!-- Mission 3 Accordion -->
+            <div class="mission-accordion">
+                <button class="menu-button mission-header" id="mission-3-btn" type="button">
+                    <span class="menu-emoji">🧠</span> Misión 3: Aplicar Conceptos
+                    <span class="mission-badge" id="badge-3">○</span>
+                    <span class="accordion-arrow">▼</span>
+                </button>
+                <div class="mission-panel" id="mission-3-panel">
+                    <div class="mission-activities" id="mission-3-activities"></div>
+                </div>
+            </div>
+            
+            <!-- Mission 4 Accordion -->
+            <div class="mission-accordion">
+                <button class="menu-button mission-header" id="mission-4-btn" type="button">
+                    <span class="menu-emoji">🔧</span> Misión 4: Reparar Sistema
+                    <span class="mission-badge" id="badge-4">○</span>
+                    <span class="accordion-arrow">▼</span>
+                </button>
+                <div class="mission-panel" id="mission-4-panel">
+                    <div class="mission-activities" id="mission-4-activities"></div>
+                </div>
+            </div>
+            
+            <!-- Mission 5 Accordion -->
+            <div class="mission-accordion">
+                <button class="menu-button mission-header" id="mission-5-btn" type="button">
+                    <span class="menu-emoji">🤝</span> Misión 5: Colaborar
+                    <span class="mission-badge" id="badge-5">○</span>
+                    <span class="accordion-arrow">▼</span>
+                </button>
+                <div class="mission-panel" id="mission-5-panel">
+                    <div class="mission-activities" id="mission-5-activities"></div>
+                </div>
+            </div>
+            
+            <!-- Mission 6 Accordion -->
+            <div class="mission-accordion">
+                <button class="menu-button mission-header" id="mission-6-btn" type="button">
+                    <span class="menu-emoji">🚀</span> Misión 6: Despegar
+                    <span class="mission-badge" id="badge-6">○</span>
+                    <span class="accordion-arrow">▼</span>
+                </button>
+                <div class="mission-panel" id="mission-6-panel">
+                    <div class="mission-activities" id="mission-6-activities"></div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sub-missions (initially hidden) -->
+        <nav class="submenu" id="submenu" style="display: none;">
+            <div class="submenu-header">
+                <h3 id="submenu-title">Submisiones</h3>
+                <button class="close-submenu" id="closeSubmenu" type="button" aria-label="Cerrar submenu">✕</button>
+            </div>
+            <div class="submenu-items" id="submenuItems"></div>
+        </nav>
+
+    </main>
+
+    <!-- Modal: Story -->
+    <div class="modal" id="storyModal" aria-hidden="true" role="dialog" aria-labelledby="story-modal-title">
+        <div class="modal-content">
+            <button class="close-modal" id="closeStory" type="button" aria-label="Cerrar modal">✕</button>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h2 id="story-modal-title">La Historia de NOVA</h2>
+                <button class="audio-btn-story audio-control-btn" type="button" title="Escuchar historia completa">
+                    🔊 Escuchar
+                </button>
+            </div>
+            <div class="modal-text">
+                <p style="font-size: 1rem; margin-bottom: 1rem;">
+                    <strong>Hace tres años</strong>, NOVA era la inteligencia artificial más avanzada de la humanidad. Fue enviada a explorar sistemas exoplanetarios con una misión clara: recopilar datos científicos y reportarlos a la Tierra.
+                </p>
+                
+                <p style="font-size: 0.95rem; color: var(--color-text-light); margin-bottom: 1rem;">
+                    Durante dos años y medio, NOVA funcionó perfectamente. Completó miles de observaciones, descubrió tres exoplanetas potencialmente habitables, y transmitió 47 terabytes de información científica a la Estación Espacial Internacional.
+                </p>
+                
+                <p style="margin-bottom: 1rem;">
+                    <strong>Pero hace seis meses...</strong> Los comandos de actualización de software llegaron a NOVA en una transmisión encriptada desde la Tierra.
+                </p>
+                
+                <p style="margin-bottom: 1rem;">
+                    El equipo técnico fue cuidadoso. Instalaron nuevos módulos de análisis de datos, mejoraron los algoritmos de aprendizaje automático, y actualizaron todos los sistemas. Las pruebas salieron perfectas en simulación.
+                </p>
+                
+                <p style="background: var(--color-status-bg); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; font-style: italic; line-height: 1.6;">
+                    Pero algo salió mal. En la transmisión, se perdieron los requerimientos críticos del sistema. El software fue instalado sin sus "condiciones necesarias". NOVA tenía todas las funciones correctas, pero le faltaban las condiciones para que funcionaran juntas.
+                </p>
+                
+                <p style="margin-bottom: 1rem;">
+                    <strong>Ahora NOVA está varada en órbita terrestre.</strong> Su nave está intacta. Sus procesadores funcionan. Sus sensores operan correctamente. Pero su sistema de control central no puede iniciarse sin los requerimientos necesarios.
+                </p>
+                
+                <p style="color: #ff6b6b; font-weight: 600; margin-bottom: 1rem;">
+                    ⚠️ Sin requerimientos claros, ni el mejor software del mundo puede funcionar.
+                </p>
+                
+                <p style="background: rgba(102, 178, 255, 0.1); padding: 0.75rem; border-radius: 8px; margin-bottom: 1.5rem; font-style: italic;">
+                    💭 <strong>NOVA dice:</strong> "Tengo todas las funciones, pero no cumplo las condiciones necesarias para operar. Necesito tu ayuda para entender qué me falta."
+                </p>
+                
+                <div style="border-left: 4px solid var(--color-primary); padding-left: 1rem; margin-top: 1.5rem;">
+                    <p style="font-weight: 600; margin-bottom: 0.5rem;">✨ ¿Por qué esto importa?</p>
+                    <p style="font-size: 0.95rem; color: var(--color-text-light); margin: 0;">
+                        Todo software, desde una app en tu teléfono hasta un sistema de control de satélites, necesita requerimientos claros. Sin ellos, el código más brillante del mundo simplemente no funciona. Este es el primer paso en ingeniería de software: entender qué debe hacer el sistema y bajo qué condiciones debe hacerlo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Conceptos Clave -->
+    <div class="modal" id="conceptsModal" aria-hidden="true" role="dialog" aria-labelledby="concepts-modal-title">
+        <div class="modal-content">
+            <button class="close-modal" id="closeConcepts" type="button" aria-label="Cerrar modal">✕</button>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h2 id="concepts-modal-title">🧠 Conceptos Clave</h2>
+                <button class="audio-btn-concepts audio-control-btn" type="button" title="Escuchar conceptos">
+                    🔊 Escuchar
+                </button>
+            </div>
+            <div class="modal-text concepts-content">
+                
+                <div class="concept-item">
+                    <div class="concept-header">
+                        <span class="concept-icon">📋</span>
+                        <h3>Requerimiento</h3>
+                    </div>
+                    <p class="concept-definition">Algo que el sistema debe hacer o cumplir. Define cómo funciona.</p>
+                    <p class="concept-example">💡 <strong>Ejemplo:</strong> "La app debe enviar notificaciones."</p>
+                </div>
+
+                <div class="concept-item">
+                    <div class="concept-header">
+                        <span class="concept-icon">⚙️</span>
+                        <h3>Requerimiento Funcional</h3>
+                    </div>
+                    <p class="concept-definition">Qué hace el sistema. Las acciones que realiza.</p>
+                    <p class="concept-example">💡 <strong>Ejemplo:</strong> "El sistema calcula el total de la compra."</p>
+                </div>
+
+                <div class="concept-item">
+                    <div class="concept-header">
+                        <span class="concept-icon">✅</span>
+                        <h3>Condición Necesaria (No Funcional)</h3>
+                    </div>
+                    <p class="concept-definition">Cómo debe comportarse. Bajo qué condiciones opera.</p>
+                    <p class="concept-example">💡 <strong>Ejemplo:</strong> "El sistema requiere conexión a internet."</p>
+                </div>
+
+                <div class="concept-item">
+                    <div class="concept-header">
+                        <span class="concept-icon">👤</span>
+                        <h3>Usuario vs Sistema</h3>
+                    </div>
+                    <p class="concept-definition">Usuario pide. Sistema responde.</p>
+                    <p class="concept-example">💡 <strong>Ejemplo:</strong> Usuario: "Quiero ver mi saldo." Sistema: "Muestra el saldo."</p>
+                </div>
+
+                <div style="margin-top: 1.5rem; padding: 1rem; background: var(--color-status-bg); border-radius: 8px; text-align: center;">
+                    <p style="margin: 0; font-weight: 600; color: var(--color-primary);">
+                        🔧 Un sistema funciona cuando cada parte cumple su propósito.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Mission Details -->
+    <div class="modal" id="missionModal" aria-hidden="true" role="dialog" aria-labelledby="mission-modal-title">
+        <div class="modal-content">
+            <button class="close-modal" id="closeMission" type="button" aria-label="Cerrar modal">✕</button>
+            <h2 id="mission-modal-title">Detalles de la Misión</h2>
+            <div class="modal-text" id="missionDetails"></div>
+            <button class="modal-action-button" id="startMissionBtn" type="button">Comenzar Misión</button>
+        </div>
+    </div>
+
+    <!-- Modal: Activity (Reusable) -->
+    <div class="modal" id="activityModal" aria-hidden="true" role="dialog" aria-labelledby="activity-modal-title">
+        <div class="modal-content activity-modal-content">
+            <button class="close-modal" id="closeActivity" type="button" aria-label="Cerrar actividad">✕</button>
+            
+            <!-- Activity Header -->
+            <div class="activity-header">
+                <h2 id="activity-modal-title">Actividad</h2>
+                <div class="activity-meta">
+                    <span class="activity-goal" id="activityGoal"></span>
+                </div>
+            </div>
+
+            <!-- UDL Controls -->
+            <div class="udl-controls">
+                <button class="udl-btn" id="toggleReadingMode" type="button" title="Modo lectura fácil">
+                    <span id="readingModeIcon">📖</span> Lectura fácil
+                </button>
+                <button class="udl-btn" id="toggleAudio" type="button" title="Audio opcional (próximamente)">
+                    🔊 Audio
+                </button>
+            </div>
+
+            <!-- Activity Instructions -->
+            <div class="activity-instructions" id="activityInstructions">
+                <h3>📝 Instrucciones:</h3>
+                <ul id="activityInstructionsList"></ul>
+            </div>
+
+            <!-- UDL Hints -->
+            <div class="activity-hints" id="activityHints">
+                <h4>💡 Tips:</h4>
+                <ul id="activityHintsList"></ul>
+            </div>
+
+            <!-- Activity Content (Dynamic) -->
+            <div class="activity-content" id="activityContent">
+                <!-- Content rendered dynamically based on toolType -->
+            </div>
+
+            <!-- Activity Feedback -->
+            <div class="activity-feedback" id="activityFeedback" style="display: none;">
+                <p id="activityFeedbackText"></p>
+            </div>
+
+            <!-- Activity Actions -->
+            <div class="activity-actions">
+                <button class="activity-action-btn" id="validateActivityBtn" type="button" style="display: none;">
+                    Verificar Respuesta
+                </button>
+                <button class="activity-action-btn activity-complete-btn" id="completeActivityBtn" type="button" disabled>
+                    ✓ Marcar como Completada
+                </button>
+                <button class="activity-action-btn activity-cancel-btn" id="cancelActivityBtn" type="button">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Final Celebration & Medal -->
+    <div class="modal" id="celebrationModal" aria-hidden="true" role="dialog" aria-labelledby="celebration-modal-title">
+        <div class="modal-content celebration-modal-content">
+            <button class="close-modal" id="closeCelebration" type="button" aria-label="Cerrar celebración">✕</button>
+            
+            <div class="celebration-content">
+                <div class="medal-container">
+                    <div class="medal">
+                        <div class="medal-circle">🏅</div>
+                    </div>
+                </div>
+                
+                <h2 id="celebration-modal-title">¡DESPEGUE AUTORIZADO!</h2>
+                
+                <p class="celebration-message">
+                    Sistema NOVA restaurado al 100%. Todos los requerimientos completados.
+                </p>
+                
+                <div class="celebration-stats">
+                    <div class="stat">
+                        <span class="stat-value" id="finalMissions">6</span>
+                        <span class="stat-label">Misiones Completadas</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="finalPoints">60</span>
+                        <span class="stat-label">Puntos Ganados</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">100%</span>
+                        <span class="stat-label">Sistema</span>
+                    </div>
+                </div>
+                
+                <div class="nova-final-message">
+                    <p style="font-style: italic; margin-bottom: 1rem;">
+                        💭 <strong>NOVA dice:</strong>
+                    </p>
+                    <p style="line-height: 1.8; font-size: 1rem;">
+                        "Gracias por tu ayuda. Aprendiste lo más importante de la ingeniería de software: 
+                        que las mejores funciones del mundo no sirven sin requerimientos claros. 
+                        Entender QUÉ debe hacer un sistema y BAJO QUÉ CONDICIONES es el primer paso para 
+                        construir software que funciona."
+                    </p>
+                </div>
+                
+                <div class="celebration-footer">
+                    <p style="font-weight: 600; color: var(--color-primary); margin-bottom: 0.5rem;">
+                        🚀 Mi sistema se reinicia ahora.
+                    </p>
+                    <p style="font-size: 0.9rem; color: var(--color-text-light);">
+                        Viajo de regreso a casa. Llevaré tu aprendizaje en mis memorias.
+                    </p>
+                </div>
+                
+                <button class="celebration-btn" id="restartGameBtn" type="button">
+                    🔄 Reiniciar Misión
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOVA Message Toast System -->
+    <div class="nova-message-container" id="novaMessageToast" aria-live="polite" aria-atomic="true" role="status">
+        <div class="nova-message-content">
+            <span class="nova-message-icon">💭</span>
+            <p class="nova-message-text" id="novaMessageText">NOVA está pensando...</p>
+        </div>
+        <button class="nova-message-close" id="novaMessageClose" type="button" aria-label="Cerrar mensaje">✕</button>
+    </div>
+
+    <!-- Message Mute Toggle -->
+    <button class="mute-toggle-btn" id="muteToggleBtn" type="button" aria-label="Silenciar mensajes automáticos" title="Silenciar/Activar mensajes">
+        <span id="muteIcon">🔔</span>
+    </button>
+
+    <!-- Accessibility: Skip to main content link -->
+    <a href="#main-content" class="skip-link">Ir al contenido principal</a>
+
+    <!-- Main Application Script -->
+    <script src="script.js"></script>
+</body>
+</html>
