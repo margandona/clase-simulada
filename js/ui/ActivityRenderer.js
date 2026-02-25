@@ -5,6 +5,7 @@
  */
 
 import GameState from '../models/GameState.js';
+import padletService from '../services/PadletService.js';
 
 /**
  * ActivityRenderer class - Handles activity UI rendering
@@ -205,55 +206,87 @@ class ActivityRenderer {
      */
     renderPadlet(submission, container, callbacks) {
         const isProd = submission.embedUrl && !submission.embedUrl.includes('DOCENTE');
+        const submissionId = submission.id;
+        const padletId = `padlet-${submissionId}`;
 
-        const html = `
-            <div class="activity-padlet">
-                ${submission.instructions ? `
-                    <div class="padlet-instructions">
-                        <h4>📝 Instrucciones:</h4>
-                        <ul>
-                            ${submission.instructions.map(inst => `<li>${inst}</li>`).join('')}
-                        </ul>
-                    </div>
-                ` : ''}
-                
-                ${isProd ? `
-                    <div class="padlet-embed">
-                        <iframe src="${submission.embedUrl}" width="100%" height="400" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
-                    </div>
-                ` : `
-                    <div class="padlet-placeholder">
-                        <p><strong>🔧 Configuración para Docente:</strong></p>
-                        <p>Pega tu URL de Padlet en <code>js/data/missions.js</code>, línea correspondiente a la misión 5a.</p>
-                        <p><em>Mientras tanto, se abrirá en nueva ventana.</em></p>
-                        <a href="https://padlet.com" target="_blank" class="padlet-link-btn" id="openPadletBtn">
-                            🌐 Abrir Padlet
-                        </a>
-                    </div>
-                `}
-            </div>
-        `;
-        container.innerHTML = html;
+        // Build wrapper with instructions
+        const wrapper = document.createElement('div');
+        wrapper.className = 'activity-padlet';
 
-        // Setup event listeners
-        const openBtn = container.querySelector('#openPadletBtn');
-        if (openBtn) {
-            openBtn.addEventListener('click', () => {
-                this.gameState.trackInteraction(this.gameState.get('currentActivity'), 'opened-padlet');
-                setTimeout(() => {
+        // Add instructions section if present
+        if (submission.instructions && submission.instructions.length > 0) {
+            const instructionsDiv = document.createElement('div');
+            instructionsDiv.className = 'padlet-instructions';
+            instructionsDiv.innerHTML = `
+                <h4>📝 Instrucciones:</h4>
+                <ul>
+                    ${submission.instructions.map(inst => `<li>${inst}</li>`).join('')}
+                </ul>
+            `;
+            wrapper.appendChild(instructionsDiv);
+        }
+
+        if (isProd) {
+            // Create interactive Padlet container using PadletService
+            const padletContainer = padletService.createPadletContainer(
+                padletId,
+                submission.embedUrl,
+                {
+                    height: 400,
+                    maxWidth: 480,
+                    showOpenButton: true,
+                    showLoadingIndicator: true
+                },
+                (padletId) => {
+                    // Callback when user interacts with Padlet
+                    console.log(`✅ Padlet ${padletId} interacted`);
+                    this.gameState.trackInteraction(submissionId, 'padlet-interacted');
+                    
+                    // Enable completion button
                     if (callbacks.onComplete) {
                         callbacks.onComplete();
                     }
-                }, 2000);
-            });
-        } else if (isProd) {
-            // If embedded, enable after 5 seconds
-            setTimeout(() => {
-                if (callbacks.onComplete) {
-                    callbacks.onComplete();
+
+                    // Show feedback if available
+                    if (callbacks.onFeedback && submission.feedback) {
+                        callbacks.onFeedback('correct', submission.feedback.correct);
+                    }
                 }
-            }, 5000);
+            );
+            wrapper.appendChild(padletContainer);
+        } else {
+            // Fallback for non-production (without URL)
+            const placeholderDiv = document.createElement('div');
+            placeholderDiv.className = 'padlet-placeholder';
+            placeholderDiv.innerHTML = `
+                <p><strong>🔧 Configuración para Docente:</strong></p>
+                <p>Pega tu URL de Padlet abierto de forma incrustada en <code>js/data/missions.js</code>, en el campo <code>embedUrl</code> de la actividad.</p>
+                <p><em>Por ahora, se abrirá en una nueva ventana.</em></p>
+                <button class="padlet-link-btn" id="openPadletBtn" type="button">
+                    🌐 Abrir Padlet en nueva ventana
+                </button>
+            `;
+            wrapper.appendChild(placeholderDiv);
+
+            // Setup fallback button
+            const openBtn = placeholderDiv.querySelector('#openPadletBtn');
+            if (openBtn) {
+                openBtn.addEventListener('click', () => {
+                    this.gameState.trackInteraction(submissionId, 'opened-padlet-fallback');
+                    
+                    // Mark as interacted in service
+                    padletService.markAsInteracted(padletId);
+                    
+                    setTimeout(() => {
+                        if (callbacks.onComplete) {
+                            callbacks.onComplete();
+                        }
+                    }, 1000);
+                });
+            }
         }
+
+        container.appendChild(wrapper);
     }
 
     /**

@@ -72,6 +72,26 @@ export const MISSIONS = {
                     incorrect: 'Pista: mi problema no es físico, es de software.'
                 },
                 novaMessage: 'Ahora entiendes mi problema.'
+            },
+            { 
+                id: '1d', 
+                name: 'Experiencia: Aprende cómo funcionan los sistemas',
+                toolType: 'padlet',
+                learningGoal: 'Explorar colaborativamente cómo funcionan los sistemas humanos',
+                udlHints: ['Puedes escribir, dibujar o compartir ideas', 'Aprende de otros estudiantes', 'Tu participación es valiosa'],
+                successCondition: 'Interactúa con el Padlet',
+                embedUrl: 'https://padlet.com/padlets/t27dz8jyj9vcposz/embeds/preview_embed',
+                instructions: [
+                    '📚 Observa cómo otros han respondido a la pregunta',
+                    '✍️ Comparte tu respuesta sobre cómo funcionan los sistemas',
+                    '💡 Aprende de las ideas de tus compañeros',
+                    '⭐ Tu perspectiva es única e importante'
+                ],
+                feedback: {
+                    correct: '¡Excelente! Tu participación ayuda a entender mejor los sistemas.',
+                    incorrect: ''
+                },
+                novaMessage: 'Estoy aprendiendo cómo funcionan los sistemas humanos. Lamentablemente, las máquinas necesitamos que alguien nos lo explique claramente.'
             }
         ]
     },
@@ -269,20 +289,23 @@ export const MISSIONS = {
         submissions: [
             { 
                 id: '5a', 
-                name: 'Abrir Padlet Colaborativo',
+                name: 'Colaborar en Ideas del Sistema',
                 toolType: 'padlet',
-                toolLabel: 'Padlet Colaborativo',
-                embedUrl: 'DOCENTE: Pega aquí tu URL de Padlet',
-                learningGoal: 'Contribuir ideas al equipo',
-                udlHints: ['Comparte 1-2 ideas', 'Lee las ideas de otros', 'Sé respetuoso y constructivo'],
-                successCondition: 'Confirma que abriste el Padlet',
+                learningGoal: 'Colaborar con el equipo para completar el sistema de NOVA',
+                udlHints: ['Comparte 1-2 ideas', 'Lee las ideas de otros', 'Construye sobre las ideas existentes'],
+                successCondition: 'Interactúa con el Padlet colaborativo',
+                embedUrl: 'https://padlet.com/padlets/7t8fczx0d5ecget2/embeds/preview_embed',
                 instructions: [
-                    'Haz clic en "Abrir Padlet"',
-                    'Contribuye con al menos 1 idea',
-                    '¿Qué otras funciones o condiciones necesita NOVA?',
-                    'Vuelve aquí y confirma'
+                    '🤝 Colabora en tiempo real con tus compañeros',
+                    '💡 Propón nuevas funciones o condiciones que NOVA necesita',
+                    '📖 Lee y aprende de las ideas de otros',
+                    '⭐ Cada idea cuenta para el éxito de la misión'
                 ],
-                novaMessage: 'Las ideas de todos me ayudan a volar.'
+                feedback: {
+                    correct: '¡Gracias! Tu idea podría ser la que me falte para despegar.',
+                    incorrect: ''
+                },
+                novaMessage: 'Tu idea puede ser la pieza que falta para despegar. Juntos completaremos mi sistema.'
             },
             { 
                 id: '5b', 
