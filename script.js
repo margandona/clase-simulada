@@ -109,22 +109,20 @@ const MISSIONS = {
             },
             { 
                 id: '1b', 
-                name: 'Actividad: ¿Dónde está NOVA?',
-                toolType: 'quiz',
-                learningGoal: 'Identificar la ubicación de NOVA',
-                udlHints: ['Observa el contexto espacial', 'La respuesta está en la historia'],
-                successCondition: 'Responde correctamente la pregunta',
-                question: '¿Dónde está varada NOVA?',
-                options: [
-                    { text: 'En la superficie de Marte', correct: false },
-                    { text: 'En órbita terrestre', correct: true },
-                    { text: 'En una estación espacial', correct: false }
+                name: 'Actividad: Activación en Padlet',
+                toolType: 'padlet',
+                toolLabel: 'Padlet de Activación',
+                embedUrl: 'https://padlet.com/padlets/t27dz8jyj9vcposz/embeds/preview_embed',
+                padletUrl: 'https://padlet.com/padlets/t27dz8jyj9vcposz',
+                learningGoal: 'Conectar con NOVA y activar el sistema',
+                udlHints: ['Comparte una idea breve', 'Lee lo que otros aportaron'],
+                successCondition: 'Interactúa con el Padlet',
+                instructions: [
+                    'Haz clic en "Abrir Padlet" o interactúa con el muro',
+                    'Escribe una idea sobre cómo ayudarías a NOVA',
+                    'Vuelve aquí y marca la actividad como completada'
                 ],
-                feedback: {
-                    correct: '¡Exacto! Estoy en órbita alrededor de la Tierra.',
-                    incorrect: 'Lee nuevamente la historia para encontrar mi ubicación.'
-                },
-                novaMessage: 'Sí, puedes verme desde ahí abajo.'
+                padletOpenMessage: 'Estoy aprendiendo cómo funcionan los sistemas humanos...'
             },
             { 
                 id: '1c', 
@@ -344,7 +342,8 @@ const MISSIONS = {
                 name: 'Abrir Padlet Colaborativo',
                 toolType: 'padlet',
                 toolLabel: 'Padlet Colaborativo',
-                embedUrl: 'DOCENTE: Pega aquí tu URL de Padlet',
+                embedUrl: 'https://padlet.com/padlets/7t8fczx0d5ecget2/embeds/preview_embed',
+                padletUrl: 'https://padlet.com/padlets/7t8fczx0d5ecget2',
                 learningGoal: 'Contribuir ideas al equipo',
                 udlHints: ['Comparte 1-2 ideas', 'Lee las ideas de otros', 'Sé respetuoso y constructivo'],
                 successCondition: 'Confirma que abriste el Padlet',
@@ -354,6 +353,7 @@ const MISSIONS = {
                     '¿Qué otras funciones o condiciones necesita NOVA?',
                     'Vuelve aquí y confirma'
                 ],
+                padletOpenMessage: 'Tu idea puede ser la pieza que falta para despegar.',
                 novaMessage: 'Las ideas de todos me ayudan a volar.'
             },
             { 
@@ -1444,8 +1444,11 @@ function renderChecklist(submission, container) {
  * Render Padlet Activity
  */
 function renderPadlet(submission, container) {
-    const isProd = submission.embedUrl && !submission.embedUrl.includes('DOCENTE');
-    
+    const hasEmbed = Boolean(submission.embedUrl);
+    const padletUrl = submission.padletUrl || submission.embedUrl || 'https://padlet.com';
+    const interactionKey = `nova-padlet-${submission.id}`;
+    const interactionStored = localStorage.getItem(interactionKey) === '1';
+
     const padletHTML = `
         <div class="activity-padlet">
             ${submission.instructions ? `
@@ -1456,41 +1459,111 @@ function renderPadlet(submission, container) {
                     </ul>
                 </div>
             ` : ''}
-            
-            ${isProd ? `
-                <div class="padlet-embed">
-                    <iframe src="${submission.embedUrl}" width="100%" height="400" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+
+            <div class="padlet-actions">
+                <button class="padlet-open-btn" id="openPadletBtn" type="button">
+                    🌐 Abrir Padlet
+                </button>
+                <a class="padlet-fallback-btn" id="fallbackPadletBtn" href="${padletUrl}" target="_blank" rel="noopener">
+                    ↗ Abrir Padlet en nueva ventana
+                </a>
+            </div>
+
+            ${hasEmbed ? `
+                <div class="padlet-embed" data-padlet-id="${submission.id}">
+                    <iframe
+                        src="${submission.embedUrl}"
+                        title="${submission.toolLabel || 'Padlet'}"
+                        loading="lazy"
+                        allow="encrypted-media"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        allowfullscreen
+                    ></iframe>
                 </div>
             ` : `
                 <div class="padlet-placeholder">
-                    <p><strong>🔧 Configuración para Docente:</strong></p>
-                    <p>Pega tu URL de Padlet en <code>script.js</code>, línea correspondiente a la misión 5a.</p>
-                    <p><em>Mientras tanto, se abrirá en nueva ventana.</em></p>
-                    <a href="https://padlet.com" target="_blank" class="padlet-link-btn" id="openPadletBtn">
-                        🌐 Abrir Padlet
-                    </a>
+                    <p><strong>🔧 Padlet no disponible para incrustar.</strong></p>
+                    <p>Usa el botón "Abrir Padlet" para continuar.</p>
                 </div>
             `}
         </div>
     `;
     container.innerHTML = padletHTML;
-    
-    // Enable complete button after opening Padlet
+
     const openBtn = container.querySelector('#openPadletBtn');
+    const fallbackBtn = container.querySelector('#fallbackPadletBtn');
+    const iframe = container.querySelector('.padlet-embed iframe');
+
+    const registerPadletInteraction = (source) => {
+        if (!STATE.activityInteractions[STATE.currentActivity]) {
+            STATE.activityInteractions[STATE.currentActivity] = {
+                opened: Date.now(),
+                attempts: 0,
+                interactions: []
+            };
+        }
+        if (!STATE.activityInteractions[STATE.currentActivity].interactions.includes(source)) {
+            STATE.activityInteractions[STATE.currentActivity].interactions.push(source);
+        }
+
+        if (localStorage.getItem(interactionKey) !== '1') {
+            localStorage.setItem(interactionKey, '1');
+            if (submission.padletOpenMessage) {
+                showToastMessage(`💭 NOVA: "${submission.padletOpenMessage}"`, 4000);
+            }
+        }
+
+        enableCompleteButton();
+        showToastMessage('✅ Ahora puedes marcar la actividad como completada', 3000);
+    };
+
     if (openBtn) {
         openBtn.addEventListener('click', () => {
-            STATE.activityInteractions[STATE.currentActivity].interactions.push('opened-padlet');
-            // Enable complete button after 2 seconds
-            setTimeout(() => {
-                enableCompleteButton();
-                showToastMessage('✅ Ahora puedes marcar la actividad como completada', 3000);
-            }, 2000);
+            window.open(padletUrl, '_blank', 'noopener');
+            registerPadletInteraction('opened-padlet');
         });
-    } else {
-        // If embedded, enable after 5 seconds
-        setTimeout(() => {
-            enableCompleteButton();
-        }, 5000);
+    }
+
+    if (iframe) {
+        const showFallback = () => {
+            fallbackBtn?.classList.add('is-visible');
+        };
+        const hideFallback = () => {
+            fallbackBtn?.classList.remove('is-visible');
+        };
+
+        let loadHandled = false;
+        const loadTimer = setTimeout(() => {
+            if (!loadHandled) {
+                showFallback();
+            }
+        }, 3500);
+
+        iframe.addEventListener('load', () => {
+            loadHandled = true;
+            clearTimeout(loadTimer);
+            hideFallback();
+        });
+
+        iframe.addEventListener('error', () => {
+            loadHandled = true;
+            clearTimeout(loadTimer);
+            showFallback();
+        });
+
+        iframe.addEventListener('focus', () => {
+            registerPadletInteraction('padlet-focused');
+        });
+
+        iframe.addEventListener('pointerdown', () => {
+            registerPadletInteraction('padlet-pointer');
+        });
+    } else if (fallbackBtn) {
+        fallbackBtn.classList.add('is-visible');
+    }
+
+    if (interactionStored) {
+        enableCompleteButton();
     }
 }
 

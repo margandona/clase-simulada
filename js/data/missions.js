@@ -37,22 +37,20 @@ export const MISSIONS = {
             },
             { 
                 id: '1b', 
-                name: 'Actividad: ¿Dónde está NOVA?',
-                toolType: 'quiz',
-                learningGoal: 'Identificar la ubicación de NOVA',
-                udlHints: ['Observa el contexto espacial', 'La respuesta está en la historia'],
-                successCondition: 'Responde correctamente la pregunta',
-                question: '¿Dónde está varada NOVA?',
-                options: [
-                    { text: 'En la superficie de Marte', correct: false },
-                    { text: 'En órbita terrestre', correct: true },
-                    { text: 'En una estación espacial', correct: false }
+                name: 'Actividad: Activación en Padlet',
+                toolType: 'padlet',
+                toolLabel: 'Padlet de Activación',
+                embedUrl: 'https://padlet.com/padlets/t27dz8jyj9vcposz/embeds/preview_embed',
+                padletUrl: 'https://padlet.com/padlets/t27dz8jyj9vcposz',
+                learningGoal: 'Conectar con NOVA y activar el sistema',
+                udlHints: ['Comparte una idea breve', 'Lee lo que otros aportaron'],
+                successCondition: 'Interactúa con el Padlet',
+                instructions: [
+                    'Haz clic en "Abrir Padlet" o interactúa con el muro',
+                    'Escribe una idea sobre cómo ayudarías a NOVA',
+                    'Vuelve aquí y marca la actividad como completada'
                 ],
-                feedback: {
-                    correct: '¡Exacto! Estoy en órbita alrededor de la Tierra.',
-                    incorrect: 'Lee nuevamente la historia para encontrar mi ubicación.'
-                },
-                novaMessage: 'Sí, puedes verme desde ahí abajo.'
+                padletOpenMessage: 'Estoy aprendiendo cómo funcionan los sistemas humanos...'
             },
             { 
                 id: '1c', 
@@ -72,26 +70,6 @@ export const MISSIONS = {
                     incorrect: 'Pista: mi problema no es físico, es de software.'
                 },
                 novaMessage: 'Ahora entiendes mi problema.'
-            },
-            { 
-                id: '1d', 
-                name: 'Experiencia: Aprende cómo funcionan los sistemas',
-                toolType: 'padlet',
-                learningGoal: 'Explorar colaborativamente cómo funcionan los sistemas humanos',
-                udlHints: ['Puedes escribir, dibujar o compartir ideas', 'Aprende de otros estudiantes', 'Tu participación es valiosa'],
-                successCondition: 'Interactúa con el Padlet',
-                embedUrl: 'https://padlet.com/padlets/t27dz8jyj9vcposz/embeds/preview_embed',
-                instructions: [
-                    '📚 Observa cómo otros han respondido a la pregunta',
-                    '✍️ Comparte tu respuesta sobre cómo funcionan los sistemas',
-                    '💡 Aprende de las ideas de tus compañeros',
-                    '⭐ Tu perspectiva es única e importante'
-                ],
-                feedback: {
-                    correct: '¡Excelente! Tu participación ayuda a entender mejor los sistemas.',
-                    incorrect: ''
-                },
-                novaMessage: 'Estoy aprendiendo cómo funcionan los sistemas humanos. Lamentablemente, las máquinas necesitamos que alguien nos lo explique claramente.'
             }
         ]
     },
@@ -289,23 +267,22 @@ export const MISSIONS = {
         submissions: [
             { 
                 id: '5a', 
-                name: 'Colaborar en Ideas del Sistema',
+                name: 'Abrir Padlet Colaborativo',
                 toolType: 'padlet',
-                learningGoal: 'Colaborar con el equipo para completar el sistema de NOVA',
-                udlHints: ['Comparte 1-2 ideas', 'Lee las ideas de otros', 'Construye sobre las ideas existentes'],
-                successCondition: 'Interactúa con el Padlet colaborativo',
+                toolLabel: 'Padlet Colaborativo',
                 embedUrl: 'https://padlet.com/padlets/7t8fczx0d5ecget2/embeds/preview_embed',
+                padletUrl: 'https://padlet.com/padlets/7t8fczx0d5ecget2',
+                learningGoal: 'Contribuir ideas al equipo',
+                udlHints: ['Comparte 1-2 ideas', 'Lee las ideas de otros', 'Sé respetuoso y constructivo'],
+                successCondition: 'Confirma que abriste el Padlet',
                 instructions: [
-                    '🤝 Colabora en tiempo real con tus compañeros',
-                    '💡 Propón nuevas funciones o condiciones que NOVA necesita',
-                    '📖 Lee y aprende de las ideas de otros',
-                    '⭐ Cada idea cuenta para el éxito de la misión'
+                    'Haz clic en "Abrir Padlet"',
+                    'Contribuye con al menos 1 idea',
+                    '¿Qué otras funciones o condiciones necesita NOVA?',
+                    'Vuelve aquí y confirma'
                 ],
-                feedback: {
-                    correct: '¡Gracias! Tu idea podría ser la que me falte para despegar.',
-                    incorrect: ''
-                },
-                novaMessage: 'Tu idea puede ser la pieza que falta para despegar. Juntos completaremos mi sistema.'
+                padletOpenMessage: 'Tu idea puede ser la pieza que falta para despegar.',
+                novaMessage: 'Las ideas de todos me ayudan a volar.'
             },
             { 
                 id: '5b', 

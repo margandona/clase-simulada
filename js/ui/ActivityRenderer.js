@@ -5,7 +5,6 @@
  */
 
 import GameState from '../models/GameState.js';
-import padletService from '../services/PadletService.js';
 
 /**
  * ActivityRenderer class - Handles activity UI rendering
@@ -205,88 +204,119 @@ class ActivityRenderer {
      * @private
      */
     renderPadlet(submission, container, callbacks) {
-        const isProd = submission.embedUrl && !submission.embedUrl.includes('DOCENTE');
-        const submissionId = submission.id;
-        const padletId = `padlet-${submissionId}`;
+        const hasEmbed = Boolean(submission.embedUrl);
+        const padletUrl = submission.padletUrl || submission.embedUrl || 'https://padlet.com';
+        const interactionKey = `nova-padlet-${submission.id}`;
+        const interactionStored = localStorage.getItem(interactionKey) === '1';
 
-        // Build wrapper with instructions
-        const wrapper = document.createElement('div');
-        wrapper.className = 'activity-padlet';
+        const html = `
+            <div class="activity-padlet">
+                ${submission.instructions ? `
+                    <div class="padlet-instructions">
+                        <h4>📝 Instrucciones:</h4>
+                        <ul>
+                            ${submission.instructions.map(inst => `<li>${inst}</li>`).join('')}
+                        </ul>
+                    </div>
+                ` : ''}
 
-        // Add instructions section if present
-        if (submission.instructions && submission.instructions.length > 0) {
-            const instructionsDiv = document.createElement('div');
-            instructionsDiv.className = 'padlet-instructions';
-            instructionsDiv.innerHTML = `
-                <h4>📝 Instrucciones:</h4>
-                <ul>
-                    ${submission.instructions.map(inst => `<li>${inst}</li>`).join('')}
-                </ul>
-            `;
-            wrapper.appendChild(instructionsDiv);
-        }
+                <div class="padlet-actions">
+                    <button class="padlet-open-btn" id="openPadletBtn" type="button">
+                        🌐 Abrir Padlet
+                    </button>
+                    <a class="padlet-fallback-btn" id="fallbackPadletBtn" href="${padletUrl}" target="_blank" rel="noopener">
+                        ↗ Abrir Padlet en nueva ventana
+                    </a>
+                </div>
 
-        if (isProd) {
-            // Create interactive Padlet container using PadletService
-            const padletContainer = padletService.createPadletContainer(
-                padletId,
-                submission.embedUrl,
-                {
-                    height: 400,
-                    maxWidth: 480,
-                    showOpenButton: true,
-                    showLoadingIndicator: true
-                },
-                (padletId) => {
-                    // Callback when user interacts with Padlet
-                    console.log(`✅ Padlet ${padletId} interacted`);
-                    this.gameState.trackInteraction(submissionId, 'padlet-interacted');
-                    
-                    // Enable completion button
-                    if (callbacks.onComplete) {
-                        callbacks.onComplete();
-                    }
+                ${hasEmbed ? `
+                    <div class="padlet-embed" data-padlet-id="${submission.id}">
+                        <iframe
+                            src="${submission.embedUrl}"
+                            title="${submission.toolLabel || 'Padlet'}"
+                            loading="lazy"
+                            allow="encrypted-media"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+                ` : `
+                    <div class="padlet-placeholder">
+                        <p><strong>🔧 Padlet no disponible para incrustar.</strong></p>
+                        <p>Usa el botón "Abrir Padlet" para continuar.</p>
+                    </div>
+                `}
+            </div>
+        `;
+        container.innerHTML = html;
 
-                    // Show feedback if available
-                    if (callbacks.onFeedback && submission.feedback) {
-                        callbacks.onFeedback('correct', submission.feedback.correct);
-                    }
+        const openBtn = container.querySelector('#openPadletBtn');
+        const fallbackBtn = container.querySelector('#fallbackPadletBtn');
+        const iframe = container.querySelector('.padlet-embed iframe');
+
+        const registerPadletInteraction = (source) => {
+            this.gameState.trackInteraction(this.gameState.get('currentActivity'), source);
+
+            if (localStorage.getItem(interactionKey) !== '1') {
+                localStorage.setItem(interactionKey, '1');
+                if (submission.padletOpenMessage && callbacks.onFeedback) {
+                    callbacks.onFeedback('correct', submission.padletOpenMessage);
                 }
-            );
-            wrapper.appendChild(padletContainer);
-        } else {
-            // Fallback for non-production (without URL)
-            const placeholderDiv = document.createElement('div');
-            placeholderDiv.className = 'padlet-placeholder';
-            placeholderDiv.innerHTML = `
-                <p><strong>🔧 Configuración para Docente:</strong></p>
-                <p>Pega tu URL de Padlet abierto de forma incrustada en <code>js/data/missions.js</code>, en el campo <code>embedUrl</code> de la actividad.</p>
-                <p><em>Por ahora, se abrirá en una nueva ventana.</em></p>
-                <button class="padlet-link-btn" id="openPadletBtn" type="button">
-                    🌐 Abrir Padlet en nueva ventana
-                </button>
-            `;
-            wrapper.appendChild(placeholderDiv);
-
-            // Setup fallback button
-            const openBtn = placeholderDiv.querySelector('#openPadletBtn');
-            if (openBtn) {
-                openBtn.addEventListener('click', () => {
-                    this.gameState.trackInteraction(submissionId, 'opened-padlet-fallback');
-                    
-                    // Mark as interacted in service
-                    padletService.markAsInteracted(padletId);
-                    
-                    setTimeout(() => {
-                        if (callbacks.onComplete) {
-                            callbacks.onComplete();
-                        }
-                    }, 1000);
-                });
             }
+
+            if (callbacks.onComplete) {
+                callbacks.onComplete();
+            }
+        };
+
+        if (openBtn) {
+            openBtn.addEventListener('click', () => {
+                window.open(padletUrl, '_blank', 'noopener');
+                registerPadletInteraction('opened-padlet');
+            });
         }
 
-        container.appendChild(wrapper);
+        if (iframe) {
+            const showFallback = () => {
+                fallbackBtn?.classList.add('is-visible');
+            };
+            const hideFallback = () => {
+                fallbackBtn?.classList.remove('is-visible');
+            };
+
+            let loadHandled = false;
+            const loadTimer = setTimeout(() => {
+                if (!loadHandled) {
+                    showFallback();
+                }
+            }, 3500);
+
+            iframe.addEventListener('load', () => {
+                loadHandled = true;
+                clearTimeout(loadTimer);
+                hideFallback();
+            });
+
+            iframe.addEventListener('error', () => {
+                loadHandled = true;
+                clearTimeout(loadTimer);
+                showFallback();
+            });
+
+            iframe.addEventListener('focus', () => {
+                registerPadletInteraction('padlet-focused');
+            });
+
+            iframe.addEventListener('pointerdown', () => {
+                registerPadletInteraction('padlet-pointer');
+            });
+        } else if (fallbackBtn) {
+            fallbackBtn.classList.add('is-visible');
+        }
+
+        if (interactionStored && callbacks.onComplete) {
+            callbacks.onComplete();
+        }
     }
 
     /**
