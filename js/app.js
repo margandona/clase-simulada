@@ -13,6 +13,7 @@ import ModalController from './ui/ModalController.js';
 import CharacterController from './ui/CharacterController.js';
 import ActivityRenderer from './ui/ActivityRenderer.js';
 import UIController from './ui/UIController.js';
+import BackgroundController from './ui/BackgroundController.js';
 import { setupKeyboardNavigation, setupTouchEnhancements } from './utils/helpers.js';
 import { byId, $$ } from './utils/dom.js';
 
@@ -36,6 +37,7 @@ class NOVAGame {
         this.characterController = new CharacterController();
         this.activityRenderer = new ActivityRenderer(this.audioService);
         this.uiController = new UIController(this.messageService);
+        this.backgroundController = new BackgroundController();
 
         // Bind methods
         this.handleMissionClick = this.handleMissionClick.bind(this);
@@ -64,6 +66,7 @@ class NOVAGame {
         console.log('✅ Audio buttons setup complete');
         
         this.setupCharacter();
+        this.setupBackground();
         this.setupMissionButtons();
         this.setupMessageSystem();
         this.setupActivityModal();
@@ -151,6 +154,13 @@ class NOVAGame {
         if (frames.length > 0) {
             this.characterController.initialize(frames);
         }
+    }
+
+    /**
+     * Setup dynamic backgrounds
+     */
+    setupBackground() {
+        this.backgroundController.init();
     }
 
     /**
@@ -370,6 +380,9 @@ class NOVAGame {
 
         // Update UI
         this.uiController.updateAll();
+
+        // Update mission background
+        this.backgroundController.updateBackground();
 
         // Close modal and submenu
         this.modalController.close('activity');

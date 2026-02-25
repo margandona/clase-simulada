@@ -201,14 +201,57 @@ button {
     justify-content: center;
 }
 
-.nova-sprite {
+/* ============================================
+   NOVA FRAME - Dynamic Background System
+   ============================================== */
+
+.nova-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    background: rgba(10, 15, 30, 0.3);
+}
+
+/* Mission Background Layer */
+.nova-background {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('assets/fondos/fondo1.png');
+    z-index: 0;
+    opacity: 0.9;
+    transition: background-image 600ms ease-in-out, opacity 400ms ease;
+    will-change: background-image, opacity;
+}
+
+/* Gradient Overlay for Readability */
+.nova-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(10, 15, 30, 0.2),
+        rgba(10, 15, 30, 0.4)
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* NOVA Character Layer */
+.nova-sprite,
+.nova-character {
     width: 100%;
     height: auto;
     max-height: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.25)) drop-shadow(0 0 20px rgba(74, 158, 255, 0.3));
     transition: opacity 200ms ease, transform 250ms ease;
     will-change: opacity, transform;
+    position: relative;
+    z-index: 2;
 }
 
 .nova-sprite--fade {
@@ -216,9 +259,42 @@ button {
     transform: translateY(2px) scale(0.98);
 }
 
+/* High Contrast Mode */
+.nova-background--high-contrast {
+    background-image: url('assets/fondos/alto-contraste.png') !important;
+    opacity: 1;
+}
+
+/* Background transition animations */
+.nova-background--transitioning {
+    animation: backgroundFade 600ms ease-in-out;
+}
+
+@keyframes backgroundFade {
+    0% { opacity: 0.7; }
+    50% { opacity: 0.5; }
+    100% { opacity: 0.9; }
+}
+
 @keyframes fadeInCharacter {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+/* Mobile optimizations for backgrounds */
+@media (max-width: 640px) {
+    .nova-background {
+        background-size: cover;
+        background-position: center center;
+    }
+    
+    .nova-frame::after {
+        background: linear-gradient(
+            to bottom,
+            rgba(10, 15, 30, 0.25),
+            rgba(10, 15, 30, 0.45)
+        );
+    }
 }
 
 /* Info Box */
