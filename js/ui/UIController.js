@@ -74,9 +74,20 @@ class UIController {
 
         for (let i = 1; i <= 6; i++) {
             const badge = document.getElementById(`badge-${i}`);
-            if (badge && completedByType[i] && completedByType[i] === 3) {
+            if (!badge) continue;
+
+            if (completedByType[i] && completedByType[i] === 3) {
+                // Update content
                 badge.textContent = '✓';
                 badge.classList.add('completed');
+                
+                // Force re-render and add animation
+                badge.style.animation = 'none';
+                setTimeout(() => {
+                    badge.style.animation = 'badgePulse 0.6s ease-out';
+                }, 10);
+                
+                // Update aria-label for accessibility
                 badge.parentElement.setAttribute('aria-label', `Misión ${i} completada`);
             }
         }
@@ -184,22 +195,41 @@ class UIController {
 
         // Find the item with matching submission ID
         const item = submenuItems.querySelector(`[data-submission-id="${submissionId}"]`);
-        if (!item) return;
+        
+        // If element not found, re-render the submenu if it's active
+        if (!item) {
+            // The submenu might not be visible, re-render if there's an active mission
+            if (this.currentMission && this.currentMissionData) {
+                this._renderSubmenu();
+            }
+            return;
+        }
 
-        // Update the item
+        // Update the item with animation
         item.classList.add('completed');
+        
         const titleDiv = item.querySelector('.submenu-item-title');
         const descDiv = item.querySelector('.submenu-item-desc');
         
         if (titleDiv) {
-            // Remove old checkmark if exists, add new one
+            // Remove old checkmark if exists
             titleDiv.textContent = titleDiv.textContent.replace(' ✅', '');
+            // Add new checkmark
             titleDiv.textContent += ' ✅';
         }
         
         if (descDiv) {
             descDiv.textContent = 'Completada';
         }
+
+        // Add visual animation
+        item.style.animation = 'slideIn 0.4s ease-out';
+        
+        // Temporary highlight for visual feedback
+        item.style.backgroundColor = 'rgba(74, 222, 128, 0.2)';
+        setTimeout(() => {
+            item.style.backgroundColor = '';
+        }, 2000);
     }
 
     /**

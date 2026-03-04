@@ -55,36 +55,13 @@ class NOVAGame {
         // Load saved state
         this.loadState();
 
-        // Setup UI components
-        console.log('📋 Setting up modals...');
-        this.setupModals();
-        
-        console.log('🎵 About to setup audio buttons...');
-        console.log('   - modalController exists:', !!this.modalController);
-        console.log('   - audioService exists:', !!this.audioService);
-        this.modalController.setupAudioButtons(); // Setup audio buttons AFTER registering modals
-        console.log('✅ Audio buttons setup complete');
-        
-        this.setupCharacter();
-        this.setupBackground();
-        this.setupMissionButtons();
-        this.setupMessageSystem();
-        this.setupActivityModal();
-        this.setupMuteToggle();
-
-        // Setup accessibility enhancements
-        this.setupAccessibility();
-
-        // Initial UI update
-        this.uiController.updateAll();
-
-        // Start auto messages
-        this.messageService.startAutoMessages();
+        // Setup welcome screen FIRST (displays main menu)
+        this.setupWelcomeScreen();
 
         // Setup cleanup on page unload
         this.setupCleanup();
 
-        console.log('✅ NOVA Game initialized successfully');
+        console.log('✅ Welcome screen ready. Waiting for player to start mission...');
     }
 
     /**
@@ -133,6 +110,12 @@ class NOVAGame {
             'activity',
             byId('activityModal'),
             byId('closeActivity')
+        );
+
+        this.modalController.register(
+            'medalAward',
+            byId('medalAwardModal'),
+            byId('closeMedalAward')
         );
 
         // Setup modal triggers
@@ -433,6 +416,9 @@ class NOVAGame {
         // Update submenu to mark activity as completed
         this.uiController.updateActivityInSubmenu(activityId);
 
+        // Check and show medal modal if earned
+        this.checkAndShowMedalModal();
+
         // Close modal
         this.modalController.close('activity');
 
@@ -444,24 +430,259 @@ class NOVAGame {
     }
 
     /**
+     * Check if a medal was earned and show modal if applicable
+     */
+    checkAndShowMedalModal() {
+        const completedCount = this.gameState.get('completedMissions').length;
+        
+        // Medal earned every 3 completions (medals 1-4 for 6 missions)
+        if (completedCount % 3 === 0) {
+            // Determine which medal (1, 2, 3, or 4)
+            const medalId = completedCount / 3;
+            
+            // Check if already shown this medal's modal
+            if (medalId <= 4 && !this.gameState.isMedalModalShown(medalId)) {
+                // Mark medal as earned
+                this.gameState.addEarnedMedal(medalId);
+                
+                // Show modal with animation
+                this.showMedalAwardModal(medalId);
+            }
+        }
+    }
+
+    /**
+     * Show medal award modal
+     * @param {number} medalId - Medal ID (1-4)
+     */
+    showMedalAwardModal(medalId) {
+        const medalData = {
+            1: {
+                title: '🏅 Misión 1 Completada',
+                message: '¡Éxito! Has completado la primera misión de reparación.',
+                image: 'assets/medallas/m1.png'
+            },
+            2: {
+                title: '🥈 Misión 2 Completada',
+                message: '¡Vas bien! Dos misiones reparadas con éxito.',
+                image: 'assets/medallas/m2.png'
+            },
+            3: {
+                title: '🥉 Misión 3 Completada',
+                message: '¡Increíble! Tres misiones completadas.',
+                image: 'assets/medallas/m3.png'
+            },
+            4: {
+                title: '👑 Misión 4 Completada',
+                message: '¡MAESTRO! Has completado todas las misiones.',
+                image: 'assets/medallas/m4.png'
+            }
+        };
+
+        const medal = medalData[medalId];
+        if (!medal) return;
+
+        // Update modal content
+        const titleEl = byId('medal-award-title');
+        const messageEl = byId('medalAwardMessage');
+        const imgEl = byId('medalAwardImg');
+        const progressEl = byId('medalAwardProgress');
+
+        if (titleEl) titleEl.textContent = medal.title;
+        if (messageEl) messageEl.textContent = medal.message;
+        if (imgEl) imgEl.src = medal.image;
+        if (progressEl) progressEl.textContent = `Medallas desbloqueadas: ${medalId}/4`;
+
+        // Show modal with celebration animation
+        this.characterController.celebrate();
+        
+        setTimeout(() => {
+            this.modalController.open('medalAward');
+            this.gameState.markMedalAsShown(medalId);
+            
+            // Auto-close after 4 seconds if not interacted
+            setTimeout(() => {
+                if (this.modalController.isOpen('medalAward')) {
+                    this.modalController.close('medalAward');
+                }
+            }, 4000);
+        }, 500);
+    }
+
+    /**
      * Check if game is fully completed
      */
     checkFinalCompletion() {
         const finalResult = this.activityService.checkFinalCompletion();
         
         if (finalResult && finalResult.isComplete) {
+            // Record end timestamp
+            this.gameState.endTime = new Date().toISOString();
+            this.gameState.endTimestamp = Date.now();
+            
+            // Calculate duration
+            const durationMs = this.gameState.endTimestamp - (this.gameState.startTimestamp || Date.now());
+            const durationMin = Math.floor(durationMs / 60000);
+            const durationSec = Math.floor((durationMs % 60000) / 1000);
+            
             // Save state
             this.saveState();
+
+            // Populate certificate
+            this.populateCertificate(durationMin, durationSec);
+
+            // Show celebration modal
+            setTimeout(() => {
+                const celebrationModal = byId('celebrationModal');
+                if (celebrationModal) {
+                    celebrationModal.style.display = 'flex';
+                    celebrationModal.setAttribute('aria-hidden', 'false');
+                }
+            }, 500);
 
             // Show final message
             setTimeout(() => {
                 this.messageService.showProgressMessage('allComplete');
             }, 1000);
-
-            setTimeout(() => {
-                alert(finalResult.message);
-            }, 2500);
         }
+    }
+
+    /**
+     * Populate certificate with student data and timestamps
+     */
+    populateCertificate(durationMin, durationSec) {
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('es-ES', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+        const timeStr = now.toLocaleTimeString('es-ES', { 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit' 
+        });
+
+        // Update certificate elements
+        byId('certificateName').textContent = 'Estudiante de Clase';
+        byId('certificateDate').textContent = dateStr;
+        byId('certificateTime').textContent = timeStr;
+        byId('certificateDuration').textContent = `${durationMin}m ${durationSec}s`;
+        
+        const totalPoints = this.gameState.rewards || 0;
+        byId('certificatePoints').textContent = totalPoints;
+        
+        const accuracy = this.gameState.completedMissions.length > 0 ? 
+            Math.round((this.gameState.rewards / (this.gameState.completedMissions.length * 20)) * 100) : 100;
+        byId('certificatePrecision').textContent = Math.min(accuracy, 100) + '%';
+
+        // Setup download button
+        const downloadBtn = byId('downloadCertificateBtn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', () => {
+                this.downloadCertificate(dateStr, timeStr, durationMin, durationSec, totalPoints, accuracy);
+            });
+        }
+    }
+
+    /**
+     * Download certificate as image or PDF
+     */
+    downloadCertificate(dateStr, timeStr, durationMin, durationSec, totalPoints, accuracy) {
+        const certificateDiv = byId('certificateContainer');
+        if (!certificateDiv) return;
+
+        // Create a temporary canvas from HTML
+        // Using html2canvas approach (simplified for now)
+        const certificateContent = certificateDiv.innerHTML;
+        
+        // Create a new window with certificate content
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Certificado JARVIS - ${new Date().toLocaleDateString()}</title>
+                <style>
+                    body {
+                        font-family: 'Georgia', serif;
+                        padding: 2rem;
+                        background: #f5f5f5;
+                    }
+                    .certificate {
+                        max-width: 800px;
+                        margin: 0 auto;
+                        background: linear-gradient(135deg, #f5e6d3 0%, #ffe8c6 100%);
+                        border: 4px solid #8b7355;
+                        border-radius: 20px;
+                        padding: 2rem;
+                        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+                        text-align: center;
+                    }
+                    .cert-header { font-size: 1.5rem; color: #8b4513; margin-bottom: 1.5rem; font-weight: bold; }
+                    .cert-title { font-size: 1.4rem; color: #8b4513; margin: 1rem 0; text-decoration: underline; }
+                    .cert-body { color: #5a4a3a; line-height: 1.8; margin: 1rem 0; }
+                    .cert-details { margin: 1.5rem 0; }
+                    .cert-item { margin: 0.5rem 0; }
+                    .cert-label { font-weight: 600; color: #8b4513; }
+                    .cert-value { color: #5a4a3a; }
+                    .cert-footer { margin-top: 2rem; border-top: 2px solid #8b7355; padding-top: 1rem; }
+                    .timestamp { font-size: 0.85rem; color: #666; margin-top: 1rem; }
+                </style>
+            </head>
+            <body>
+                <div class="certificate">
+                    <div class="cert-header">🏆 CERTIFICADO DE FINALIZACIÓN</div>
+                    <p class="cert-body">Ha completado exitosamente:</p>
+                    <p class="cert-title">Reparación del Sistema JARVIS</p>
+                    <p style="font-style: italic; color: #a0522d;">Especificación de Requerimientos de Software</p>
+                    
+                    <div class="cert-details">
+                        <div class="cert-item">
+                            <span class="cert-label">📅 Fecha de Finalización:</span>
+                            <span class="cert-value">${dateStr}</span>
+                        </div>
+                        <div class="cert-item">
+                            <span class="cert-label">🕐 Hora Exacta:</span>
+                            <span class="cert-value">${timeStr}</span>
+                        </div>
+                        <div class="cert-item">
+                            <span class="cert-label">⏱️ Duración de la Misión:</span>
+                            <span class="cert-value">${durationMin} minutos ${durationSec} segundos</span>
+                        </div>
+                        <div class="cert-item">
+                            <span class="cert-label">🎯 Puntos Obtenidos:</span>
+                            <span class="cert-value">${totalPoints}</span>
+                        </div>
+                        <div class="cert-item">
+                            <span class="cert-label">📊 Precisión:</span>
+                            <span class="cert-value">${Math.min(accuracy, 100)}%</span>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 0.9rem; color: #7a6a5a;">
+                        Este certificado verifica que el estudiante completó la misión de reparación del sistema JARVIS 
+                        dentro del tiempo de clase establecido.
+                    </p>
+
+                    <div class="cert-footer">
+                        <p style="margin: 0; font-weight: 600;">Prof. Marcos Argandoña</p>
+                        <p style="margin: 0; font-size: 0.9rem;">Ingeniero Informático - Docente</p>
+                        <div class="timestamp">
+                            <p style="margin: 0.5rem 0 0 0;">Generado: ${new Date().toLocaleString('es-ES')}</p>
+                        </div>
+                    </div>
+                </div>
+            </body>
+            </html>
+        `);
+        printWindow.document.close();
+        
+        // Open print dialog
+        setTimeout(() => {
+            printWindow.print();
+        }, 250);
     }
 
     /**
@@ -510,17 +731,16 @@ class NOVAGame {
     }
 
     /**
-
+     * Setup accessibility enhancements
+     */
+    setupAccessibility() {
         // Update audio button visual state
         const audioBtn = byId('toggleAudio');
         if (audioBtn) {
             audioBtn.style.opacity = this.audioService.isEnabled() ? '1' : '0.5';
             audioBtn.style.transition = 'opacity 0.3s ease';
         }
-     * Setup accessibility enhancements
-     */
-    setupAccessibility() {
-            this.audioService.stop();
+
         // Keyboard navigation
         const buttons = $$('button');
         setupKeyboardNavigation(buttons);
@@ -538,6 +758,112 @@ class NOVAGame {
             this.characterController.destroy();
             this.messageService.stopAutoMessages();
         });
+    }
+
+    /**
+     * Setup welcome screen and transition to game
+     */
+    setupWelcomeScreen() {
+        const welcomeScreen = byId('welcomeScreen');
+        const gameContainer = byId('gameContainer');
+        const startBtn = byId('startMissionBtn');
+        const instructionsBtn = byId('instructionsBtn');
+        const creditsBtn = byId('creditsBtn');
+        const instructionsModal = byId('instructionsModal');
+        const creditsModal = byId('creditsModal');
+        const closeInstructionsBtn = byId('closeInstructions');
+        const closeCreditsBtn = byId('closeCredits');
+
+        if (!welcomeScreen || !startBtn) {
+            console.warn('Welcome screen elements not found');
+            return;
+        }
+
+        // Store start time when mission begins
+        startBtn.addEventListener('click', () => {
+            console.log('🎮 Starting mission...');
+            
+            // Record start timestamp
+            this.gameState.startTime = new Date().toISOString();
+            this.gameState.startTimestamp = Date.now();
+            
+            // Hide welcome screen
+            welcomeScreen.style.display = 'none';
+            gameContainer.style.display = 'block';
+            
+            // Initialize the rest of the game
+            // This will be called after welcome screen disappears
+            this.initGameUI();
+            
+            console.log('✅ Mission started at', this.gameState.startTime);
+        });
+
+        // Instructions modal
+        if (instructionsBtn && instructionsModal && closeInstructionsBtn) {
+            instructionsBtn.addEventListener('click', () => {
+                console.log('📖 Opening instructions...');
+                instructionsModal.classList.add('active');
+                instructionsModal.setAttribute('aria-hidden', 'false');
+            });
+
+            closeInstructionsBtn.addEventListener('click', () => {
+                console.log('📖 Closing instructions...');
+                instructionsModal.classList.remove('active');
+                instructionsModal.setAttribute('aria-hidden', 'true');
+            });
+
+            // Close on background click
+            instructionsModal.addEventListener('click', (e) => {
+                if (e.target === instructionsModal) {
+                    instructionsModal.classList.remove('active');
+                    instructionsModal.setAttribute('aria-hidden', 'true');
+                }
+            });
+        } else {
+            console.warn('⚠️ Instructions button/modal elements not found');
+        }
+
+        // Credits modal
+        if (creditsBtn && creditsModal && closeCreditsBtn) {
+            creditsBtn.addEventListener('click', () => {
+                console.log('⭐ Opening credits...');
+                creditsModal.classList.add('active');
+                creditsModal.setAttribute('aria-hidden', 'false');
+            });
+
+            closeCreditsBtn.addEventListener('click', () => {
+                console.log('⭐ Closing credits...');
+                creditsModal.classList.remove('active');
+                creditsModal.setAttribute('aria-hidden', 'true');
+            });
+
+            // Close on background click
+            creditsModal.addEventListener('click', (e) => {
+                if (e.target === creditsModal) {
+                    creditsModal.classList.remove('active');
+                    creditsModal.setAttribute('aria-hidden', 'true');
+                }
+            });
+        } else {
+            console.warn('⚠️ Credits button/modal elements not found');
+        }
+    }
+
+    /**
+     * Initialize game UI (called after welcome screen)
+     */
+    initGameUI() {
+        this.setupModals();
+        this.modalController.setupAudioButtons();
+        this.setupCharacter();
+        this.setupBackground();
+        this.setupMissionButtons();
+        this.setupMessageSystem();
+        this.setupActivityModal();
+        this.setupMuteToggle();
+        this.setupAccessibility();
+        this.uiController.updateAll();
+        this.messageService.startAutoMessages();
     }
 }
 

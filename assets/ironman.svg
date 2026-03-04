@@ -1,0 +1,102 @@
+<svg width="400" height="500" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <radialGradient id="bodyGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#CC0000;stop-opacity:1" />
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="400" height="500" fill="#0a0a0a"/>
+
+  <!-- Tech grid lines -->
+  <line x1="0" y1="250" x2="400" y2="250" stroke="#00ff00" stroke-width="0.5" opacity="0.2"/>
+  <line x1="200" y1="0" x2="200" y2="500" stroke="#00ff00" stroke-width="0.5" opacity="0.2"/>
+
+  <!-- Head/Helmet -->
+  <circle cx="200" cy="120" r="60" fill="url(#bodyGradient)" stroke="#CC0000" stroke-width="2"/>
+
+  <!-- Eyes (glowing) -->
+  <ellipse cx="180" cy="110" rx="12" ry="15" fill="#00FF00" filter="url(#glow)"/>
+  <ellipse cx="220" cy="110" rx="12" ry="15" fill="#00FF00" filter="url(#glow)"/>
+  
+  <!-- Eyes glow -->
+  <circle cx="180" cy="110" r="15" fill="none" stroke="#00FF00" stroke-width="1" opacity="0.5"/>
+  <circle cx="220" cy="110" r="15" fill="none" stroke="#00FF00" stroke-width="1" opacity="0.5"/>
+
+  <!-- Mouth LED -->
+  <rect x="185" y="135" width="30" height="8" rx="4" fill="#FF6600" filter="url(#glow)"/>
+
+  <!-- Chest plate (main focus) -->
+  <circle cx="200" cy="250" r="70" fill="url(#bodyGradient)" stroke="#CC0000" stroke-width="3"/>
+
+  <!-- Arc reactor (glowing center) -->
+  <circle cx="200" cy="250" r="35" fill="#00CCFF" filter="url(#glow)"/>
+  <circle cx="200" cy="250" r="35" fill="none" stroke="#00CCFF" stroke-width="2" opacity="0.8"/>
+  <circle cx="200" cy="250" r="30" fill="none" stroke="#0088FF" stroke-width="1" opacity="0.6"/>
+
+  <!-- Arc reactor core -->
+  <circle cx="200" cy="250" r="20" fill="#00FFFF" filter="url(#glow)"/>
+  <circle cx="200" cy="250" r="20" fill="none" stroke="#00FFFF" stroke-width="1"/>
+
+  <!-- Chest details -->
+  <rect x="160" y="210" width="80" height="80" fill="none" stroke="#CC0000" stroke-width="2" rx="5" opacity="0.5"/>
+
+  <!-- Right shoulder armor -->
+  <ellipse cx="270" cy="200" rx="35" ry="50" fill="url(#bodyGradient)" stroke="#CC0000" stroke-width="2"/>
+
+  <!-- Left shoulder armor -->
+  <ellipse cx="130" cy="200" rx="35" ry="50" fill="url(#bodyGradient)" stroke="#CC0000" stroke-width="2"/>
+
+  <!-- Right arm -->
+  <rect x="290" y="230" width="40" height="80" rx="10" fill="#FFD700" stroke="#CC0000" stroke-width="2"/>
+  <!-- Right hand repulsor -->
+  <circle cx="320" cy="320" r="18" fill="#FF6600" filter="url(#glow)"/>
+  <circle cx="320" cy="320" r="18" fill="none" stroke="#FF6600" stroke-width="1" opacity="0.8"/>
+
+  <!-- Left arm -->
+  <rect x="70" y="230" width="40" height="80" rx="10" fill="#FFD700" stroke="#CC0000" stroke-width="2"/>
+  <!-- Left hand repulsor -->
+  <circle cx="80" cy="320" r="18" fill="#FF6600" filter="url(#glow)"/>
+  <circle cx="80" cy="320" r="18" fill="none" stroke="#FF6600" stroke-width="1" opacity="0.8"/>
+
+  <!-- Torso body -->
+  <rect x="160" y="320" width="80" height="100" rx="10" fill="url(#bodyGradient)" stroke="#CC0000" stroke-width="2"/>
+
+  <!-- Legs -->
+  <rect x="170" y="420" width="30" height="70" rx="8" fill="#FFD700" stroke="#CC0000" stroke-width="2"/>
+  <rect x="200" y="420" width="30" height="70" rx="8" fill="#FFD700" stroke="#CC0000" stroke-width="2"/>
+
+  <!-- Tech lines across body -->
+  <line x1="160" y1="280" x2="240" y2="280" stroke="#00FF00" stroke-width="1" opacity="0.4"/>
+  <line x1="160" y1="320" x2="240" y2="320" stroke="#00FF00" stroke-width="1" opacity="0.4"/>
+
+  <!-- Repulsor charging effect -->
+  <circle cx="320" cy="320" r="25" fill="none" stroke="#FF6600" stroke-width="2" opacity="0" animation="charging 1.5s infinite"/>
+  <circle cx="80" cy="320" r="25" fill="none" stroke="#FF6600" stroke-width="2" opacity="0" animation="charging 1.5s infinite"/>
+
+  <!-- Arc reactor pulse -->
+  <circle cx="200" cy="250" r="40" fill="none" stroke="#00FFFF" stroke-width="1" opacity="0" animation="pulse 2s infinite"/>
+
+  <!-- Title -->
+  <text x="200" y="480" font-size="20" font-weight="bold" text-anchor="middle" fill="#00CCFF" font-family="monospace">IRON MAN SUIT</text>
+
+  <style>
+    @keyframes charging {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+    @keyframes pulse {
+      0%, 100% { r: 40; opacity: 0; }
+      50% { r: 50; opacity: 0.5; }
+    }
+  </style>
+</svg>

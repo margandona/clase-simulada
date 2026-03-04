@@ -126,18 +126,6 @@ class ModalController {
     }
 
     /**
-     * Setup keyboard handlers (Escape to close)
-     * @private
-     */
-    setupKeyboardHandlers() {
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                this.closeAll();
-            }
-        });
-    }
-
-    /**
      * Setup audio buttons for modals
      * @public
      */

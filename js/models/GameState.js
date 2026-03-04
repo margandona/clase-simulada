@@ -29,7 +29,14 @@ class GameState {
             firstSubmissionShown: false,
             activityInteractions: {},
             currentActivity: null,
-            readingMode: false
+            readingMode: false,
+            startTime: null,
+            startTimestamp: null,
+            endTime: null,
+            endTimestamp: null,
+            earnedMedals: [],
+            medalDates: {},
+            medalsShown: []
         };
 
         GameState.instance = this;
@@ -95,7 +102,10 @@ class GameState {
             firstSubmissionShown: false,
             activityInteractions: {},
             currentActivity: null,
-            readingMode: false
+            readingMode: false,
+            earnedMedals: [],
+            medalDates: {},
+            medalsShown: []
         };
     }
 
@@ -178,6 +188,45 @@ class GameState {
      */
     getProgressPercentage() {
         return Math.round((this.getCompletedMissionsCount() / 6) * 100);
+    }
+
+    /**
+     * Add earned medal
+     * @param {number} medalId - Medal ID (1-4)
+     */
+    addEarnedMedal(medalId) {
+        if (!this.state.earnedMedals.includes(medalId)) {
+            this.state.earnedMedals.push(medalId);
+            this.state.medalDates[medalId] = Date.now();
+        }
+    }
+
+    /**
+     * Check if medal earned
+     * @param {number} medalId - Medal ID
+     * @returns {boolean}
+     */
+    hasMedal(medalId) {
+        return this.state.earnedMedals.includes(medalId);
+    }
+
+    /**
+     * Mark medal as shown
+     * @param {number} medalId - Medal ID
+     */
+    markMedalAsShown(medalId) {
+        if (!this.state.medalsShown.includes(medalId)) {
+            this.state.medalsShown.push(medalId);
+        }
+    }
+
+    /**
+     * Check if medal's modal was already shown
+     * @param {number} medalId - Medal ID
+     * @returns {boolean}
+     */
+    isMedalModalShown(medalId) {
+        return this.state.medalsShown.includes(medalId);
     }
 
     /**

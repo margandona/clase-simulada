@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NOVA - Experiencia educativa gamificada sobre requerimientos de software">
+    <meta name="description" content="JARVIS - Misión de Reparación de Stark Industries | Gamificación sobre Requerimientos de Software">
     <meta name="theme-color" content="#5b4b9f">
     
-    <title>NOVA - Misión Educativa</title>
+    <title>JARVIS - Misión de Reparación - Stark Industries</title>
     
     <!-- Preload critical background images -->
     <link rel="preload" as="image" href="assets/fondos/fondo1.png">
@@ -15,25 +15,112 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="pokedex-frame">
-        <!-- Header with NOVA Character -->
+    <!-- WELCOME SCREEN -->
+    <div id="welcomeScreen" class="welcome-container">
+        <div class="welcome-content">
+            <!-- Title Section -->
+            <div class="welcome-header">
+                <h1 class="welcome-title">JARVIS</h1>
+                <p class="welcome-subtitle">Necesita tu ayuda</p>
+            </div>
+
+            <!-- Iron Man & JARVIS Context -->
+            <div class="welcome-context">
+                <div class="context-image-container">
+                    <div class="iron-man-placeholder">
+                        <img src="assets/IRONMAN/IRONMAN ENCENDIDO.png" alt="Tony Stark - Iron Man" id="ironmanImg" onerror="this.style.display='none'">
+                        <div class="placeholder-text" id="ironmanPlaceholder">🤖 IRON MAN</div>
+                    </div>
+                    <div class="jarvis-indicator">
+                        <div class="status-light"></div>
+                        <span>JARVIS ONLINE</span>
+                    </div>
+                </div>
+
+                <div class="context-description">
+                    <p class="context-intro">
+                        <strong>Tony Stark</strong> te ha reclutado. 
+                    </p>
+                    <p class="context-text">
+                        <strong>JARVIS</strong>, la inteligencia artificial que controla todo en Stark Industries, sufrió un colapso de software. Su sistema está incompleto.
+                    </p>
+                    <p class="context-challenge">
+                        Si no lo reparamos, Stark no podrá lanzar su nuevo proyecto. 
+                        <br><strong>¿Aceptas la misión?</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Main CTA Button -->
+            <button class="welcome-btn welcome-btn-primary" id="startMissionBtn">
+                <span class="btn-icon">▶</span>
+                <span class="btn-text">COMENZAR MISIÓN</span>
+            </button>
+
+            <!-- Secondary Buttons -->
+            <div class="welcome-footer">
+                <button class="welcome-btn welcome-btn-secondary" id="instructionsBtn">
+                    <span class="btn-icon">📖</span>
+                    Cómo Jugar
+                </button>
+                <button class="welcome-btn welcome-btn-secondary" id="creditsBtn">
+                    <span class="btn-icon">⭐</span>
+                    Créditos
+                </button>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="welcome-stats">
+                <div class="stat-badge">
+                    <span class="stat-icon">⏱️</span>
+                    <span class="stat-text">20 minutos</span>
+                </div>
+                <div class="stat-badge">
+                    <span class="stat-icon">🎯</span>
+                    <span class="stat-text">4 Misiones</span>
+                </div>
+                <div class="stat-badge">
+                    <span class="stat-icon">🏆</span>
+                    <span class="stat-text">200 Puntos</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN GAME (initially hidden) -->
+    <div class="pokedex-frame" id="gameContainer" style="display: none;">
+        <!-- Header with JARVIS System -->
         <header class="top-header">
             <div class="header-top">
-                <h1 class="game-title">NOVA</h1>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <img src="assets/IRONMAN/ESCUDO IRONMAN.jpg" alt="Stark Industries" style="width: 32px; height: 32px; border-radius: 50%; box-shadow: 0 2px 6px rgba(255,215,0,0.3);">
+                    <h1 class="game-title">JARVIS</h1>
+                </div>
                 <div class="stats-bar">
-                    <span class="stat-item">📊 <span id="missionCount">0</span>/6</span>
-                    <span class="stat-item">🌡️ <span id="systemProgress">0</span>%</span>
-                    <span class="stat-item">🏆 <span id="rewardsCount">0</span></span>
+                    <button class="stat-item stat-item-clickable" id="missionsStatBtn" type="button" title="Ver estado de misiones">
+                        📊 <span id="missionCount">0</span>/4
+                    </button>
+                    <button class="stat-item stat-item-clickable" id="rewardsStatBtn" type="button" title="Ver premios ganados">
+                        🏆 <span id="earnedMedalsCount">0</span>/4
+                    </button>
+                </div>
+                <!-- Hidden medals for internal tracking -->
+                <div style="display: none;">
+                    <div class="medal-icon" id="medal-1"></div>
+                    <div class="medal-icon" id="medal-2"></div>
+                    <div class="medal-icon" id="medal-3"></div>
+                    <div class="medal-icon" id="medal-4"></div>
+                    <div class="trophy-icon" id="trophy-container"></div>
                 </div>
             </div>
 
             <div class="nova-screen">
-                <!-- NOVA Character Container -->
+                <!-- JARVIS System Display Container -->
                 <div class="character-section">
                     <div class="character-wrapper">
                         <div class="character-placeholder nova-frame">
                             <div class="nova-background" id="novaBackground"></div>
-                            <img id="novaSprite" class="nova-sprite nova-character" src="assets/nova/nova1.png" alt="NOVA">
+                            <img id="novaSprite" class="nova-sprite nova-character" src="assets/nova/nova1.png" alt="JARVIS">
                         </div>
                     </div>
                 </div>
@@ -64,9 +151,9 @@
         
         <!-- Narrative Modal Trigger -->
         <section class="story-section">
-            <button class="story-button" id="storyBtn" type="button" aria-label="Leer la historia de NOVA">
+            <button class="story-button" id="storyBtn" type="button" aria-label="Leer la historia de JARVIS">
                 <span class="story-emoji">📖</span>
-                Historia de NOVA
+                Historia de JARVIS
             </button>
             <button class="story-button concepts-button" id="conceptsBtn" type="button" aria-label="Ver conceptos clave">
                 <span class="story-emoji">🧠</span>
@@ -125,29 +212,6 @@
                 </div>
             </div>
             
-            <!-- Mission 5 Accordion -->
-            <div class="mission-accordion">
-                <button class="menu-button mission-header" id="mission-5-btn" type="button">
-                    <span class="menu-emoji">🤝</span> Misión 5: Colaborar
-                    <span class="mission-badge" id="badge-5">○</span>
-                    <span class="accordion-arrow">▼</span>
-                </button>
-                <div class="mission-panel" id="mission-5-panel">
-                    <div class="mission-activities" id="mission-5-activities"></div>
-                </div>
-            </div>
-            
-            <!-- Mission 6 Accordion -->
-            <div class="mission-accordion">
-                <button class="menu-button mission-header" id="mission-6-btn" type="button">
-                    <span class="menu-emoji">🚀</span> Misión 6: Despegar
-                    <span class="mission-badge" id="badge-6">○</span>
-                    <span class="accordion-arrow">▼</span>
-                </button>
-                <div class="mission-panel" id="mission-6-panel">
-                    <div class="mission-activities" id="mission-6-activities"></div>
-                </div>
-            </div>
         </nav>
 
         <!-- Sub-missions (initially hidden) -->
@@ -167,64 +231,71 @@
         <div class="modal-content">
             <button class="close-modal" id="closeStory" type="button" aria-label="Cerrar modal">✕</button>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                <h2 id="story-modal-title">La Historia de NOVA</h2>
+                <h2 id="story-modal-title">La Historia de JARVIS - Reparación Crítica de Stark Industries</h2>
                 <button class="audio-btn-story audio-control-btn" type="button" title="Escuchar historia completa">
                     🔊 Escuchar
                 </button>
             </div>
+            
+            <!-- Iron Man Image -->
+            <figure class="story-figure" style="text-align: center; margin: 1.5rem auto; max-width: 300px;">
+                <img src="assets/IRONMAN/CARA ITONMAN.jpg" alt="Tony Stark - Iron Man" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); display: block; margin: 0 auto;" loading="lazy" decoding="async">
+                <figcaption style="font-size: 0.9rem; color: var(--color-text-light); margin-top: 0.5rem; font-style: italic; text-align: center;">Tony Stark necesita tu ayuda para reparar JARVIS</figcaption>
+            </figure>
+            
             <div class="modal-text">
                 <p style="font-size: 1rem; margin-bottom: 1rem;">
-                    <strong>Hace tres años</strong>, NOVA era la inteligencia artificial más avanzada de la humanidad. Fue enviada a explorar sistemas exoplanetarios con una misión clara: recopilar datos científicos y reportarlos a la Tierra.
+                    <strong>Hace tres años</strong>, Tony Stark creó a JARVIS, su inteligencia artificial más avanzada. JARVIS controla TODA la Torre Stark: seguridad, energía, comunicaciones, sistemas de defensa, y la armadura de Iron Man. Durante tres años, JARVIS funcionó de manera perfecta.
                 </p>
                 
                 <figure class="story-figure">
-                    <img src="assets/historia/historia1.png" alt="NOVA como inteligencia artificial avanzada iniciando su misión de exploración espacial" loading="lazy" decoding="async">
+                    <img src="assets/historia/historia1.png" alt="JARVIS controlando la Torre Stark con sistemas de seguridad y tecnología avanzada" loading="lazy" decoding="async">
                 </figure>
                 
                 <p style="font-size: 0.95rem; color: var(--color-text-light); margin-bottom: 1rem;">
-                    Durante dos años y medio, NOVA funcionó perfectamente. Completó miles de observaciones, descubrió tres exoplanetas potencialmente habitables, y transmitió 47 terabytes de información científica a la Estación Espacial Internacional.
+                    JARVIS gestionaba más de 10,000 eventos simultáneamente cada día. Controlaba robots, sistemas de defensa, laboratorio de I+D, comunicaciones con los Vengadores, y el mantenimiento general de la Torre. Nunca fallaba. Era invencible.
                 </p>
                 
                 <figure class="story-figure">
-                    <img src="assets/historia/historia2.png" alt="NOVA explorando sistemas exoplanetarios y recopilando datos científicos exitosamente" loading="lazy" decoding="async">
+                    <img src="assets/historia/historia2.png" alt="JARVIS en acción controlando múltiples sistemas complejos de Stark Industries" loading="lazy" decoding="async">
                 </figure>
                 
                 <p style="margin-bottom: 1rem;">
-                    <strong>Pero hace seis meses...</strong> Los comandos de actualización de software llegaron a NOVA en una transmisión encriptada desde la Tierra.
+                    <strong>Pero hace seis meses...</strong> el equipo de ingeniería de Stark decidió optimizar a JARVIS. Instalaron nuevos módulos de machine learning, mejoraron algoritmos de análisis, actualizaron protocolos de seguridad. En simulación, todo pasó las pruebas.
                 </p>
                 
                 <p style="margin-bottom: 1rem;">
-                    El equipo técnico fue cuidadoso. Instalaron nuevos módulos de análisis de datos, mejoraron los algoritmos de aprendizaje automático, y actualizaron todos los sistemas. Las pruebas salieron perfectas en simulación.
+                    Sin embargo, en la transmisión de actualización se perdió algo crítico: los <strong>requerimientos del sistema</strong>. Específicamente, se perdió la diferencia entre lo que JARVIS DEBE HACER (funciones) y las CONDICIONES que necesita para hacerlo (requisitos no-funcionales).
                 </p>
                 
                 <figure class="story-figure">
-                    <img src="assets/historia/historia3.png" alt="Actualización de software de NOVA con nuevos módulos y algoritmos mejorados" loading="lazy" decoding="async">
+                    <img src="assets/historia/historia3.png" alt="Actualización fallida de JARVIS: funciones sin condiciones necesarias" loading="lazy" decoding="async">
                 </figure>
                 
                 <p style="background: var(--color-status-bg); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; font-style: italic; line-height: 1.6;">
-                    Pero algo salió mal. En la transmisión, se perdieron los requerimientos críticos del sistema. El software fue instalado sin sus "condiciones necesarias". NOVA tenía todas las funciones correctas, pero le faltaban las condiciones para que funcionaran juntas.
+                    El resultado: JARVIS tiene TODAS sus funciones. Puede calcular, transmitir, ejecutar, analizar. Pero le faltan las CONDICIONES necesarias para que esas funciones trabajen juntas. Es como un motor de alta performance sin combustible, sin enfriamiento, sin sincronización.
                 </p>
                 
                 <p style="margin-bottom: 1rem;">
-                    <strong>Ahora NOVA está varada en órbita terrestre.</strong> Su nave está intacta. Sus procesadores funcionan. Sus sensores operan correctamente. Pero su sistema de control central no puede iniciarse sin los requerimientos necesarios.
+                    <strong>Ahora JARVIS está parcialmente paralizado.</strong> Tony necesita que la Torre funcione. Los sistemas están caídos. Los laboratorios no pueden operar. Las defensas están en standby. Y todo porque JARVIS no tiene claro QUÉ NECESITA (condiciones) para ejecutar lo que SABE HACER (funciones).
                 </p>
                 
                 <figure class="story-figure">
-                    <img src="assets/historia/historia4.png" alt="NOVA varada en órbita alrededor de la Tierra, incapaz de operar sin los requerimientos necesarios" loading="lazy" decoding="async">
+                    <img src="assets/historia/historia4.png" alt="JARVIS paralizado: Torre Stark sin sistemas críticos debido a requerimientos incompletos" loading="lazy" decoding="async">
                 </figure>
                 
                 <p style="color: #ff6b6b; font-weight: 600; margin-bottom: 1rem;">
-                    Sin requerimientos claros, ni el mejor software del mundo puede funcionar.
+                    Sin requerimientos claros, ni la IA más inteligente del mundo puede funcionar.
                 </p>
                 
-                <p style="background: rgba(102, 178, 255, 0.1); padding: 0.75rem; border-radius: 8px; margin-bottom: 1.5rem; font-style: italic;">
-                    <strong>NOVA dice:</strong> "Tengo todas las funciones, pero no cumplo las condiciones necesarias para operar. Necesito tu ayuda para entender qué me falta."
+                <p style="background: rgba(255, 198, 0, 0.1); padding: 0.75rem; border-radius: 8px; margin-bottom: 1.5rem; font-style: italic;">
+                    <strong>JARVIS dice:</strong> "Tengo TODAS las funciones correctas. Puedo calcular, controlar, transmitir. Pero me faltan mis CONDICIONES. Necesito saber QUÉ REQUISITOS me permiten ejecutar estas funciones. Ayúdame a reparar mi sistema."
                 </p>
                 
                 <div style="border-left: 4px solid var(--color-primary); padding-left: 1rem; margin-top: 1.5rem;">
                     <p style="font-weight: 600; margin-bottom: 0.5rem;">¿Por qué esto importa?</p>
                     <p style="font-size: 0.95rem; color: var(--color-text-light); margin: 0;">
-                        Todo software, desde una app en tu teléfono hasta un sistema de control de satélites, necesita requerimientos claros. Sin ellos, el código más brillante del mundo simplemente no funciona. Este es el primer paso en ingeniería de software: entender qué debe hacer el sistema y bajo qué condiciones debe hacerlo.
+                        Todo software, desde una app en tu teléfono hasta un sistema como JARVIS, necesita dos tipos de requerimientos. <strong>FUNCIONES</strong> (lo que HACE) y <strong>CONDICIONES</strong> (lo que NECESITA para hacerlo). Sin ambas, el código más brillante simplemente no funciona. Este es el fundamento de la ingeniería de software: especificar correctamente QUÉ debe hacer el sistema y BAJO QUÉ CONDICIONES.
                     </p>
                 </div>
             </div>
@@ -405,7 +476,40 @@
                     ✓ Marcar como Completada
                 </button>
                 <button class="activity-action-btn activity-cancel-btn" id="cancelActivityBtn" type="button">
-                    Cancelar
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Medal Award (Single Medal) -->
+    <div class="modal" id="medalAwardModal" aria-hidden="true" role="dialog" aria-labelledby="medal-award-title">
+        <div class="modal-content celebration-modal-content">
+            <button class="close-modal" id="closeMedalAward" type="button" aria-label="Cerrar">✕</button>
+            
+            <div class="celebration-content">
+                <div class="medal-container">
+                    <div class="medal">
+                        <div class="medal-circle" id="medalAwardIcon">🏅</div>
+                    </div>
+                </div>
+                
+                <h2 id="medal-award-title">¡MEDALLA DESBLOQUEADA!</h2>
+                
+                <p class="celebration-message" id="medalAwardMessage">
+                    Has completado la Misión con éxito.
+                </p>
+                
+                <div class="medal-award-img" id="medalAwardImgContainer" style="text-align: center; margin: 1.5rem 0;">
+                    <img id="medalAwardImg" src="" alt="Medalla" style="width: 120px; height: 120px; object-fit: contain;">
+                </div>
+
+                <p class="medal-award-progress" id="medalAwardProgress" style="font-size: 0.95rem; color: var(--color-text-light); margin-top: 1rem;">
+                    Medallas desbloqueadas: 1/4
+                </p>
+                
+                <button class="celebration-btn" id="continueMissionBtn" type="button">
+                    ✅ Continuar
                 </button>
             </div>
         </div>
@@ -426,7 +530,7 @@
                 <h2 id="celebration-modal-title">¡DESPEGUE AUTORIZADO!</h2>
                 
                 <p class="celebration-message">
-                    Sistema NOVA restaurado al 100%. Todos los requerimientos completados.
+                    Sistema JARVIS restaurado al 100%. Todos los requerimientos completados.
                 </p>
                 
                 <div class="celebration-stats">
@@ -439,14 +543,72 @@
                         <span class="stat-label">Puntos Ganados</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-value">100%</span>
-                        <span class="stat-label">Sistema</span>
+                        <span class="stat-value" id="finalAccuracy">100%</span>
+                        <span class="stat-label">Precisión</span>
                     </div>
+                </div>
+
+                <!-- CERTIFICATE SECTION -->
+                <div class="certificate-container" id="certificateContainer">
+                    <div class="certificate">
+                        <div class="certificate-header">
+                            <!-- Iron Man Arc Reactor Image -->
+                            <img src="assets/IRONMAN/ESCUDO IRONMAN.jpg" alt="Arc Reactor - Stark Industries" style="max-width: 80px; margin: 0 auto 1rem; display: block; border-radius: 50%; box-shadow: 0 4px 12px rgba(255,215,0,0.3);">
+                            <h3>🏆 CERTIFICADO DE FINALIZACIÓN</h3>
+                        </div>
+                        
+                        <div class="certificate-body">
+                            <p class="certificate-line">Ha completado exitosamente:</p>
+                            <p class="certificate-title">Reparación del Sistema JARVIS</p>
+                            <p class="certificate-course">Especificación de Requerimientos de Software</p>
+                            
+                            <div class="certificate-details">
+                                <div class="certificate-item">
+                                    <span class="cert-label">Estudiante:</span>
+                                    <span class="cert-value" id="certificateName">[Nombre]</span>
+                                </div>
+                                <div class="certificate-item">
+                                    <span class="cert-label">📅 Fecha:</span>
+                                    <span class="cert-value" id="certificateDate">[Fecha]</span>
+                                </div>
+                                <div class="certificate-item">
+                                    <span class="cert-label">🕐 Hora:</span>
+                                    <span class="cert-value" id="certificateTime">[Hora]</span>
+                                </div>
+                                <div class="certificate-item">
+                                    <span class="cert-label">⏱️ Duración:</span>
+                                    <span class="cert-value" id="certificateDuration">[Duración]</span>
+                                </div>
+                                <div class="certificate-item">
+                                    <span class="cert-label">🎯 Puntos:</span>
+                                    <span class="cert-value" id="certificatePoints">[Puntos]</span>
+                                </div>
+                                <div class="certificate-item">
+                                    <span class="cert-label">📊 Precisión:</span>
+                                    <span class="cert-value" id="certificatePrecision">[Precisión]</span>
+                                </div>
+                            </div>
+
+                            <p class="certificate-footer-text">
+                                Este certificado verifica que el estudiante completó la misión de reparación del sistema JARVIS 
+                                dentro del tiempo de clase establecido.
+                            </p>
+
+                            <div class="certificate-signature">
+                                <p>Prof. Marcos Argandoña</p>
+                                <p style="font-size: 0.85rem;">Ingeniero Informático - Docente</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="certificate-download-btn" id="downloadCertificateBtn" type="button">
+                        📥 Descargar Certificado
+                    </button>
                 </div>
                 
                 <div class="nova-final-message">
                     <p style="font-style: italic; margin-bottom: 1rem;">
-                        💭 <strong>NOVA dice:</strong>
+                        💭 <strong>JARVIS dice:</strong>
                     </p>
                     <p style="line-height: 1.8; font-size: 1rem;">
                         "Gracias por tu ayuda. Aprendiste lo más importante de la ingeniería de software: 
@@ -472,11 +634,11 @@
         </div>
     </div>
 
-    <!-- NOVA Message Toast System -->
+    <!-- JARVIS Alert System -->
     <div class="nova-message-container" id="novaMessageToast" aria-live="polite" aria-atomic="true" role="status">
         <div class="nova-message-content">
             <span class="nova-message-icon">💭</span>
-            <p class="nova-message-text" id="novaMessageText">NOVA está pensando...</p>
+            <p class="nova-message-text" id="novaMessageText">JARVIS está procesando...</p>
         </div>
         <button class="nova-message-close" id="novaMessageClose" type="button" aria-label="Cerrar mensaje">✕</button>
     </div>
@@ -485,6 +647,197 @@
     <button class="mute-toggle-btn" id="muteToggleBtn" type="button" aria-label="Silenciar mensajes automáticos" title="Silenciar/Activar mensajes">
         <span id="muteIcon">🔔</span>
     </button>
+
+    <!-- Modal: Missions Status -->
+    <div class="modal" id="missionsStatusModal" aria-hidden="true" role="dialog" aria-labelledby="missions-status-title">
+        <div class="modal-content">
+            <button class="close-modal" id="closeMissionsStatus" type="button" aria-label="Cerrar">✕</button>
+            <h2 id="missions-status-title">📊 Estado de Misiones</h2>
+            <div class="modal-text">
+                <div class="missions-status-list" id="missionsStatusList">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Rewards (Medals & Trophy) -->
+    <div class="modal" id="rewardsModal" aria-hidden="true" role="dialog" aria-labelledby="rewards-modal-title">
+        <div class="modal-content rewards-modal">
+            <button class="close-modal" id="closeRewards" type="button" aria-label="Cerrar recompensas">✕</button>
+            <h2 id="rewards-modal-title" style="text-align: center; margin-bottom: 1.5rem;">🏆 Tus Recompensas</h2>
+            
+            <div class="rewards-container">
+                <!-- Mission 1 Medal -->
+                <div class="reward-item">
+                    <div class="reward-icon" id="reward-medal-1">
+                        <img src="assets/medallas/m1.png" alt="Medalla Misión 1" style="opacity: 0.3;">
+                    </div>
+                    <div class="reward-info">
+                        <h3>Misión 1: Activación</h3>
+                        <p id="reward-status-1" style="color: var(--color-text-light);">Bloqueada</p>
+                    </div>
+                </div>
+                
+                <!-- Mission 2 Medal -->
+                <div class="reward-item">
+                    <div class="reward-icon" id="reward-medal-2">
+                        <img src="assets/medallas/m2.png" alt="Medalla Misión 2" style="opacity: 0.3;">
+                    </div>
+                    <div class="reward-info">
+                        <h3>Misión 2: Explorar Problema</h3>
+                        <p id="reward-status-2" style="color: var(--color-text-light);">Bloqueada</p>
+                    </div>
+                </div>
+                
+                <!-- Mission 3 Medal -->
+                <div class="reward-item">
+                    <div class="reward-icon" id="reward-medal-3">
+                        <img src="assets/medallas/m3.png" alt="Medalla Misión 3" style="opacity: 0.3;">
+                    </div>
+                    <div class="reward-info">
+                        <h3>Misión 3: Aplicar Conceptos</h3>
+                        <p id="reward-status-3" style="color: var(--color-text-light);">Bloqueada</p>
+                    </div>
+                </div>
+                
+                <!-- Mission 4 Medal -->
+                <div class="reward-item">
+                    <div class="reward-icon" id="reward-medal-4">
+                        <img src="assets/medallas/m4.png" alt="Medalla Misión 4" style="opacity: 0.3;">
+                    </div>
+                    <div class="reward-info">
+                        <h3>Misión 4: Reparar Sistema</h3>
+                        <p id="reward-status-4" style="color: var(--color-text-light);">Bloqueada</p>
+                    </div>
+                </div>
+                
+                <!-- Final Trophy -->
+                <div class="reward-item trophy-item" id="trophy-reward-item" style="display: none;">
+                    <div class="reward-icon trophy-reward-icon">
+                        <img src="assets/medallas/trofeo.png" alt="Trofeo Final" style="opacity: 0.3;">
+                    </div>
+                    <div class="reward-info">
+                        <h3 style="color: #FFD700;">⭐ TROFEO FINAL</h3>
+                        <p id="trophy-status" style="color: var(--color-text-light);">Completa todas las misiones</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Instructions -->
+    <div class="modal" id="instructionsModal" aria-hidden="true" role="dialog" aria-labelledby="instructions-modal-title">
+        <div class="modal-content">
+            <button class="close-modal" id="closeInstructions" type="button" aria-label="Cerrar instrucciones">✕</button>
+            <h2 id="instructions-modal-title">📖 Cómo Jugar</h2>
+            <div class="modal-text">
+                <div class="instruction-section">
+                    <h3>🎯 Objetivo</h3>
+                    <p>Ayuda a JARVIS a reparar su sistema completando 4 misiones en 20 minutos. Cada misión te enseña sobre requerimientos de software.</p>
+                </div>
+
+                <div class="instruction-section">
+                    <h3>📊 Sistema de Puntos</h3>
+                    <ul>
+                        <li><strong>Respuesta correcta:</strong> +10 puntos</li>
+                        <li><strong>Misión completada:</strong> +20 puntos</li>
+                        <li><strong>Bonus por velocidad:</strong> +10 puntos (si completas en menos de 20 min)</li>
+                        <li><strong>Total posible:</strong> 200 puntos</li>
+                    </ul>
+                </div>
+
+                <div class="instruction-section">
+                    <h3>🎮 Tipos de Actividades</h3>
+                    <ul>
+                        <li><strong>Quiz:</strong> Responde una pregunta de opción múltiple</li>
+                        <li><strong>Clasificación:</strong> Decide si es Función o Condición</li>
+                        <li><strong>Colaboración:</strong> Participa en el Padlet grupal</li>
+                        <li><strong>Acción:</strong> Presiona botones para desbloquear hitos</li>
+                    </ul>
+                </div>
+
+                <div class="instruction-section">
+                    <h3>🏆 Al Finalizar</h3>
+                    <p>Recibirás un <strong>certificado digital</strong> con:</p>
+                    <ul>
+                        <li>Tu nombre</li>
+                        <li>Fecha y hora exacta de finalización</li>
+                        <li>Puntos totales obtenidos</li>
+                        <li>Porcentaje de precisión</li>
+                    </ul>
+                    <p style="color: #ff6b6b; font-weight: 600;">⚠️ El certificado incluye timestamp para validar que fue completado en clase.</p>
+                </div>
+
+                <div class="instruction-section">
+                    <h3>💡 Consejos</h3>
+                    <ul>
+                        <li>Lee las preguntas con cuidado</li>
+                        <li>Recuerda: Función = QUÉ HACE / Condición = QUÉ NECESITA</li>
+                        <li>Colabora sinceramante en el Padlet</li>
+                        <li>¡Disfruta la experiencia!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Credits -->
+    <div class="modal" id="creditsModal" aria-hidden="true" role="dialog" aria-labelledby="credits-modal-title">
+        <div class="modal-content">
+            <button class="close-modal" id="closeCredits" type="button" aria-label="Cerrar créditos">✕</button>
+            <h2 id="credits-modal-title">⭐ Créditos & Referencias</h2>
+            <div class="modal-text">
+                <div class="credits-section">
+                    <h3>👨‍🏫 Diseño Pedagógico</h3>
+                    <p><strong>Marcos Argandoña</strong></p>
+                    <p>Ingeniero Informático | Docente</p>
+                    <p>Email: marcos@example.com</p>
+                    <p>Sitio: <a href="https://www.makuaz.cl" target="_blank">www.makuaz.cl</a></p>
+                </div>
+
+                <div class="credits-section">
+                    <h3>📚 Referencias Académicas</h3>
+                    <ul>
+                        <li>Sommerville, I. (2016). <em>Software Engineering</em> (10th ed.). Pearson.</li>
+                        <li>IEEE/SWEBOK. (2014). <em>Guide to the Software Engineering Body of Knowledge</em>. IEEE.</li>
+                        <li>Pressman, R. S. (2010). <em>Software Engineering: A Practitioner's Approach</em>. McGraw-Hill.</li>
+                        <li>Gause, D. C., & Weinberg, G. M. (1989). <em>Exploring Requirements: Quality Before Design</em>. Dorset House.</li>
+                    </ul>
+                </div>
+
+                <div class="credits-section">
+                    <h3>🎮 Influencia Narrativa</h3>
+                    <p>Inspirado en el universo Marvel Cinematic Universe, específicamente en el personaje de JARVIS.</p>
+                    <p style="font-size: 0.9rem; color: #888;">Nota: JARVIS es una referencia creativa educativa. No es una reproducción de marca registrada.</p>
+                </div>
+
+                <div class="credits-section">
+                    <h3>💻 Tecnologías Utilizadas</h3>
+                    <ul>
+                        <li>HTML5 - Semántica web</li>
+                        <li>CSS3 - Responsive Design</li>
+                        <li>JavaScript ES6+ - Lógica de aplicación</li>
+                        <li>Web Audio API - Sistema de audio</li>
+                        <li>LocalStorage - Persistencia de datos</li>
+                    </ul>
+                </div>
+
+                <div class="credits-section">
+                    <h3>🎨 Diseño</h3>
+                    <p>Interfaz inspirada en sistemas de videojuegos modernos con enfoque en UX educativa.</p>
+                </div>
+
+                <div class="credits-section">
+                    <p style="font-size: 0.9rem; color: #666; border-top: 1px solid #ddd; padding-top: 1rem; margin-top: 1rem;">
+                        <strong>Versión:</strong> 2.0 - JARVIS Edition<br>
+                        <strong>Fecha:</strong> Marzo 2026<br>
+                        <strong>Licencia:</strong> Uso educativo
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Accessibility: Skip to main content link -->
     <a href="#main-content" class="skip-link">Ir al contenido principal</a>
