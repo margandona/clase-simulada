@@ -175,6 +175,7 @@ Tiene funciones perdidas y condiciones sin definir que impiden que realice sus t
 Actividades:
 
 - Quiz: identificar el problema
+- LEER CONCEPTOS
 - Checklist: requerimientos faltantes
 - Quiz: consecuencias de requisitos mal definidos
 
