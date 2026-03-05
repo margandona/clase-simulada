@@ -535,7 +535,7 @@
         /* PRINT FRIENDLY */
         @media print {
             .tool-tabs { display: none; }
-            .header { page-break-avoid: avoid; }
+            .header { page-break-inside: avoid; }
             .mission-card { page-break-inside: avoid; }
         }
 
@@ -573,6 +573,181 @@
         .note-box strong {
             color: var(--color-primary);
         }
+
+        /* ACCORDION STYLES FOR GUION */
+        .accordion-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-bottom: 2px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #f0f2f5 0%, #f8f9fa 100%);
+        }
+
+        .accordion-item.active .accordion-header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #7c5cdb 100%);
+            color: white;
+            border-bottom-color: var(--color-primary);
+        }
+
+        .accordion-title {
+            flex: 1;
+            font-size: 1.2em;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .accordion-time {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--color-primary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-right: 15px;
+        }
+
+        .accordion-item.active .accordion-time {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--color-primary);
+        }
+
+        .accordion-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+            color: var(--color-primary);
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+            color: white;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 5000px;
+        }
+
+        .accordion-body {
+            padding: 25px;
+            background: white;
+        }
+
+        .answer-box {
+            background: #e8f5e9;
+            border-left: 4px solid var(--color-success);
+            padding: 15px 20px;
+            margin: 12px 0;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        .answer-box::before {
+            content: "✓ ";
+            color: var(--color-success);
+            font-weight: 700;
+            font-size: 1.3em;
+            margin-right: 8px;
+        }
+
+        .question-box {
+            background: #f5f5f5;
+            border-left: 4px solid var(--color-warning);
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 6px;
+        }
+
+        .question-box strong {
+            color: var(--color-primary);
+        }
+
+        .expand-collapse-all {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: flex-end;
+        }
+
+        .accordion-control-btn {
+            padding: 10px 20px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+
+        .accordion-control-btn:hover {
+            background: #7c5cdb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(91, 75, 159, 0.3);
+        }
+
+        .ecommerce-reference {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border: 2px solid var(--color-warning);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.15);
+        }
+
+        .ecommerce-reference h4 {
+            color: #f57c00;
+            margin: 0 0 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1em;
+        }
+
+        .ecommerce-reference p {
+            margin: 8px 0;
+            color: #666;
+        }
+
+        .ecommerce-reference a {
+            color: #f57c00;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 2px solid #f57c00;
+            transition: all 0.2s ease;
+        }
+
+        .ecommerce-reference a:hover {
+            color: #e65100;
+            border-bottom-color: #e65100;
+        }
     </style>
 </head>
 <body>
@@ -600,137 +775,405 @@
                 <h2>📖 Guión de Clase Simulada</h2>
                 <p style="font-size: 1.1em; color: #666; margin-bottom: 20px;">
                     <strong>Misión:</strong> Restaurar el Sistema JARVIS de Stark Industries<br>
-                    <strong>Duración total:</strong> 25–30 minutos<br>
+                    <strong>Duración total:</strong> 20–25 minutos<br>
+                    <strong>Estructura:</strong> 4 misiones con 9 actividades<br>
                     <strong>Tema:</strong> Requerimientos de software (funciones vs condiciones)<br>
                     <strong>Metodología:</strong> Gamificación + aprendizaje activo + narrativa interactiva
                 </p>
 
                 <div class="note-box">
-                    <strong>⏰ NOTA IMPORTANTE:</strong> Mantén esta página abierta en una pestaña durante la clase para seguir el guión en tiempo real.
+                    <strong>⏰ NOTA IMPORTANTE:</strong> Mantén esta página abierta en una pestaña durante la clase para seguir el guión en tiempo real. Haz clic en cada sección para expandirla.
                 </div>
 
-                <h3>1️⃣ Presentación del Docente (2 minutos)</h3>
-                <div class="time-block">
-                    <strong>Buenas tardes.</strong><br><br>
-                    Mi nombre es <strong>Marcos Argandoña</strong>, soy <strong>Ingeniero Informático y docente</strong>.<br><br>
-                    Hoy estoy postulando para impartir la asignatura de <span class="highlight">Especificación de Requerimientos</span>, vinculada al análisis y desarrollo de sistemas.
+                <div class="ecommerce-reference">
+                    <h4>🛒 Ejemplos Profesionales de E-commerce</h4>
+                    <p>Para estudiantes avanzados que pregunten cómo se escriben requerimientos reales, encontrarás <strong>ejemplos completos de una plataforma E-commerce</strong> con criterios de aceptación profesionales en la pestaña <a href="#" onclick="switchTab('respuestas'); return false;">✅ Respuestas & Retroalimentación</a> (al final de la sección).</p>
                 </div>
 
-                <h3>2️⃣ Retroalimentación de la Clase Anterior (2 minutos)</h3>
-                <p><strong>Objetivo:</strong> Activar conocimientos previos. Dinámica rápida tipo <em>ping-pong</em>.</p>
-                <div class="time-block">
-                    <strong>Pregunta 1:</strong> ¿Qué es un <strong>requerimiento de usuario</strong>?<br>
-                    <em>Respuesta esperada:</em> Lo que el usuario necesita.
-                </div>
-                <div class="time-block">
-                    <strong>Pregunta 2:</strong> ¿Qué es un <strong>requerimiento del sistema</strong>?<br>
-                    <em>Respuesta esperada:</em> Lo que el sistema debe hacer.
-                </div>
-                <div class="time-block">
-                    <strong>Pregunta 3:</strong> ¿Por qué son importantes los requerimientos?<br>
-                    <em>Respuesta esperada:</em> Porque guían el desarrollo del sistema.
-                </div>
-                <div class="time-block" style="border-left-color: var(--color-success);">
-                    <strong>Cierre:</strong> Perfecto. Hoy veremos cómo estos requerimientos permiten que <strong>un sistema funcione correctamente</strong>.
+                <div class="note-box" style="background: #e3f2fd; border-left-color: #2196F3;">
+                    <strong>📊 ESTRUCTURA DE LA CLASE:</strong><br>
+                    ✓ <strong>4 Misiones</strong> con 9 actividades totales<br>
+                    ✓ <strong>Duración:</strong> 20-25 minutos (optimizada)<br>
+                    ✓ <strong>Misión 1:</strong> Activación (quiz + padlet)<br>
+                    ✓ <strong>Misión 2:</strong> Explorar Problema (quiz + checklist)<br>
+                    ✓ <strong>Misión 3:</strong> Aprender Patrón (2 clasificaciones)<br>
+                    ✓ <strong>Misión 4:</strong> Reparar JARVIS (3 clasificaciones + autorización despegue)
                 </div>
 
-                <h3>3️⃣ Transición Personal (1 minuto)</h3>
-                <div class="time-block">
-                    <strong>Texto a decir:</strong><br>
-                    "Antes de comenzar, no quiero hablar mucho más de mí. Si quieren conocer mi trabajo o proyectos pueden visitar <strong>www.makuaz.cl</strong>"<br><br>
-                    "<strong>Pero hoy no vinimos a hablar de mí y tampoco solo veremos teoría. Lo que hoy haremos será jugar, porque soy gamer y es algo que me apasiona.</strong>"<br><br>
-                    <strong>ACCIÓN:</strong> Preguntar cuántos son gamers y qué juegos juegan.
+                <div class="expand-collapse-all">
+                    <button class="accordion-control-btn" onclick="expandAllGuion()">📂 Expandir Todas</button>
+                    <button class="accordion-control-btn" onclick="collapseAllGuion()">📁 Contraer Todas</button>
                 </div>
 
-                <h3>4️⃣ Momento Sorpresa: La IA (2 minutos)</h3>
-                <div class="time-block">
-                    <strong>Texto a decir:</strong><br>
-                    "Dentro de Stark Industries hay una IA que necesita nuestra ayuda. Su nombre es <strong>JARVIS</strong>. Tiene un pequeño problema: su sistema está incompleto y no puede funcionar correctamente. Solo puede comunicarse <strong>a través de vuestros teléfonos</strong>."<br><br>
-                    <strong>ACCIÓN:</strong> Mostrar el QR para escanear el sitio de la actividad.
+                <!-- Sección 1 -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span>1️⃣ Presentación del Docente</span>
+                        </div>
+                        <span class="accordion-time">2 min</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="time-block">
+                                <strong>Buenas tardes.</strong><br><br>
+                                Mi nombre es <strong>Marcos Argandoña</strong>, soy <strong>Ingeniero Informático y docente</strong>.<br><br>
+                                Hoy estoy postulando para impartir la asignatura de <span class="highlight">Especificación de Requerimientos</span>, vinculada al análisis y desarrollo de sistemas.
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <h3>5️⃣ Ingreso a la Experiencia JARVIS (2 minutos)</h3>
-                <div class="time-block">
-                    <strong>INSTRUCCIONES A LOS ESTUDIANTES:</strong>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li>Escaneen el código QR con sus teléfonos</li>
-                        <li>Ingresen al sitio</li>
-                        <li>Si pueden, <strong>activen el sonido</strong></li>
-                        <li>Ahora conocerán a JARVIS y comenzarán la misión</li>
-                    </ul>
+                <!-- Sección 2 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span>2️⃣ Retroalimentación de la Clase Anterior</span>
+                        </div>
+                        <span class="accordion-time">2 min</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Objetivo:</strong> Activar conocimientos previos. Dinámica rápida tipo <em>ping-pong</em>.</p>
+                            
+                            <div class="question-box">
+                                <strong>Pregunta 1:</strong> ¿Qué es un <strong>requerimiento de usuario</strong>?
+                            </div>
+                            <div class="answer-box">Lo que el usuario necesita</div>
+
+                            <div class="question-box">
+                                <strong>Pregunta 2:</strong> ¿Qué es un <strong>requerimiento del sistema</strong>?
+                            </div>
+                            <div class="answer-box">Lo que el sistema debe hacer</div>
+
+                            <div class="question-box">
+                                <strong>Pregunta 3:</strong> ¿Por qué son importantes los requerimientos?
+                            </div>
+                            <div class="answer-box">Porque guían el desarrollo del sistema</div>
+
+                            <div class="time-block" style="border-left-color: var(--color-success); margin-top: 15px;">
+                                <strong>Cierre:</strong> Perfecto. Hoy veremos cómo estos requerimientos permiten que <strong>un sistema funcione correctamente</strong>.
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <h3>6️⃣ Historia de JARVIS (1.5 minutos)</h3>
-                <div class="time-block">
-                    <strong>ACCIÓN:</strong> Permitir que la narrativa se reproduzca en los dispositivos de los estudiantes.<br>
-                    <strong>Objetivo pedagógico:</strong> Introducir el problema y crear inmersión narrativa.
+                <!-- Sección 3 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span>3️⃣ Transición Personal</span>
+                        </div>
+                        <span class="accordion-time">1 min</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="time-block">
+                                <strong>Texto a decir:</strong><br><br>
+                                "Antes de comenzar, no quiero hablar mucho más de mí. Si quieren conocer mi trabajo o proyectos pueden visitar <strong>www.makuaz.cl</strong>"<br><br>
+                                "<strong>Pero hoy no vinimos a hablar de mí y tampoco solo veremos teoría. Lo que hoy haremos será jugar, porque soy gamer y es algo que me apasiona.</strong>"<br><br>
+                                <strong>ACCIÓN:</strong> Preguntar cuántos son gamers y qué juegos juegan.
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <h3>7️⃣ Misión 1 – Activación (3 minutos)</h3>
-                <p><strong>Objetivo pedagógico:</strong> Activar el sistema y conectar con conocimientos previos.</p>
-                <div class="time-block">
-                    <strong>Actividad 1a - Quiz:</strong> ¿Quién es JARVIS?
-                </div>
-                <div class="time-block">
-                    <strong>Actividad 1b - Padlet Activación:</strong> ¿Qué necesita un sistema para funcionar correctamente?<br>
-                    <em>Ejemplos posibles:</em> energía, reglas, instrucciones, conexión, usuarios, orden.<br><br>
-                    <strong>Comentario docente:</strong> Interesante… aparecen palabras como <strong>energía, reglas, orden</strong>. Eso ya nos habla de <strong>cómo deben funcionar los sistemas tecnológicos</strong>.
-                </div>
-                <div class="time-block">
-                    <strong>Actividad 1c - Quiz:</strong> ¿Qué necesita JARVIS para funcionar correctamente?
-                </div>
-
-                <h3>8️⃣ Misión 2 – Explorar Problema (3 minutos)</h3>
-                <p><strong>Objetivo:</strong> Comprender el problema del sistema.</p>
-                <div class="time-block">
-                    <strong>Explicación docente:</strong><br>
-                    JARVIS no está <em>averiado</em>, pero su sistema <strong>está incompleto</strong>. Tiene funciones perdidas y condiciones sin definir que impiden que realice sus tareas.
-                </div>
-
-                <h3>9️⃣ Misión 3 – Aplicar Conceptos (4 minutos)</h3>
-                <p><strong>Objetivo:</strong> Diferenciar función vs condición.</p>
-                <div class="time-block">
-                    <strong>Explicación docente:</strong><br>
-                    Para ayudar a JARVIS necesitamos entender dos ideas clave:<br><br>
-                    ✓ <strong>Función</strong> → lo que el sistema <em>hace</em> (acciones, tareas)<br>
-                    ✓ <strong>Condición</strong> → lo que el sistema <em>necesita</em> para operar (requisitos, precondiciones)
+                <!-- Sección 4 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span>4️⃣ Momento Sorpresa: La IA</span>
+                        </div>
+                        <span class="accordion-time">2 min</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="time-block">
+                                <strong>Texto a decir:</strong><br><br>
+                                "Dentro de Stark Industries hay una IA que necesita nuestra ayuda. Su nombre es <strong>JARVIS</strong>. Tiene un pequeño problema: su sistema está incompleto y no puede funcionar correctamente. Solo puede comunicarse <strong>a través de vuestros teléfonos</strong>."<br><br>
+                                <strong>ACCIÓN:</strong> Mostrar el QR para escanear el sitio de la actividad.
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <h3>🔟 Misión 4 – Reparar Sistema (5 minutos)</h3>
-                <p><strong>Objetivo:</strong> Aplicar conceptos en situaciones reales.</p>
-                <div class="time-block">
-                    <strong>Explicación docente:</strong><br>
-                    Ahora vamos a <strong>restaurar el sistema de JARVIS</strong> clasificando sus requerimientos en función o condición.
+                <!-- Sección 5 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span>5️⃣ Ingreso a la Experiencia JARVIS</span>
+                        </div>
+                        <span class="accordion-time">2 min</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="time-block">
+                                <strong>INSTRUCCIONES A LOS ESTUDIANTES:</strong>
+                                <ul style="margin-top: 10px; margin-left: 20px;">
+                                    <li>Escaneen el código QR con sus teléfonos</li>
+                                    <li>Ingresen al sitio</li>
+                                    <li>Si pueden, <strong>activen el sonido</strong></li>
+                                    <li>Ahora conocerán a JARVIS y comenzarán la misión</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <h3>1️⃣1️⃣ Misión 5 – Colaborar (4 minutos)</h3>
-                <p><strong>Objetivo:</strong> Construcción colectiva del sistema.</p>
-                <div class="time-block">
-                    <strong>Padlet colaborativo - Pregunta:</strong><br>
-                    "¿Qué otros requerimientos (funciones y condiciones) necesita JARVIS para restaurarse completamente?"<br><br>
-                    <em>Ejemplos posibles:</em><br>
-                    <strong>Funciones:</strong> analizar amenazas, comunicarse con Tony Stark, controlar sistemas de defensa<br>
-                    <strong>Condiciones:</strong> conexión a internet estable, permisos de acceso confirmados, procesador operativo
+                <!-- Sección 6 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span>6️⃣ Historia de JARVIS</span>
+                        </div>
+                        <span class="accordion-time">1.5 min</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="time-block">
+                                <strong>ACCIÓN:</strong> Permitir que la narrativa se reproduzca en los dispositivos de los estudiantes.<br><br>
+                                <strong>Objetivo pedagógico:</strong> Introducir el problema y crear inmersión narrativa.
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <h3>1️⃣2️⃣ Misión 6 – Restauración Completa (3 minutos)</h3>
-                <p><strong>Objetivo:</strong> Cierre narrativo.</p>
-                <div class="time-block">
-                    <strong>Comentario docente:</strong><br>
-                    "Hemos identificado y restaurado todos los requerimientos de JARVIS. Ahora podemos autorizar su activación completa."<br><br>
-                    <strong>ACCIÓN:</strong> Presionar activación/despegue
+                <!-- Sección 7 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span>7️⃣ Misión 1 – Activación</span>
+                        </div>
+                        <span class="accordion-time">3 min</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Objetivo pedagógico:</strong> Conectar con JARVIS y comprender su situación.</p>
+                            
+                            <div class="question-box">
+                                <strong>Actividad 1a - Quiz:</strong> ¿Quién es JARVIS?
+                            </div>
+                            <div class="answer-box">La IA que controla Stark Industries</div>
+                            <div class="feedback">
+                                <strong>Mensaje JARVIS:</strong> "Gracias por identificarme. Ahora entiende mi problema."
+                            </div>
+
+                            <div class="time-block">
+                                <strong>Actividad 1b - Padlet:</strong> ¿Cómo ayudarías a JARVIS?<br>
+                                <strong>Tipo:</strong> Colaboración abierta (Padlet)<br>
+                                <strong>Objetivo:</strong> Lluvia de ideas sobre cómo ayudar a un sistema<br><br>
+                                <strong>Mensaje JARVIS:</strong> "Las ideas de los humanos siempre me fascinan."
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <h3>1️⃣3️⃣ Reflexión Final (2 minutos)</h3>
-                <div class="time-block">
-                    <strong>Mensaje:</strong> "Hoy no solo aprendimos conceptos teóricos. Aprendimos que <strong>un sistema funciona cuando cada requerimiento se define claramente: qué debe hacer (función) y qué necesita para hacerlo (condición)</strong>."<br><br>
-                    <strong>Pregunta al grupo:</strong> ¿Entienden ahora cómo sistemas como JARVIS, ChatGPT o vuestro teléfono tienen requerimientos definidos?<br><br>
-                    <em>Ejemplos esperados:</em> aplicaciones móviles, plataformas como Instagram, sistemas de transporte (GPS), videojuegos profesionales
+                <!-- Sección 8 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span>8️⃣ Misión 2 – Explorar el Problema</span>
+                        </div>
+                        <span class="accordion-time">3 min</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Objetivo:</strong> Identificar exactamente qué le falta a JARVIS.</p>
+                            
+                            <div class="time-block">
+                                <strong>Explicación docente:</strong><br>
+                                "JARVIS dice: 'Tengo funciones, pero me faltan condiciones'. ¿Qué significa esto?"
+                            </div>
+
+                            <div class="question-box">
+                                <strong>Actividad 2a - Quiz:</strong> Un sistema sin requerimientos claros...
+                            </div>
+                            <div class="answer-box">No sabe QUÉ HACER ni BAJO QUÉ CONDICIONES hacerlo</div>
+                            <div class="feedback">
+                                <strong>Mensaje JARVIS:</strong> "Sin instrucciones claras, no puedo ejecutarme."
+                            </div>
+
+                            <div class="question-box">
+                                <strong>Actividad 2b - Checklist:</strong> ¿JARVIS necesita...? (Selecciona lo correcto)
+                            </div>
+                            <div class="answer-box">
+                                ✓ Saber QUÉ FUNCIONES ejecutar (requisitos funcionales)<br>
+                                ✓ BAJO QUÉ CONDICIONES ejecutarlas (requisitos no-funcionales)
+                            </div>
+                            <div class="feedback">
+                                <strong>Mensaje JARVIS:</strong> "Exactamente. Funciones + Condiciones = Sistema Completo."
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <h3>1️⃣4️⃣ Cierre (1 minuto)</h3>
-                <div class="time-block">
-                    <strong>"Gracias por ayudar a restaurar a JARVIS. Ahora sabe cómo funcionan los requerimientos de software. Nos vemos en la próxima clase."</strong>
+                <!-- Sección 9 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span>9️⃣ Misión 3 – Aprender el Patrón</span>
+                        </div>
+                        <span class="accordion-time">4 min</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Objetivo:</strong> Entender la diferencia crítica FUNCIÓN vs CONDICIÓN.</p>
+                            
+                            <div class="time-block">
+                                <strong>Explicación docente:</strong><br>
+                                "Esto es LO MÁS IMPORTANTE. Presten atención:"<br><br>
+                                ✓ <strong>FUNCIÓN</strong> → ¿QUÉ HACE el sistema? (acciones, verbos)<br>
+                                ✓ <strong>CONDICIÓN</strong> → ¿QUÉ NECESITA para hacerlo? (requisitos, prerequisitos)
+                            </div>
+
+                            <div class="question-box">
+                                <strong>Actividad 3a - Clasificación:</strong> "JARVIS debe calcular trayectorias de vuelo"<br>
+                                ¿FUNCIÓN o CONDICIÓN?
+                            </div>
+                            <div class="answer-box">FUNCIÓN ("calcular" es una acción que el sistema HACE)</div>
+                            <div class="feedback">
+                                <strong>Pista:</strong> ¿QUÉ HACE el sistema? → FUNCIÓN<br>
+                                <strong>Mensaje JARVIS:</strong> "Calcular trayectorias es mi función principal."
+                            </div>
+
+                            <div class="question-box">
+                                <strong>Actividad 3b - Clasificación:</strong> "JARVIS requiere conexión a internet"<br>
+                                ¿FUNCIÓN o CONDICIÓN?
+                            </div>
+                            <div class="answer-box">CONDICIÓN ("requiere" = algo que NECESITA)</div>
+                            <div class="feedback">
+                                <strong>Pista:</strong> ¿QUÉ NECESITA el sistema? → CONDICIÓN<br>
+                                <strong>Mensaje JARVIS:</strong> "Sin internet, no puedo conectarme a Tony. Esa es una condición crítica."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección 10 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span>🔟 Misión 4 – Reparar JARVIS</span>
+                        </div>
+                        <span class="accordion-time">5 min</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Objetivo:</strong> Clasificar requerimientos y completar la reparación.</p>
+                            
+                            <div class="time-block">
+                                <strong>Explicación docente:</strong><br>
+                                "Ahora TÚ decides: ¿FUNCIÓN o CONDICIÓN? Vamos a reparar a JARVIS juntos."
+                            </div>
+
+                            <div class="question-box">
+                                <strong>Actividad 4a:</strong> "El sistema debe plotear rutas de navegación espacial"<br>
+                                ¿FUNCIÓN o CONDICIÓN?
+                            </div>
+                            <div class="answer-box">FUNCIÓN ("plotear/ejecutar" = acciones)</div>
+                            <div class="feedback"><strong>JARVIS:</strong> "✓ Sistema de navegación activado."</div>
+
+                            <div class="question-box">
+                                <strong>Actividad 4b:</strong> "JARVIS necesita energía en su núcleo"<br>
+                                ¿FUNCIÓN o CONDICIÓN?
+                            </div>
+                            <div class="answer-box">CONDICIÓN ("necesita" = prerequisito)</div>
+                            <div class="feedback"><strong>JARVIS:</strong> "✓ Sistema de energía verificado."</div>
+
+                            <div class="question-box">
+                                <strong>Actividad 4c:</strong> "JARVIS debe transmitir reportes de seguridad en tiempo real"<br>
+                                ¿FUNCIÓN o CONDICIÓN?
+                            </div>
+                            <div class="answer-box">FUNCIÓN ("transmitir" = acción)</div>
+                            <div class="feedback"><strong>JARVIS:</strong> "✓ Sistema de comunicación restaurado."</div>
+
+                            <div class="time-block" style="background: #e8f5e9; border-left-color: var(--color-success);">
+                                <strong>Actividad 4d - AUTORIZAR DESPEGUE:</strong><br>
+                                ¿JARVIS está completamente reparado?<br><br>
+                                <strong>Respuesta:</strong> SÍ. He clasificado todos correctamente.<br><br>
+                                <strong>🚀 RESULTADO:</strong> ¡¡REPARACIÓN COMPLETADA!! Sistema al 100%.<br>
+                                <strong>JARVIS:</strong> "¡¡GRACIAS!! LO LOGRAMOS. VOY A CASA."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección 11 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span>1️⃣1️⃣ Cierre de Misiones</span>
+                        </div>
+                        <span class="accordion-time">2 min</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="time-block" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left-color: var(--color-success);">
+                                <strong>🎉 CELEBRACIÓN:</strong><br><br>
+                                Los estudiantes habrán completado las 4 misiones y verán la pantalla de victoria:<br><br>
+                                ✅ Sistema restaurado al 100%<br>
+                                🚀 JARVIS está listo para despegar<br>
+                                🏆 Puntos totales obtenidos<br>
+                                🏅 Medalla: MAESTRO DEL SISTEMA<br><br>
+                                <strong>Mensaje JARVIS:</strong> "Gracias por ayudarme a regresar a casa. Aprendiste a diferenciar funciones y condiciones. ¡Eres un excelente ingeniero de software!"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección 12 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span>1️⃣2️⃣ Reflexión Final</span>
+                        </div>
+                        <span class="accordion-time">2 min</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="time-block">
+                                <strong>Mensaje:</strong><br> 
+                                "Hoy no solo jugamos. Aprendimos que <strong>un sistema funciona cuando cada requerimiento se define claramente</strong>:"<br><br>
+                                ✓ <strong>FUNCIÓN</strong> = ¿Qué debe HACER el sistema?<br>
+                                ✓ <strong>CONDICIÓN</strong> = ¿Qué NECESITA para hacerlo?<br><br>
+                                <strong>Pregunta al grupo:</strong> ¿Ahora entienden cómo sistemas como ChatGPT, Instagram o sus videojuegos favoritos tienen requerimientos definidos?<br><br>
+                                <em>Ejemplos esperados:</em> apps móviles, redes sociales, GPS, videojuegos, streaming
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección 13 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span>1️⃣3️⃣ Cierre y Despedida</span>
+                        </div>
+                        <span class="accordion-time">1 min</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="time-block">
+                                <strong>Mensaje final:</strong><br><br>
+                                "Gracias por ayudar a reparar a JARVIS. Hoy aprendieron a pensar como ingenieros de software."<br><br>
+                                "Los requerimientos son la base de TODO sistema que usan a diario. Sin ellos, nada funciona."<br><br>
+                                <strong>"Nos vemos en la próxima clase. ¡Excelente trabajo equipo!"</strong> 👏
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 style="margin-top: 30px;">⏱️ Distribución de Tiempos</h2>
@@ -762,36 +1205,28 @@
                             <td class="time-value">1.5 min</td>
                         </tr>
                         <tr>
-                            <td>Misión 1</td>
+                            <td>Misión 1: Activación</td>
                             <td class="time-value">3 min</td>
                         </tr>
                         <tr>
-                            <td>Misión 2</td>
+                            <td>Misión 2: Explorar Problema</td>
                             <td class="time-value">3 min</td>
                         </tr>
                         <tr>
-                            <td>Misión 3</td>
+                            <td>Misión 3: Aprender Patrón</td>
                             <td class="time-value">4 min</td>
                         </tr>
                         <tr>
-                            <td>Misión 4</td>
+                            <td>Misión 4: Reparar JARVIS (4 actividades)</td>
                             <td class="time-value">5 min</td>
                         </tr>
                         <tr>
-                            <td>Misión 5</td>
-                            <td class="time-value">4 min</td>
-                        </tr>
-                        <tr>
-                            <td>Misión 6</td>
+                            <td>Cierre y Reflexión</td>
                             <td class="time-value">3 min</td>
-                        </tr>
-                        <tr>
-                            <td>Reflexión</td>
-                            <td class="time-value">2 min</td>
                         </tr>
                         <tr style="background: #f0f0f0; font-weight: bold;">
                             <td>TOTAL</td>
-                            <td class="time-value" style="font-size: 1.2em;">≈ 29 min</td>
+                            <td class="time-value" style="font-size: 1.2em;">≈ 23-25 min</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1013,120 +1448,78 @@
                 <!-- MISIÓN 4 -->
                 <div class="mission-card" id="mission-4">
                     <div class="mission-header" onclick="toggleMission(4)">
-                        <span class="mission-title">🔧 Misión 4: Reparar Sistema - Clasificar Requerimientos</span>
+                        <span class="mission-title">🔧 Misión 4: Reparar JARVIS - Aplicación Final</span>
                         <span class="mission-toggle">▼</span>
                     </div>
                     <div class="mission-content">
                         <div class="activity">
-                            <span class="activity-num">Actividad 4.1</span>
-                            <div class="activity-title">Clasificación: Requerimientos de JARVIS</div>
+                            <span class="activity-num">Actividad 4a</span>
+                            <div class="activity-title">Clasificar: Navegar por el espacio</div>
                             <div class="activity-detail">
-                                <span class="detail-label">Tipo:</span> Arrastrar y soltar / Clasificación
-                            </div>
-                            <div class="activity-detail">
-                                <span class="detail-label">Tarea:</span> Clasificar cada requerimiento como FUNCIÓN o CONDICIÓN
+                                <span class="detail-label">Ejemplo:</span> El sistema debe plotear y ejecutar rutas de navegación espacial
                             </div>
                             <div class="activity-detail">
-                                <span class="detail-label">Requerimientos a clasificar:</span>
-                                <ul style="margin-left: 15px; margin-top: 8px;">
-                                    <li><strong>Procesar solicitudes:</strong> <span style="color: var(--color-success); font-weight: 600;">FUNCIÓN</span></li>
-                                    <li><strong>Conexión a internet:</strong> <span style="color: var(--color-secondary); font-weight: 600;">CONDICIÓN</span></li>
-                                    <li><strong>Analizar datos:</strong> <span style="color: var(--color-success); font-weight: 600;">FUNCIÓN</span></li>
-                                    <li><strong>Base de datos disponible:</strong> <span style="color: var(--color-secondary); font-weight: 600;">CONDICIÓN</span></li>
-                                    <li><strong>Transmitir respuestas:</strong> <span style="color: var(--color-success); font-weight: 600;">FUNCIÓN</span></li>
-                                    <li><strong>Servidor activo:</strong> <span style="color: var(--color-secondary); font-weight: 600;">CONDICIÓN</span></li>
-                                </ul>
-                            </div>
-                            <div class="feedback">
-                                <strong>Mensaje JARVIS:</strong> "Cada requerimiento que identificas me acerca a funcionar completamente."
-                            </div>
-                        </div>
-
-                        <div class="activity">
-                            <span class="activity-num">Actividad 4.2</span>
-                            <div class="activity-title">Validación de Respuestas</div>
-                            <div class="activity-detail">
-                                <span class="detail-label">Acción:</span> Sistema valida automáticamente las clasificaciones
-                            </div>
-                            <div class="feedback">
-                                <strong>Feedback General:</strong> "Excelente. Has identificado correctamente la diferencia entre lo que JARVIS HACE (funciones) y lo que JARVIS NECESITA (condiciones)."
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MISIÓN 5 -->
-                <div class="mission-card" id="mission-5">
-                    <div class="mission-header" onclick="toggleMission(5)">
-                        <span class="mission-title">🤝 Misión 5: Colaborar - Construcción Colectiva</span>
-                        <span class="mission-toggle">▼</span>
-                    </div>
-                    <div class="mission-content">
-                        <div class="activity">
-                            <span class="activity-num">Actividad 5.1</span>
-                            <div class="activity-title">Padlet Colaborativo: Nuevos Requerimientos</div>
-                            <div class="activity-detail">
-                                <span class="detail-label">Tipo:</span> Colaboración en tiempo real (Padlet)
-                            </div>
-                            <div class="activity-detail">
-                                <span class="detail-label">Pregunta Central:</span> ¿Qué otros requerimientos (funciones y condiciones) necesita JARVIS para restaurarse completamente?
-                            </div>
-                            <div class="activity-detail">
-                                <span class="detail-label">Ejemplos Esperados - FUNCIONES:</span>
-                                <ul style="margin-left: 15px; margin-top: 8px;">
-                                    <li>Analizar amenazas</li>
-                                    <li>Comunicarse con Tony Stark</li>
-                                    <li>Controlar sistemas de defensa</li>
-                                    <li>Monitorear sensores</li>
-                                    <li>Generar reportes</li>
-                                </ul>
-                            </div>
-                            <div class="activity-detail">
-                                <span class="detail-label">Ejemplos Esperados - CONDICIONES:</span>
-                                <ul style="margin-left: 15px; margin-top: 8px;">
-                                    <li>Conexión a internet estable</li>
-                                    <li>Permisos de acceso confirmados</li>
-                                    <li>Procesador operativo</li>
-                                    <li>Protocolo de seguridad activo</li>
-                                    <li>Almacenamiento disponible</li>
-                                </ul>
-                            </div>
-                            <div class="feedback">
-                                <strong>Mensaje JARVIS:</strong> "Tu idea puede ser el requerimiento final que necesito para funcionar correctamente."
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MISIÓN 6 -->
-                <div class="mission-card" id="mission-6">
-                    <div class="mission-header" onclick="toggleMission(6)">
-                        <span class="mission-title">⚡ Misión 6: Restauración Completa - Activación Final</span>
-                        <span class="mission-toggle">▼</span>
-                    </div>
-                    <div class="mission-content">
-                        <div class="activity">
-                            <span class="activity-num">Actividad 6.1</span>
-                            <div class="activity-title">Verificación Final del Sistema</div>
-                            <div class="activity-detail">
-                                <span class="detail-label">Acción:</span> El sistema verifica que todos los requerimientos hayan sido identificados
-                            </div>
-                            <div class="feedback">
-                                <strong>Mensaje del docente:</strong> "Hemos identificado y restaurado todos los requerimientos de JARVIS. Ahora podemos autorizar su activación completa."
-                            </div>
-                        </div>
-
-                        <div class="activity">
-                            <span class="activity-num">Actividad 6.2</span>
-                            <div class="activity-title">Botón de Activación Final</div>
-                            <div class="activity-detail">
-                                <span class="detail-label">Acción:</span> Presionar botón ACTIVAR para iniciar el despegue de JARVIS
+                                <span class="detail-label">Pregunta:</span> ¿FUNCIÓN o CONDICIÓN?
                             </div>
                             <div class="correct-answer">
-                                ⚡ JARVIS ACTIVADO - Sistema restaurado al 100%
+                                FUNCIÓN (plotear/ejecutar = acciones que realiza el sistema)
                             </div>
                             <div class="feedback">
-                                <strong>Mensaje JARVIS:</strong> "Sistema completo. Volvemos a casa. Gracias."
+                                <strong>Pista:</strong> Plotear es un VERBO DE ACCIÓN<br>
+                                <strong>Mensaje JARVIS:</strong> "✓ Sistema de navegación activado."
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <span class="activity-num">Actividad 4b</span>
+                            <div class="activity-title">Clasificar: Energía disponible</div>
+                            <div class="activity-detail">
+                                <span class="detail-label">Ejemplo:</span> JARVIS necesita energía en su núcleo de procesamiento para operar
+                            </div>
+                            <div class="activity-detail">
+                                <span class="detail-label">Pregunta:</span> ¿FUNCIÓN o CONDICIÓN?
+                            </div>
+                            <div class="correct-answer">
+                                CONDICIÓN (necesita = prerequisito que debe cumplirse)
+                            </div>
+                            <div class="feedback">
+                                <strong>Pista:</strong> Necesita = PREREQUISITO = CONDICIÓN<br>
+                                <strong>Mensaje JARVIS:</strong> "✓ Sistema de energía verificado."
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <span class="activity-num">Actividad 4c</span>
+                            <div class="activity-title">Clasificar: Comunicación crítica</div>
+                            <div class="activity-detail">
+                                <span class="detail-label">Ejemplo:</span> JARVIS debe transmitir reportes de seguridad a Tony en tiempo real
+                            </div>
+                            <div class="activity-detail">
+                                <span class="detail-label">Pregunta:</span> ¿FUNCIÓN o CONDICIÓN?
+                            </div>
+                            <div class="correct-answer">
+                                FUNCIÓN (transmitir = acción que ejecuta el sistema)
+                            </div>
+                            <div class="feedback">
+                                <strong>Pista:</strong> Transmitir, enviar, ejecutar = FUNCIONES<br>
+                                <strong>Mensaje JARVIS:</strong> "✓ Sistema de comunicación restaurado."
+                            </div>
+                        </div>
+
+                        <div class="activity" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left-color: var(--color-success);">
+                            <span class="activity-num">Actividad 4d</span>
+                            <div class="activity-title">🚀 AUTORIZAR DESPEGUE</div>
+                            <div class="activity-detail">
+                                <span class="detail-label">Pregunta:</span> ¿JARVIS está completamente reparado?
+                            </div>
+                            <div class="correct-answer" style="font-size: 1.1em;">
+                                SÍ. He clasificado todos correctamente.
+                            </div>
+                            <div class="feedback" style="background: linear-gradient(135deg, #fff59d 0%, #fff176 100%); border-left-color: #f57c00; padding: 20px;">
+                                <strong style="font-size: 1.2em;">🚀🚀🚀 ¡¡REPARACIÓN COMPLETADA!!</strong><br><br>
+                                Sistema al 100%<br>
+                                JARVIS vuelve a casa<br><br>
+                                <strong>Mensaje JARVIS:</strong> "¡¡GRACIAS!! LO LOGRAMOS. VOY A CASA."
                             </div>
                         </div>
                     </div>
@@ -1143,6 +1536,16 @@
                 <div class="note-box">
                     <strong>💡 CÓMO USAR ESTA SECCIÓN:</strong><br>
                     Esta guía contiene todas las respuestas esperadas y retroalimentaciones que debe dar en cada actividad. Úsala como referencia durante la clase para orientar a los estudiantes sin revelar directamente la respuesta.
+                </div>
+
+                <div class="ecommerce-reference" style="margin-top: 20px;">
+                    <h4>🛒 EJEMPLOS PROFESIONALES DE E-COMMERCE DISPONIBLES ABAJO ⬇️</h4>
+                    <p>Si estudiantes avanzados preguntan <strong>"¿Cómo se escriben requerimientos en la vida real?"</strong>, desplázate al final de esta página para encontrar ejemplos completos de una plataforma de comercio electrónico con:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>✅ Requerimiento Funcional: Gestión de Carrito (con criterios de aceptación)</li>
+                        <li>⚙️ Requerimiento No Funcional: Rendimiento/Performance (con métricas específicas)</li>
+                        <li>📋 Características de criterios bien escritos (testeables, medibles, independientes)</li>
+                    </ul>
                 </div>
 
                 <h3 style="margin-top: 30px; color: var(--color-primary);">MISIÓN 1: Activación</h3>
@@ -1284,49 +1687,76 @@
                     </div>
                 </div>
 
-                <h3 style="margin-top: 30px; color: var(--color-primary);">MISIÓN 4: Reparar Sistema</h3>
+                <h3 style="margin-top: 30px; color: var(--color-primary);">MISIÓN 4: Reparar JARVIS</h3>
 
                 <div class="activity">
-                    <span class="activity-num">Actividad 4.1 - Clasificación de Requerimientos</span>
+                    <span class="activity-num">Actividad 4a - Clasificar: Navegar por el espacio</span>
                     <div class="activity-detail">
-                        <span class="detail-label">Tarea:</span> Clasificar cada requerimiento correctamente
+                        <span class="detail-label">Ejemplo:</span> El sistema debe plotear y ejecutar rutas de navegación espacial
                     </div>
                     <div class="activity-detail">
-                        <span class="detail-label">Respuesta Correcta Completa:</span>
+                        <span class="detail-label">Pregunta:</span> ¿FUNCIÓN o CONDICIÓN?
                     </div>
-                    <table style="width: 100%; margin-top: 10px; border-collapse: collapse;">
-                        <tr style="background: #f5f5f5;">
-                            <td style="padding: 10px; border: 1px solid #ddd;"><strong>Requerimiento</strong></td>
-                            <td style="padding: 10px; border: 1px solid #ddd;"><strong>Clasificación</strong></td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #ddd;">Procesar solicitudes</td>
-                            <td style="padding: 10px; border: 1px solid #ddd; background: #e8f5e9;"><strong style="color: var(--color-success);">✓ FUNCIÓN</strong></td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #ddd;">Conexión a internet</td>
-                            <td style="padding: 10px; border: 1px solid #ddd; background: #ffebee;"><strong style="color: var(--color-secondary);">✗ CONDICIÓN</strong></td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #ddd;">Analizar datos</td>
-                            <td style="padding: 10px; border: 1px solid #ddd; background: #e8f5e9;"><strong style="color: var(--color-success);">✓ FUNCIÓN</strong></td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #ddd;">Base de datos disponible</td>
-                            <td style="padding: 10px; border: 1px solid #ddd; background: #ffebee;"><strong style="color: var(--color-secondary);">✗ CONDICIÓN</strong></td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #ddd;">Transmitir respuestas</td>
-                            <td style="padding: 10px; border: 1px solid #ddd; background: #e8f5e9;"><strong style="color: var(--color-success);">✓ FUNCIÓN</strong></td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #ddd;">Servidor activo</td>
-                            <td style="padding: 10px; border: 1px solid #ddd; background: #ffebee;"><strong style="color: var(--color-secondary);">✗ CONDICIÓN</strong></td>
-                        </tr>
-                    </table>
-                    <div class="feedback" style="margin-top: 15px;">
-                        <strong>Si todas son correctas:</strong> "Excelente. Has entendido perfectamente la diferencia. Esto es exactamente lo que los ingenieros de software hacen todos los días."<br>
-                        <strong>Si hay errores:</strong> "Veamos esto de nuevo. Recuerda: ¿Esta palabra describe lo que el sistema HACE o lo que el sistema NECESITA para hacerlo?"
+                    <div class="correct-answer">
+                        FUNCIÓN - "Plotear" y "ejecutar" son verbos de acción que el sistema realiza
+                    </div>
+                    <div class="feedback">
+                        <strong>Si correcto:</strong> "✓ FUNCIÓN. 'Plotear rutas' = acciones que EJECUTA = FUNCIÓN."<br>
+                        <strong>Si incorrecto:</strong> "Es FUNCIÓN. El verbo 'plotear/ejecutar' = acciones del sistema."<br>
+                        <strong>Mensaje JARVIS:</strong> "✓ Sistema de navegación activado."
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <span class="activity-num">Actividad 4b - Clasificar: Energía disponible</span>
+                    <div class="activity-detail">
+                        <span class="detail-label">Ejemplo:</span> JARVIS necesita energía en su núcleo de procesamiento para operar
+                    </div>
+                    <div class="activity-detail">
+                        <span class="detail-label">Pregunta:</span> ¿FUNCIÓN o CONDICIÓN?
+                    </div>
+                    <div class="correct-answer">
+                        CONDICIÓN - "Necesita" indica un prerequisito que debe cumplirse
+                    </div>
+                    <div class="feedback">
+                        <strong>Si correcto:</strong> "✓ CONDICIÓN. 'Necesita energía' = prerequisito = CONDICIÓN."<br>
+                        <strong>Si incorrecto:</strong> "Es CONDICIÓN. 'Necesita' = no es acción, es un requisito."<br>
+                        <strong>Mensaje JARVIS:</strong> "✓ Sistema de energía verificado."
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <span class="activity-num">Actividad 4c - Clasificar: Comunicación crítica</span>
+                    <div class="activity-detail">
+                        <span class="detail-label">Ejemplo:</span> JARVIS debe transmitir reportes de seguridad a Tony en tiempo real
+                    </div>
+                    <div class="activity-detail">
+                        <span class="detail-label">Pregunta:</span> ¿FUNCIÓN o CONDICIÓN?
+                    </div>
+                    <div class="correct-answer">
+                        FUNCIÓN - "Transmitir" es una acción que ejecuta el sistema
+                    </div>
+                    <div class="feedback">
+                        <strong>Si correcto:</strong> "✓ FUNCIÓN. 'Transmitir' = acción que ejecuta = FUNCIÓN."<br>
+                        <strong>Si incorrecto:</strong> "Es FUNCIÓN. 'Transmitir' es un verbo de acción."<br>
+                        <strong>Mensaje JARVIS:</strong> "✓ Sistema de comunicación restaurado."
+                    </div>
+                </div>
+
+                <div class="activity" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 4px solid var(--color-success); padding: 25px;">
+                    <span class="activity-num" style="background: var(--color-success);">Actividad 4d - 🚀 AUTORIZAR DESPEGUE</span>
+                    <div class="activity-detail">
+                        <span class="detail-label">Pregunta:</span> ¿JARVIS está completamente reparado?
+                    </div>
+                    <div class="correct-answer" style="font-size: 1.1em; font-weight: 700;">
+                        SÍ. He clasificado todos correctamente.
+                    </div>
+                    <div class="feedback" style="background: linear-gradient(135deg, #fff59d 0%, #fff176 100%); border-left-color: #f57c00; padding: 20px; margin-top: 15px; font-size: 1.05em;">
+                        <strong style="font-size: 1.2em;">🚀🚀🚀 ¡¡REPARACIÓN COMPLETADA!!</strong><br><br>
+                        ✅ Sistema al 100%<br>
+                        🚀 JARVIS vuelve a casa<br>
+                        🏆 Misión cumplida<br><br>
+                        <strong>Mensaje JARVIS:</strong> "¡¡GRACIAS!! LO LOGRAMOS. VOY A CASA."
                     </div>
                 </div>
 
@@ -1668,15 +2098,31 @@
         }
 
         function expandAllMissions() {
-            for (let i = 1; i <= 6; i++) {
+            for (let i = 1; i <= 4; i++) {
                 document.getElementById(`mission-${i}`).classList.add('expanded');
             }
         }
 
         function collapseAllMissions() {
-            for (let i = 1; i <= 6; i++) {
+            for (let i = 1; i <= 4; i++) {
                 document.getElementById(`mission-${i}`).classList.remove('expanded');
             }
+        }
+
+        // ACCORDION FUNCTIONALITY FOR GUION
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            item.classList.toggle('active');
+        }
+
+        function expandAllGuion() {
+            const items = document.querySelectorAll('#guion .accordion-item');
+            items.forEach(item => item.classList.add('active'));
+        }
+
+        function collapseAllGuion() {
+            const items = document.querySelectorAll('#guion .accordion-item');
+            items.forEach(item => item.classList.remove('active'));
         }
     </script>
 
