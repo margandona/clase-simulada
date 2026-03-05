@@ -682,12 +682,12 @@ function updateMessageInboxOnProgress() {
  * Initialize Application
  */
 function initApp() {
+    loadStateFromStorage();
     setupModals();
     setupMissionButtons();
     setupMessageSystem();         // Auto-toast messages
     setupMuteToggle();            // Mute toggle button
     setupRewardsButton();         // Rewards/Medals button
-    loadStateFromStorage();
     setupJARVISSpriteSystem();
     updateUI();
     updateJARVISMessage(); // Display contextual message
@@ -1041,39 +1041,8 @@ function setupModals() {
     });
     
     document.getElementById('restartGameBtn').addEventListener('click', () => {
-        // Reset game state
-        STATE.completedMissions = [];
-        STATE.earnedMedals = [];
-        STATE.trophyEarned = false;
-        STATE.rewards = 0;
-        STATE.currentPhase = 'activation';
-        STATE.showedFinalScreen = false;
-        STATE.lastPhaseInInbox = null;
-        STATE.firstSubmissionShown = false;
-        
-        // Save state
-        saveStateToStorage();
-        
-        // Close modal
         closeModal(celebrationModal);
-        
-        // Reset UI
-        updateUI();
-        updateNOVAMessage();
-        initializeMessageInboxForPhase();
-        
-        // Reset mission panels
-        for (let i = 1; i <= 6; i++) {
-            const badge = document.getElementById(`badge-${i}`);
-            badge.textContent = '○';
-            badge.classList.remove('completed');
-            badge.parentElement.setAttribute('aria-label', `Misión ${i}`);
-            
-            const panel = document.getElementById(`mission-${i}-panel`);
-            panel.style.display = 'none';
-        }
-        
-        showToastMessage('🔄 Misión reiniciada. ¡Ayuda a NOVA de nuevo!', 3000);
+        resetGameProgress();
     });
     
     // Activity modal buttons
@@ -1256,6 +1225,50 @@ function setupRewardsButton() {
             closeModal(document.getElementById('medalAwardModal'));
         });
     }
+
+    const resetProgressBtn = document.getElementById('resetProgressBtn');
+    if (resetProgressBtn) {
+        resetProgressBtn.addEventListener('click', () => {
+            resetGameProgress();
+        });
+    }
+}
+
+/**
+ * Full game reset (back to zero)
+ */
+function resetGameProgress() {
+    const userConfirmed = confirm('¿Seguro que quieres reiniciar TODO el juego y volver a cero?');
+    if (!userConfirmed) return;
+
+    STATE.completedMissions = [];
+    STATE.earnedMedals = [];
+    STATE.trophyEarned = false;
+    STATE.rewards = 0;
+    STATE.currentPhase = 'activation';
+    STATE.showedFinalScreen = false;
+    STATE.lastPhaseInInbox = null;
+    STATE.firstSubmissionShown = false;
+    STATE.activityInteractions = {};
+    STATE.currentActivity = null;
+
+    saveStateToStorage();
+    closeAllModals();
+
+    document.querySelectorAll('.mission-panel').forEach(panel => {
+        panel.classList.remove('active');
+    });
+    document.querySelectorAll('.mission-header').forEach(button => {
+        button.classList.remove('active');
+    });
+
+    setupMissionButtons();
+    updateUI();
+    updateJARVISMessage();
+    initializeMessageInboxForPhase();
+    updateHeaderMedalDisplay();
+
+    showToastMessage('🔄 Juego reiniciado. Progreso en cero.', 3000);
 }
 
 /**
@@ -1405,8 +1418,8 @@ function checkMissionLocked(missionId) {
     const mission = MISSIONS[previousMissionIndex];
     if (!mission) return true;
     
-    // Check if ANY submission from previous mission is completed
-    const hasCompletedPrevious = mission.submissions.some(sub => 
+    // Unlock only when previous mission is fully completed
+    const hasCompletedPrevious = mission.submissions.every(sub => 
         STATE.completedMissions.includes(sub.id)
     );
     
@@ -1518,13 +1531,17 @@ function awardMedal(missionId) {
     // Update display IMMEDIATELY
     updateHeaderMedalDisplay();
     
-    // Show toast notification
-    showToastMessage(`🏅 ¡Medalla desbloqueada!\nHas completado la Misión ${missionId}`, 3000);
+    // Show toast notification with celebration
+    const celebrationText = missionId === 4 ? 
+        `👑 TROFEO FINAL DESBLOQUEADO!\n¡Has completado TODAS las misiones!`:
+        `🏅 Medalla ${missionId} desbloqueada!\nHas completado la Misión ${missionId}`;
     
-    // Show medal award modal with slight delay
+    showToastMessage(celebrationText, 4000);
+    
+    // Show medal award modal with guaranteed visibility
     setTimeout(() => {
         showMedalAwardModal(missionId);
-    }, 500);
+    }, 800);
 }
 
 /**
@@ -1653,19 +1670,35 @@ function openRewardsModal() {
  */
 function showMedalAwardModal(missionId) {
     const modal = document.getElementById('medalAwardModal');
-    if (!modal) return;
+    if (!modal) {
+        console.warn('medalAwardModal not found');
+        return;
+    }
 
+    console.log('Displaying medal modal for mission ' + missionId);
+    
+    // Close any other modals first
+    closeAllModals();
+    
     // Update modal content
     const title = document.getElementById('medal-award-title');
     const message = document.getElementById('medalAwardMessage');
     const img = document.getElementById('medalAwardImg');
     const progress = document.getElementById('medalAwardProgress');
 
-    if (title) title.textContent = `🏅 ¡MEDALLA ${missionId} DESBLOQUEADA!`;
-    if (message) message.textContent = `Has completado con éxito la Misión ${missionId}.`;
-    if (img) img.src = `assets/medallas/m${missionId}.png`;
-    if (progress) progress.textContent = `Medallas desbloqueadas: ${STATE.earnedMedals.length}/4`;
+    const celebrationMessages = {
+        1: 'Has desbloqueado la primera medalla! Tu aventura hacia la maestria ha comenzado.',
+        2: 'La segunda medalla es tuya! Vas ganando experiencia en el sistema.',
+        3: 'Tres medallas conquistadas! Ya eres un experto en NOVA.',
+        4: 'MEDALLA FINAL DESBLOQUEADA! MAESTRO DEL SISTEMA!'
+    };
 
+    if (title) title.textContent = 'MISION ' + missionId + ' COMPLETADA';
+    if (message) message.textContent = celebrationMessages[missionId] || ('Has completado con exito la Mision ' + missionId);
+    if (img) img.src = 'assets/medallas/m' + missionId + '.png';
+    if (progress) progress.textContent = 'Medallas desbloqueadas: ' + STATE.earnedMedals.length + '/4';
+
+    console.log('Opening medal modal - Earned medals: ' + STATE.earnedMedals.length + '/4');
     openModal(modal);
 }
 
@@ -2639,6 +2672,9 @@ function completeActivityFromModal(submissionId) {
     if (missionComplete) {
         // Award medal AFTER updateUI so badges are already updated
         awardMedal(missionId);
+
+        // Unlock next mission immediately
+        setupMissionButtons();
         
         // Check if all missions complete
         if (STATE.earnedMedals.length === 4) {
