@@ -1,9 +1,14 @@
-# 📋 NOVA - Guía Rápida del Facilitador
-## Referencia de 1 Página para Usar en Clase
+# 📋 NOVA - Guía Rápida del Facilitador (HISTORICO)
+## Referencia de 1 Página para Usar en Clase (30 MIN)
+
+> NOTA DE ESTADO (MARZO 2026)
+>
+> Esta guia corresponde al formato historico de 30 minutos (NOVA).
+> Para clase oficial de 80 minutos, usar QUICK_REFERENCE_80_MIN.md e INSTRUCCIONES_CLASE_80_MIN.md.
 
 ---
 
-## ⏰ CRONOGRAMA (30 minutos)
+## ⏰ CRONOGRAMA HISTORICO (30 minutos)
 
 | Tiempo | Misión | Emoji | Acción del Docente |
 |--------|--------|-------|-------------------|

@@ -251,7 +251,7 @@ Presiona F5 o Ctrl+R
 ### ✅ RECOMENDADO
 
 - Introduce audio gradualmente ("Hoy probaremos algo nuevo")
-- Mantén sesiones cortas (30 minutos máximo)
+- Para clases de 80 minutos, usa audio por bloques cortos y selectivos
 - Usa auriculares en aulas compartidas
 - Pregunta a estudiantes su feedback
 - Combina audio + lectura + actividades

@@ -14,7 +14,11 @@ Narrativa:
 - El estudiante avanza completando 4 misiones y restaura el sistema.
 
 Duración estimada:
-- 20 minutos
+- 80 minutos (version oficial actual)
+
+Nota:
+- Las referencias a 20/30 minutos en algunos documentos se conservan como historial de iteraciones previas.
+- Para ejecutar hoy, prioriza INSTRUCCIONES_CLASE_80_MIN.md y CLASE_MANANA_INSTRUCCIONES_FINALES.md.
 
 Estructura oficial:
 - 4 misiones

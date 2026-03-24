@@ -1,235 +1,137 @@
-# 📋 CLASE MAÑANA - INSTRUCCIONES FINALES
+# CLASE MANANA - INSTRUCCIONES FINALES (80 MIN)
 
-**Fecha**: 5 de Marzo, 2026  
-**Duración**: 20 minutos  
-**Estudiantes**: 18-22 años  
-**Tema**: Especificación de Requerimientos (FUNCIÓN vs CONDICIÓN)
-
----
-
-## ⏰ TIMELINE EXACTO
-
-```
-00:00-00:30  →  SETUP (Abrir localhost, verificar audio)
-00:30-01:00  →  Mostrar Historia de JARVIS (click botón 📖)
-01:00-05:00  →  MISIÓN 1: Activación (quiz + Padlet)
-05:00-10:00  →  MISIÓN 2: Exploración (quiz + checklist)
-10:00-15:00  →  MISIÓN 3: Aprendizaje (2 ejemplos de clasificación)
-15:00-20:00  →  MISIÓN 4: Reparación (3 clasificaciones + despegue)
-20:00-22:00  →  Celebración + Certificado
-```
+Fecha: 5 de Marzo, 2026
+Duracion: 80 minutos
+Estudiantes: 18-22 anos
+Tema: Especificacion de Requerimientos (FUNCION vs CONDICION)
 
 ---
 
-## 🎮 ANTES DE CLASE (10 min antes)
+## TIMELINE EXACTO (80 MIN)
 
-### Checklist:
-- [ ] Abrir terminal: `cd "c:\Users\marga\Desktop\clase sto tomas\gamificación"`
-- [ ] Ejecutar: `python -m http.server 8000`
-- [ ] Verificar: `http://localhost:8000` abre correctamente
-- [ ] Audio system: Probar que hay sonido funcional
-- [ ] Pantalla: Proyecciones/monitor trabajando
-- [ ] Internet: Conexión estable (para Padlet embebido)
-
-**Si algo falla**: Usar PLAN_B_ANALOGICO.md
+00:00-10:00  Apertura y encuadre
+10:00-35:00  Recorrido gamificado (M1, M2 y parte clave de M3)
+35:00-55:00  Aplicacion con evidencia (M4 + 1 herramienta externa)
+55:00-70:00  Discusion y consolidacion conceptual
+70:00-80:00  Cierre, exit ticket y validacion final
 
 ---
 
-## 🎯 GUIÓN DE PRESENTACIÓN
+## ANTES DE CLASE (15-20 MIN)
 
-### INTRODUCCIÓN (2 min)
+Checklist:
+- Abrir servidor local (iniciar-servidor.bat o python -m http.server 8000)
+- Verificar http://localhost:8000
+- Confirmar carga de misiones
+- Probar una sola herramienta externa principal para hoy
+- Preparar plan de respaldo: PLAN_B_ANALOGICO.md
 
-> "Hoy vamos a reparar a JARVIS, la IA de Tony Stark. Pero hay un problema: alguien perdió la especificación de requerimientos de su sistema. Tiene TODAS las funciones, pero le faltan las CONDICIONES para que funcionen juntas.
->
-> En 20 minutos, ustedes aprenderán a diferenciar FUNCIONES (lo que un sistema HACE) vs CONDICIONES (lo que un sistema NECESITA). Esto es lo MÁS IMPORTANTE en ingeniería de software.
->
-> ¿Listos? Vamos a reparar JARVIS."
-
-### MOSTRAR HISTORIA (3 min)
-
-Click en botón 📖 "Historia de JARVIS"
-- Leer narrativa completa (o resumen si hay prisa)
-- Enfatizar: "Tony necesita que entiendas FUNCIÓN vs CONDICIÓN"
+Si algo falla: activar respaldo sin retrasar el inicio de clase.
 
 ---
 
-## 📱 INSTRUCCIONES PARA ESTUDIANTES
+## GUION DE PRESENTACION
 
-### Cuando hagan click en "COMENZAR MISIÓN":
+Introduccion sugerida (2 min):
+"Hoy vamos a reparar JARVIS. La meta no es memorizar, sino decidir como ingenieros: que hace el sistema (funcion) y que necesita para operar (condicion)."
 
-**MISIÓN 1 - ACTIVACIÓN** (5 min)
-- "Quiz: ¿Quién es JARVIS?" → Deben responder correctamente
-- "Padlet: ¿Cómo ayudarías?" → Contribute una idea
-- **Feedback esperado**: "Gracias por identificarme"
+Historia de JARVIS (2-3 min):
+- Version breve, no lectura extensa.
+- Enfatizar el criterio de clasificacion.
 
-**MISIÓN 2 - EXPLORACIÓN** (5 min)
-- "Quiz: Sistema Incompleto" → Identifiquen el problema
-- "Checklist: Tipos de Requerimientos" → Seleccionen FUNCIONES + CONDICIONES
-- **Feedback esperado**: "Exactamente. Funciones + Condiciones = Sistema Completo"
-
-**MISIÓN 3 - APRENDIZAJE** (5 min)
-- "Ejemplo 1: ¿Qué HACE JARVIS?" → Clasificar una FUNCIÓN
-- "Ejemplo 2: ¿Qué NECESITA JARVIS?" → Clasificar una CONDICIÓN
-- **Feedback esperado**: Confirmación de concepto correcto
-
-**MISIÓN 4 - REPARACIÓN** (5 min)
-- "Clasificar: Navegar" → FUNCIÓN
-- "Clasificar: Energía" → CONDICIÓN  
-- "Clasificar: Comunicación" → FUNCIÓN
-- "🚀 AUTORIZAR DESPEGUE" → Botón final
-- **Celebración**: Certificado con timestamp
+Regla base (2 min):
+- FUNCION = accion ejecutable del sistema.
+- CONDICION = requisito previo o dependencia.
 
 ---
 
-## 🎓 CONCEPTOS CLAVE A REFORZAR
+## INSTRUCCIONES PARA ESTUDIANTES (SIMPLIFICADAS)
 
-**FUNCIÓN** = Lo que el SISTEMA HACE
-- Responde: ¿Qué ACCIONES ejecuta?
-- Palabras clave: calcular, transmitir, ejecutar, enviar, procesar
-- Ejemplo: "JARVIS debe calcular rutas" → es una FUNCIÓN
-
-**CONDICIÓN** = Lo que el SISTEMA NECESITA  
-- Responde: ¿Qué REQUISITOS previos tiene?
-- Palabras clave: requiere, necesita, debe tener, depende de
-- Ejemplo: "JARVIS requiere energía" → es una CONDICIÓN
-
-**Por qué importa**: Sin ambas claras, el mejor software del mundo NO FUNCIONA.
+1. Entra y completa las misiones en orden.
+2. En cada enunciado, decide si es funcion o condicion.
+3. Justifica brevemente tu decision.
+4. Participa en la actividad externa indicada.
+5. Entrega exit ticket final.
 
 ---
 
-## 🔊 AUDIOISUAL
+## DESARROLLO POR BLOQUES
 
-### Volumen:
-- Tener volumen moderado (los mensajes de JARVIS se hablan)
-- Si no hay audio: Aplicación sigue funcionando
+Bloque 1 (0-10)
+- Apertura, objetivo y regla base.
 
-### Visuals:
-- El sprite de JARVIS (imagen) debe ser visible
-- Colores: Tema dorado/rojo (Iron Man)
-- Las misiones aparecen como acordeones clicables
+Bloque 2 (10-35)
+- Mision 1 y Mision 2 completas.
+- Mision 3: resolver al menos 2 ejemplos en plenario.
 
----
+Bloque 3 (35-55)
+- Mision 4 de aplicacion.
+- Solo 1 herramienta externa principal (Forms o Kahoot).
 
-## 🏆 CERTIFICADO FINAL
+Bloque 4 (55-70)
+- Revisar 3 errores frecuentes.
+- Pedir justificacion tecnica de respuestas.
 
-Al terminar Misión 4, aparece:
-- **Nombre del estudiante** (aparecerá automáticamente si se ingresó)
-- **Fecha/Hora exacta** de completación
-- **Duración** que tardó
-- **Puntos totales** acumulados
-- **Porcentaje de precisión**
-
-**Puede descargar/imprimir** haciendo clic en el botón de descarga
+Bloque 5 (70-80)
+- Cierre y validacion final.
+- Exit ticket: 1 funcion + 1 condicion de una app real.
 
 ---
 
-## 🚨 TROUBLESHOOTING EN CLASE
+## CONCEPTOS CLAVE A REFORZAR
 
-### "La página no carga"
-→ Verificar: `http://localhost:8000`
-→ Si no: Abrir nueva terminal, ejecutar servidor de nuevo
-→ Si persiste: Activar PLAN_B_ANALOGICO.md
+FUNCION:
+- Describe lo que el sistema hace.
+- Normalmente contiene verbos de accion.
 
-### "No veo los Padlets"
-→ Normal - requieren WiFi. Estudiantes clickean botón "Abrir Padlet"
-→ Si no hay internet: Skip Padlet activities, contar como completadas
+CONDICION:
+- Describe lo que el sistema necesita.
+- Suele indicar requisito previo, restriccion o dependencia.
 
-### "Un estudiante no puede responder el quiz"
-→ Ayuda con pista (ya está en la aplicación)
-→ Si sigue sin entender: Explicar concepto FUNCIÓN vs CONDICIÓN primero
-→ Pista acelerada: "¿Qué VERBO de acción ves en la oración?"
-
-### "Un estudiante termina rápido"
-→ Asignarle ayudar a otros compañeros
-→ Pedirle que mejore sus notas en Padlet con reflexión más profunda
-
-### "Se acabó el tiempo y no terminaron "
-→ No importa. El aprendizaje fue sobre FUNCIÓN vs CONDICIÓN
-→ Pueden terminar el certificado más tarde (el estado se guarda)
+Frase de apoyo docente:
+"Si ejecuta una accion, suele ser funcion. Si habilita o limita la ejecucion, suele ser condicion."
 
 ---
 
-## 📊 NOTAS PEDAGÓGICAS
+## TROUBLESHOOTING EN CLASE
 
-**Objetivos de aprendizaje** (según Bloom):
-1. **RECORDAR**: Definir qué es FUNCIÓN vs CONDICIÓN
-2. **COMPRENDER**: Explicar la diferencia con ejemplos
-3. **APLICAR**: Clasificar requerimientos de Stark Industries
-4. **ANALIZAR**: Entender por qué ambas son necesarias
-5. **EVALUAR**: Juzgar si un requisito es F o C
+La pagina no carga:
+- Revisar servidor y URL local.
+- Reiniciar servidor si hace falta.
+- Si persiste, usar PLAN_B_ANALOGICO.md.
 
-**Diferenciación**:
-- Estudiantes rapidos: Refuerzo con más ejemplos complejos
-- Estudiantes lentos: Pista visual (ACCIÓN vs REQUISITO) en cada pregunta
-- Auditivos: Escuchan mensajes automáticos cada 30 seg
-- Visuales: Colores diferenciados F (azul) / C (rojo)
+No abre herramienta externa:
+- Continuar con app local.
+- Reemplazar por 3 casos en pizarra con clasificacion.
 
----
-
-## 📝 AL FINALIZAR CLASE
-
-1. **Recopilar escritos del Padlet** (reflexión final sobre software)
-2. **Tomar screenshots de certificados** (para portafolio)
-3. **Registrar puntuaciones** si luego quieres evaluar
-4. **Feedback rápido**: "¿Qué te sorprendió de FUNCIÓN vs CONDICIÓN?"
+No alcanza el tiempo:
+- Priorizar M1, M2, M4 y cierre.
+- Reducir narrativa y dejar una sola actividad externa.
 
 ---
 
-## 🔄 PARA PRÓXIMAS CLASES
+## EVIDENCIA Y CIERRE
 
-Si repites esta actividad:
-- Los datos se guardan en `localStorage` del navegador
-- Limpiar: Abrir Dev Tools → Application → Storage → Clear
-- O usar incógnito para empezar limpio
+Evidencia minima recomendada:
+- Registro de avance en misiones.
+- Resultado de una actividad externa principal.
+- Exit ticket individual.
 
----
-
-## 💡 TIPS FINALES
-
-✨ **Lo que sale bien**:
-- La narrativa JARVIS/Stark es muy atractiva
-- Los estudiantes se "sienten parte" de la reparación
-- El concepto FUNCIÓN vs CONDICIÓN queda claro rápido
-- 20 minutos es tiempo JUSTO pero suficiente
-
-⚠️ **Puntos a cuidar**:
-- No adelantarse en las respuestas (deixa que piensen)
-- Si alguien da respuesta incorrecta, pregunta "¿Por qué?" antes de corregir
-- El Padlet "fallos de especificación en apps reales" es la joya - toma tiempo para leerlo
+Criterio de logro:
+- Distingue funcion vs condicion en casos directos.
+- Justifica al menos una respuesta con lenguaje tecnico basico.
 
 ---
 
-## 📱 INFORMACIÓN TÉCNICA
+## INFORMACION TECNICA
 
-**URL**: `http://localhost:8000`  
-**Servidor**: Python HTTP Server (puerto 8000)  
-**Navegador**: Chrome/Firefox (moderno)  
-**Requisitos**: JavaScript habilitado, localStorage activo  
-**Ancho de banda**: ~500KB (bajo)  
-
-**Archivos críticos**:
-```
-index.html              ← La página principal
-script.js              ← Lógica del juego (ENORME pero funcional)
-js/data/missions.js    ← Las 4 misiones (recién creado 3/4)
-styles.css             ← Todos los estilos
-assets/                ← Imágenes, audio
-```
+URL: http://localhost:8000
+Servidor: Python HTTP Server (puerto 8000)
+Navegador: Chrome/Firefox/Edge modernos
+Requisitos: JavaScript habilitado y almacenamiento local activo
 
 ---
 
-## 🎬 PARA RECORDAR
-
-> "Este sistema fue creado en ~10 días de iteraciones ágiles. Pasamos de NOVA (genérico) a JARVIS (relevante MCU). Redujimos de 6 misiones a 4 para exactamente 20 minutos. Tenemos Plan B analógico si falla la tecnología."
-
-**El punto no es la tecnología. El punto es que aprendan ESPECIFICACIÓN DE REQUERIMIENTOS.**
-
----
-
-**Creado**: 4-5 Marzo, 2026  
-**Profesor**: [Tu nombre - Marcos Argandoña]  
-**Sistema**: JARVIS - Misión de Reparación Stark Industries  
-**Estado**: ✅ LISTO PARA PRODUCCIÓN
-
-¡Buena suerte mañana! El sistema está preparado, los estudiantes van a aprender, y Tony Stark estaría orgulloso. 🚀
+Documento de referencia completa para ejecutar la sesion:
+- INSTRUCCIONES_CLASE_80_MIN.md
 

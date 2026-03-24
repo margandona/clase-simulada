@@ -1,5 +1,15 @@
-# NOVA - Guía Pedagógica para Docentes
-## Itinerario de Aprendizaje de 30 Minutos
+# NOVA - Guía Pedagógica para Docentes (HISTORICO)
+## Itinerario de Aprendizaje de 30 Minutos (REFERENCIA ANTERIOR)
+
+> NOTA DE ESTADO (MARZO 2026)
+>
+> Este documento se conserva como referencia historica de una version anterior (30 min, narrativa NOVA).
+> Para la ejecucion oficial actual, usa:
+> - INSTRUCCIONES_CLASE_80_MIN.md
+> - CLASE_MANANA_INSTRUCCIONES_FINALES.md
+> - AJUSTE_CLASE_80_MIN.md
+
+---
 
 ---
 

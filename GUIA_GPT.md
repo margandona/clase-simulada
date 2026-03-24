@@ -231,5 +231,5 @@ Agrega además:
 ## Resumen ejecutivo de una línea
 
 ```text
-Actividad gamificada de 20 minutos para clase universitaria: JARVIS (IA de Stark Industries) perdió sus requerimientos en una actualización; los estudiantes completan 4 misiones (12 actividades: quiz, padlet, checklist, classification) para restaurarlo, aprendiendo a distinguir funciones (lo que el sistema HACE) de condiciones (lo que NECESITA para funcionar). Runtime activo: index.html + styles.css + script.js. Narrativa completa en HISTORIA_JARVIS_Y_ACTIVIDAD.md.
+Actividad gamificada de 80 minutos para clase universitaria: JARVIS (IA de Stark Industries) perdió sus requerimientos en una actualización; los estudiantes completan 4 misiones (12 actividades: quiz, padlet, checklist, classification) para restaurarlo, aprendiendo a distinguir funciones (lo que el sistema HACE) de condiciones (lo que NECESITA para funcionar). Runtime activo: index.html + styles.css + script.js. Narrativa completa en HISTORIA_JARVIS_Y_ACTIVIDAD.md.
 ```
