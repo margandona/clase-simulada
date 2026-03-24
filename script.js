@@ -135,6 +135,137 @@ const audioService = new AudioService();
 
 // Mission Data - Expanded with Activity Metadata
 const MISSIONS = {
+    0: {
+        title: 'Fase 0: System Diagnosis',
+        description: 'Alerta crítica: sin diagnóstico estructural, la Torre Stark no puede recuperar sus sistemas.',
+        phase: 'diagnosis',
+        instructions: '🧭 Protocolo de emergencia: ejecuta el diagnóstico base para reconstruir el mapa mental de JARVIS.',
+        narrativeBeats: [
+            '🔴 Estado del sistema: JARVIS perdió dominio, límites y criterios de requerimientos.',
+            '⚠️ Riesgo activo: decisiones sin contexto pueden agravar la caída operativa.',
+            '🛠️ Objetivo de fase: restaurar comprensión antes de intentar reparar funciones.',
+            '🔓 Al completar esta fase se habilita la recuperación progresiva de Stark Industries.'
+        ],
+        submissions: [
+            {
+                id: '0a',
+                name: 'Mentimeter: Diagnóstico Inicial',
+                toolType: 'mentimeter',
+                learningGoal: 'Explorar ideas previas sobre dominio, límites y requerimientos',
+                udlHints: ['Participa con una idea clara', 'Escucha respuestas de tus compañeros'],
+                successCondition: 'Registrar participación en Mentimeter',
+                activityPrompt: 'Escaneo inicial: identifica señales de falla conceptual en tiempo real.',
+                instructions: [
+                    'Haz clic en "Abrir Mentimeter".',
+                    'Ingresa el código de la actividad compartido por el docente.',
+                    'Responde al menos una pregunta del diagnóstico.',
+                    'Vuelve y presiona "Ya participé".'
+                ],
+                questionExamples: [
+                    '¿Qué es el dominio de un sistema?',
+                    '¿Qué ocurre si el límite del sistema es ambiguo?',
+                    '¿Quién define los requerimientos de usuario?'
+                ],
+                mentimeterUrl: 'https://www.menti.com/alq9usss1qw7',
+                feedback: {
+                    correct: 'Excelente. Tu diagnóstico inicial quedó registrado.',
+                    incorrect: 'Marca tu participación para continuar.'
+                },
+                novaMessage: 'No solo perdí mis condiciones... perdí por completo la comprensión de mi sistema. Ya no sé cuál es mi dominio, dónde empieza y termina mi sistema, qué restricciones me limitan, quiénes son mis usuarios ni qué debo hacer por ellos. Antes de reparar mis funciones, debemos reconstruir mi entendimiento.'
+            },
+            {
+                id: '0b',
+                name: 'Mini interacción: Reconstrucción Conceptual',
+                toolType: 'kahoot',
+                learningGoal: 'Comprender dominio, frontera, restricciones y diferencia usuario/sistema',
+                udlHints: ['Lee cada definición y conéctala con la falla de JARVIS'],
+                successCondition: 'Revisar y confirmar comprensión conceptual',
+                activityPrompt: 'Prueba bajo presión: valida decisiones críticas del sistema.',
+                instructions: [
+                    'Haz clic en "Abrir Kahoot".',
+                    'Ingresa el PIN o challenge indicado por el docente.',
+                    'Responde todas las preguntas del bloque conceptual.',
+                    'Vuelve y presiona "Ya participé".'
+                ],
+                kahootUrl: 'https://kahoot.it/challenge/06527434?challenge-id=d8760083-d46f-4c29-b088-030eded85ba0_1774249548621',
+                jarvisFailureContext: 'Ya no sé cuál es mi dominio, dónde empieza/termina mi sistema, qué restricciones me limitan, quiénes son mis usuarios y qué debo hacer por ellos.',
+                definitions: [
+                    {
+                        concept: 'Dominio de aplicación',
+                        definition: 'Contexto real del problema que el sistema resuelve (entorno, procesos y lenguaje del negocio).'
+                    },
+                    {
+                        concept: 'Límite del sistema',
+                        definition: 'Frontera que separa qué pertenece al sistema y qué queda fuera de él.'
+                    },
+                    {
+                        concept: 'Restricciones del sistema',
+                        definition: 'Condiciones técnicas, legales, de tiempo o recursos que limitan cómo se diseña o ejecuta.'
+                    },
+                    {
+                        concept: 'Requerimientos de usuario',
+                        definition: 'Necesidades y objetivos que las personas usuarias esperan resolver con el sistema.'
+                    },
+                    {
+                        concept: 'Requerimientos del sistema',
+                        definition: 'Especificaciones concretas y verificables que el sistema debe implementar para responder al usuario.'
+                    }
+                ],
+                reflectionPrompt: 'Si JARVIS confunde el límite del sistema, podría intentar controlar procesos que están fuera de su responsabilidad.',
+                feedback: {
+                    correct: 'Conceptos reconstruidos. JARVIS recupera su mapa mental del sistema.',
+                    incorrect: 'Revisa las definiciones antes de continuar.'
+                },
+                novaMessage: 'Antes de reparar funciones, debemos reconstruir mi entendimiento.'
+            },
+            {
+                id: '0c',
+                name: 'Validación rápida (Forms): Clasificar enunciados',
+                toolType: 'forms',
+                learningGoal: 'Aplicar clasificación conceptual en enunciados reales',
+                udlHints: ['Clasifica cada enunciado en su categoría correcta'],
+                successCondition: 'Clasificar correctamente dominio, restricción y requerimientos',
+                activityPrompt: 'Cierre de diagnóstico: deja evidencia trazable para desbloquear recuperación.',
+                instructions: [
+                    'Haz clic en "Abrir Formulario".',
+                    'Completa todas las preguntas de clasificación.',
+                    'Envía el formulario para registrar tus respuestas.',
+                    'Vuelve y presiona "Ya respondí el formulario".'
+                ],
+                formsProvider: 'microsoft',
+                formsUrl: 'https://forms.office.com/r/Ai6qbwdVMt',
+                statements: [
+                    {
+                        text: 'El sistema opera en la gestión académica universitaria.',
+                        correctCategory: 'domain'
+                    },
+                    {
+                        text: 'Debe responder cada consulta en menos de 2 segundos.',
+                        correctCategory: 'constraint'
+                    },
+                    {
+                        text: 'El estudiante necesita ver su avance por misión.',
+                        correctCategory: 'userRequirement'
+                    },
+                    {
+                        text: 'El sistema debe guardar progreso en almacenamiento local.',
+                        correctCategory: 'systemRequirement'
+                    }
+                ],
+                categories: [
+                    { value: 'domain', label: 'Dominio' },
+                    { value: 'constraint', label: 'Restricción' },
+                    { value: 'userRequirement', label: 'Req. de usuario' },
+                    { value: 'systemRequirement', label: 'Req. del sistema' }
+                ],
+                feedback: {
+                    correct: 'Validación completada. La Fase 0 está lista para desbloquear la recuperación de JARVIS.',
+                    incorrect: 'Hay clasificaciones incorrectas. Ajusta y vuelve a verificar.'
+                },
+                novaMessage: 'Ahora vuelvo a distinguir qué piden mis usuarios y qué debe implementar mi sistema.'
+            }
+        ]
+    },
     1: {
         title: 'Misión 1: Activación',
         description: 'Completa estas actividades para conocer a JARVIS y su crisis crítica.',
@@ -162,20 +293,25 @@ const MISSIONS = {
             },
             { 
                 id: '1b', 
-                name: 'Actividad: Activación en Padlet',
-                toolType: 'padlet',
-                toolLabel: 'Padlet de Activación',
-                embedUrl: 'https://padlet.com/padlets/t27dz8jyj9vcposz/embeds/preview_embed',
-                padletUrl: 'https://padlet.com/padlets/t27dz8jyj9vcposz',
-                learningGoal: 'Conectar con JARVIS y entender su situación',
-                udlHints: ['Comparte una idea breve', 'Lee lo que otros aportaron'],
-                successCondition: 'Interactúa con el Padlet',
+                name: 'Educaplay: Veracidad de los requerimientos',
+                toolType: 'external',
+                learningGoal: 'Contrastar ideas iniciales sobre veracidad y calidad de requerimientos',
+                udlHints: ['Completa la actividad completa en Educaplay', 'Revisa tu resultado antes de confirmar'],
+                successCondition: 'Finalizar actividad de Educaplay y confirmar participación',
                 instructions: [
-                    'Haz clic en "Abrir Padlet" o interactúa con el muro',
-                    'Escribe tu idea: ¿Cómo reparas un sistema sin requerimientos claros?',
-                    'Vuelve aquí y marca la actividad como completada'
+                    'Haz clic en "Abrir actividad".',
+                    'Completa la actividad de Educaplay hasta el final.',
+                    'Revisa tu puntaje o retroalimentación obtenida.',
+                    'Vuelve y presiona "Ya participé".'
                 ],
-                padletOpenMessage: 'Mi sistema perdió sus requerimientos en la actualización. Necesito que los reconstruyamos juntos.'
+                externalLabel: 'Educaplay',
+                externalButtonText: '🌐 Abrir actividad',
+                externalUrl: 'https://es.educaplay.com/recursos-educativos/28379550-veracidad_de_los_requerimientos.html',
+                feedback: {
+                    correct: 'Actividad completada. Tu validación fortalece la activación del sistema.',
+                    incorrect: 'Abre y finaliza la actividad externa para continuar.'
+                },
+                novaMessage: 'Cada respuesta me ayuda a recuperar mi comprensión del sistema.'
             },
             { 
                 id: '1c', 
@@ -225,21 +361,23 @@ const MISSIONS = {
             },
             { 
                 id: '2b', 
-                name: 'Actividad: Listar requerimientos faltantes',
-                toolType: 'checklist',
-                learningGoal: 'Identificar tipos de requerimientos que faltan',
-                udlHints: ['Selecciona todos los que crees que faltan', 'Puedes marcar más de uno'],
-                successCondition: 'Selecciona al menos 2 opciones',
-                question: '¿Qué tipos de requerimientos le faltan a JARVIS?',
-                checklistItems: [
-                    { text: 'Funciones del sistema', value: 'functions' },
-                    { text: 'Condiciones necesarias', value: 'conditions' },
-                    { text: 'Documentación clara', value: 'documentation' },
-                    { text: 'Protocolos de seguridad', value: 'security' }
+                name: 'Educaplay: Reconstrucción de requerimientos',
+                toolType: 'external',
+                learningGoal: 'Diagnosticar requerimientos faltantes mediante actividad guiada',
+                udlHints: ['Completa toda la secuencia en Educaplay', 'Confirma al regresar al sistema'],
+                successCondition: 'Completar actividad de exploración en Educaplay',
+                instructions: [
+                    'Haz clic en "Abrir actividad".',
+                    'Resuelve la actividad de reconstrucción de requerimientos.',
+                    'Verifica tu resultado final en Educaplay.',
+                    'Vuelve y presiona "Ya participé".'
                 ],
+                externalLabel: 'Educaplay',
+                externalButtonText: '🌐 Abrir actividad',
+                externalUrl: 'https://es.educaplay.com/recursos-educativos/28379604-mision_2_reconstruccion_de_requerimientos.html',
                 feedback: {
-                    correct: '¡Bien! Identificaste los requerimientos clave.',
-                    incorrect: 'Necesito al menos 2 tipos de requerimientos para funcionar.'
+                    correct: 'Actividad registrada. Diagnóstico de exploración completado.',
+                    incorrect: 'Completa la actividad externa para continuar.'
                 },
                 novaMessage: 'Exacto. Mis FUNCIONES me dicen QUÉ HAGO. Mis CONDICIONES me dicen CÓMO HACERLO.'
             },
@@ -306,20 +444,37 @@ const MISSIONS = {
             },
             { 
                 id: '3c', 
-                name: 'Quiz: Diferencias clave',
-                toolType: 'quiz',
-                learningGoal: 'Consolidar la diferencia entre función y condición',
-                udlHints: ['Recuerda: HACE vs NECESITA', 'Acción vs Requisito'],
-                successCondition: 'Responde correctamente',
-                question: '¿Cuál es la diferencia principal?',
-                options: [
-                    { text: 'Función = QUÉ HACE / Condición = QUÉ NECESITA', correct: true },
-                    { text: 'No hay diferencia real', correct: false },
-                    { text: 'Función es opcional, condición es obligatoria', correct: false }
+                name: 'Kahoot: Diferencias clave en contexto',
+                toolType: 'kahoot',
+                kahootUrl: 'https://create.kahoot.it/share/enter-kahoot-title/c0692de8-bf4e-43f1-a545-d697f71affce',
+                learningGoal: 'Consolidar función vs condición con interacción competitiva',
+                udlHints: ['Ingresa al Kahoot y responde en tiempo real', 'Confirma participación al terminar'],
+                successCondition: 'Participar y finalizar el Kahoot de consolidación',
+                instructions: [
+                    'Haz clic en "Abrir Kahoot".',
+                    'Ingresa el PIN o challenge de la fase de comprensión.',
+                    'Responde todas las preguntas para consolidar conceptos.',
+                    'Vuelve y presiona "Ya participé".'
                 ],
+                jarvisFailureContext: 'Necesito validar rápidamente si puedes distinguir acciones del sistema y condiciones operativas bajo presión.',
+                definitions: [
+                    {
+                        concept: 'Pregunta tipo 1',
+                        definition: 'Identificar si un enunciado expresa una acción del sistema (función).'
+                    },
+                    {
+                        concept: 'Pregunta tipo 2',
+                        definition: 'Identificar si un enunciado expresa una necesidad o restricción (condición).'
+                    },
+                    {
+                        concept: 'Pregunta tipo 3',
+                        definition: 'Diferenciar requerimiento de usuario vs requerimiento del sistema en casos breves.'
+                    }
+                ],
+                reflectionPrompt: 'Si respondes con precisión, mi reconstrucción conceptual queda estable.',
                 feedback: {
-                    correct: '¡Excelente! Dominas la diferencia clave.',
-                    incorrect: 'Recuerda: Funciones = acciones, Condiciones = requisitos.'
+                    correct: 'Kahoot completado. Tu desempeño fortalece la fase de comprensión.',
+                    incorrect: 'Participa en el Kahoot para continuar.'
                 },
                 novaMessage: 'Funciones me permiten actuar. Condiciones me permiten existir.'
             }
@@ -367,177 +522,69 @@ const MISSIONS = {
             },
             { 
                 id: '4c', 
-                name: 'Clasificar: Comunicar con Tierra',
-                toolType: 'classification',
-                learningGoal: 'Aplicar clasificación a casos reales',
-                udlHints: ['Comunicar = acción', '¿Qué hace el sistema?'],
-                successCondition: 'Clasifica correctamente',
-                example: 'El sistema debe transmitir datos a la estación terrestre',
-                question: '¿FUNCIÓN o CONDICIÓN?',
-                correctAnswer: 'function',
-                explanation: {
-                    correct: '¡Perfecto! "Transmitir datos" es una FUNCIÓN (acción que ejecuta).',
-                    incorrect: 'No del todo. "Transmitir datos" es una acción = FUNCIÓN.'
-                },
-                hint: 'Transmitir es un verbo de acción.',
-                novaMessage: 'Tu análisis repara mi sistema de coordinación. Otro módulo conectado.'
-            }
-        ]
-    },
-    5: {
-        title: 'Misión 5: Colaborar',
-        description: 'Contribuye con tu equipo para la restauración final.',
-        phase: 'collaborative',
-        instructions: '🤝 Trabaja en equipo para completar:',
-        submissions: [
-            { 
-                id: '5a', 
-                name: 'Abrir Padlet Colaborativo',
-                toolType: 'padlet',
-                toolLabel: 'Padlet Colaborativo',
-                embedUrl: 'https://padlet.com/padlets/7t8fczx0d5ecget2/embeds/preview_embed',
-                padletUrl: 'https://padlet.com/padlets/7t8fczx0d5ecget2',
-                learningGoal: 'Contribuir ideas al equipo',
-                udlHints: ['Comparte 1-2 ideas', 'Lee las ideas de otros', 'Sé respetuoso y constructivo'],
-                successCondition: 'Confirma que abriste el Padlet',
+                name: 'Forms: Decisión final de recuperación',
+                toolType: 'forms',
+                formsProvider: 'microsoft',
+                formsUrl: 'https://forms.office.com/r/ieUGtxNAku',
+                learningGoal: 'Aplicar criterios finales y justificar decisiones de recuperación',
+                udlHints: ['Responde todas las preguntas de cierre', 'Envía el formulario antes de confirmar'],
+                successCondition: 'Responder la actividad de cierre en Forms',
                 instructions: [
-                    'Haz clic en "Abrir Padlet"',
-                    'Contribuye con al menos 1 idea',
-                    '¿Qué otras funciones o condiciones necesita JARVIS para operar?',
-                    'Vuelve aquí y confirma'
-                ],
-                padletOpenMessage: 'Tu idea puede ser la pieza clave para completar la reparación de la Torre.',
-                novaMessage: 'Sus ideas son como piezas que necesito. Cada requerimiento es una pieza de mi rompecabezas.'
-            },
-            { 
-                id: '5b', 
-                name: 'Completar lista de verificación',
-                toolType: 'checklist',
-                learningGoal: 'Verificar preparativos finales',
-                udlHints: ['Revisa cada ítem con cuidado', 'Marca solo cuando estés seguro'],
-                successCondition: 'Completa todos los ítems',
-                question: 'Lista de verificación pre-reactivación:',
-                checklistItems: [
-                    { text: 'Sistema de navegación: Funciones definidas', value: 'nav' },
-                    { text: 'Sistema de energía: Condiciones verificadas', value: 'energy' },
-                    { text: 'Sistema de comunicación: Requisitos completos', value: 'comm' }
+                    'Haz clic en "Abrir Formulario".',
+                    'Responde el bloque final de decisión de recuperación.',
+                    'Envía el formulario con tu identificador.',
+                    'Vuelve y presiona "Ya respondí el formulario".'
                 ],
                 feedback: {
-                    correct: '¡Verificación completa! Todo listo para la reactivación.',
-                    incorrect: 'Completa todos los ítems de la lista.'
+                    correct: 'Respuesta final registrada. Aplicación completada con evidencia para analítica.',
+                    incorrect: 'Completa el formulario para cerrar la fase.'
                 },
-                novaMessage: 'Requerimientos verificados. Casi completamente reparada.'
-            },
-            { 
-                id: '5c', 
-                name: 'Obtener autorización de reactivación',
-                toolType: 'confirmation',
-                learningGoal: 'Autorizar la reactivación final del sistema',
-                udlHints: ['Confirma solo si todo está listo', 'Esto es el paso final'],
-                successCondition: 'Confirma la autorización',
-                question: '¿Autorizar el reinicio completo de JARVIS?',
-                confirmText: 'Sí, el sistema está completo y listo',
-                feedback: {
-                    correct: '🚀 ¡Autorización concedida! Torre Stark reiniciando...',
-                    incorrect: ''
-                },
-                novaMessage: 'Autorización recibida. Reiniciando sistemas. Sincronizando requerimientos...'
-            }
-        ]
-    },
-    6: {
-        title: 'Misión 6: Restauración Completa',
-        description: 'Sistema restaurado. ¡La Torre Stark está lista para operar al 100%!',
-        phase: 'closure',
-        instructions: '🚀 Últimos pasos para la restauración completa:',
-        submissions: [
-            { 
-                id: '6a', 
-                name: 'Verificar: Sistema al 100%',
-                toolType: 'verification',
-                learningGoal: 'Confirmar que el sistema está completo',
-                udlHints: ['Revisa el indicador de sistema arriba', 'Debe estar al 100%'],
-                successCondition: 'Confirma verificación',
-                question: '¿Confirmas que todos los requerimientos de JARVIS están completos?',
-                feedback: {
-                    correct: '✅ Sistema verificado al 100%',
-                    incorrect: ''
-                },
-                novaMessage: 'Todos mis módulos están sincronizados. Mis requerimientos están completos.'
-            },
-            { 
-                id: '6b', 
-                name: 'Acción: Completar restauración',
-                toolType: 'action',
-                learningGoal: 'Ejecutar la restauración final del sistema',
-                udlHints: ['Solo disponible si 6a está completo', 'Este es el momento final'],
-                successCondition: 'Presiona el botón de restauración',
-                requiresPrevious: '6a',
-                question: '¿Iniciar restauración completa del sistema?',
-                actionLabel: '🚀 RESTAURAR',
-                feedback: {
-                    correct: '🚀 ¡Reinicio completado! Sistema Stark Industries restaurado.',
-                    incorrect: ''
-                },
-                novaMessage: '¡Sistema completamente reparado! ¡JARVIS en línea al 100%! La Torre funciona en armonía.'
-            },
-            { 
-                id: '6c', 
-                name: 'Celebrar: ¡Misión cumplida!',
-                toolType: 'celebration',
-                learningGoal: 'Celebrar el logro',
-                udlHints: ['¡Lo lograste!', 'Revisa tu progreso final'],
-                successCondition: 'Disfruta la celebración',
-                autoComplete: true,
-                novaMessage: '¡Hemos logrado el objetivo! Entiendes que JARVIS, como todo software, necesita funciones Y condiciones claras para operar perfectamente.'
+                novaMessage: 'Tu análisis repara mi sistema de coordinación. Otro módulo conectado.'
             }
         ]
     }
 };
 
+const MISSION_SEQUENCE = [0, 1, 2, 3, 4];
+const TOTAL_MISSIONS = MISSION_SEQUENCE.length;
+
 // Dynamic JARVIS messages based on learning phase
 const JARVIS_MESSAGES = {
-    activation: "Nueva señal detectada… soy JARVIS. Necesito que entiendas mis requerimientos.",
-    exploration: "Mi hardware funciona perfecto… mi software está incompleto.",
-    understanding: "Funciones = lo que EJECUTO. Condiciones = lo que NECESITO para ejecutar.",
-    application: "Tus decisiones reparan mi sistema. ¿Función o condición?",
-    collaborative: "Casi logramos reparar la Torre Stark.",
-    closure: "Sistema JARVIS restaurado. Torre Stark en línea completa.",
+    diagnosis: "Protocolo activo: mi mapa de requerimientos está fragmentado. Necesito diagnóstico estructural.",
+    activation: "Señal restablecida. Soy JARVIS. Activemos identidad de sistema y alcance operativo.",
+    exploration: "Diagnóstico parcial completado. Ahora debes aislar por qué mis módulos no coordinan.",
+    understanding: "Núcleo conceptual en recuperación: función es acción; condición es requisito operativo.",
+    application: "Fase final de reparación: clasifica, justifica y estabiliza decisiones críticas.",
     default: "Analizando sistemas de Stark Industries..."
 };
 
 // Auto-toast message variations (for periodic display)
 // These rotate automatically every 20-30 seconds
 const AUTO_TOAST_MESSAGES = {
+    diagnosis: [
+        "Alerta crítica: sin dominio claro, mis decisiones pierden precisión.",
+        "Riesgo activo: un límite ambiguo puede provocar acciones fuera de alcance.",
+        "Primero diagnóstico estructural. Luego recuperación operativa."
+    ],
     activation: [
-        "Soy JARVIS, IA de Stark Industries.",
-        "Mi sistema está incompleto sin tus requerimientos.",
-        "La Torre Stark depende de que me repares."
+        "Soy JARVIS, IA de Stark Industries. Señal de control restablecida.",
+        "Mi sistema conserva potencia, pero aún carece de coherencia de requerimientos.",
+        "La Torre Stark depende de que restablezcamos criterios de diseño confiables."
     ],
     exploration: [
-        "Tengo todas las funciones, pero me faltan condiciones.",
-        "Sin requerimientos claros, hasta yo quedo paralizado.",
-        "FUNCIÓN = lo que HAGO | CONDICIÓN = lo que NECESITO"
+        "Tengo funciones completas, pero faltan condiciones para sincronizarlas.",
+        "Sin requerimientos claros, incluso un sistema avanzado queda paralizado.",
+        "Explorar no es adivinar: es rastrear causas del fallo estructural."
     ],
     understanding: [
-        "FUNCIÓN: verbos de acción (calcular, transmitir, ejecutar)",
-        "CONDICIÓN: palabras de necesidad (requiere, necesita, debe tener)",
-        "Ambas son esenciales en ingeniería de software."
+        "FUNCIÓN: verbos de acción (calcular, transmitir, ejecutar).",
+        "CONDICIÓN: necesidades operativas (requiere, necesita, debe tener).",
+        "Si confundes estos niveles, el diseño se vuelve inestable."
     ],
     application: [
-        "Clasifica cada requerimiento correctamente.",
-        "¿Es FUNCIÓN o CONDICIÓN? Tú decides.",
-        "Cada clasificación me acerca a la reparación completa."
-    ],
-    collaborative: [
-        "Tony Stark confía en que repararé los sistemas.",
-        "La colaboración es clave en sistemas complejos.",
-        "Juntos podemos lograrlo. Tú y yo."
-    ],
-    closure: [
-        "Sistema restaurado. Todos los requerimientos claros.",
-        "¡JARVIS está de vuelta! Gracias.",
-        "Un sistema bien especificado funciona perfectamente."
+        "Clasifica y justifica: ahora cada decisión impacta recuperación real.",
+        "¿Es FUNCIÓN o CONDICIÓN? Tu criterio define la estabilidad final.",
+        "Cada clasificación correcta me acerca a la recuperación completa."
     ]
 };
 
@@ -555,6 +602,12 @@ const PROGRESS_MESSAGES = {
  * @type {Object.<string, Array>}
  */
 const CONTEXTUAL_MESSAGES_BY_PHASE = {
+    diagnosis: [
+        "🧭 Diagnóstico activo: mi mapa de requerimientos está fragmentado.",
+        "📌 Reconstruye dominio, límite, restricciones y tipos de requerimientos.",
+        "⚠️ Cada respuesta reduce riesgo sistémico en Stark Industries.",
+        "🔓 Esta fase habilita la recuperación funcional por misiones."
+    ],
     activation: [
         "🔧 Soy JARVIS. Sistema de Stark Industries.",
         "⚙️ Mi hardware funciona. Mi software está incompleto.",
@@ -562,7 +615,7 @@ const CONTEXTUAL_MESSAGES_BY_PHASE = {
         "💡 Tony necesita que repares mi sistema."
     ],
     exploration: [
-        "🔍 Correcto. Estás investigando mi problemablema.",
+        "🔍 Correcto. Estás investigando mi problema central.",
         "⚙️ Tengo funciones pero faltan condiciones.",
         "📋 Sin ambas especificadas, cualquier sistema cae.",
         "🚨 Necesito que identifiques ambos tipos de requerimientos."
@@ -571,25 +624,13 @@ const CONTEXTUAL_MESSAGES_BY_PHASE = {
         "✅ ¡Lo comprendes! FUNCIÓN vs CONDICIÓN.",
         "🧠 FUNCIÓN: lo que EJECUTO (verbos de acción).",
         "CONDICIÓN: lo que NECESITO (requisitos previos).",
-        "💪 Ahora aplicarémoslo en ejemplos reales."
+        "💪 Ahora lo aplicaremos en ejemplos reales."
     ],
     application: [
         "🎯 Clasifica: ¿FUNCIÓN o CONDICIÓN?",
         "🔧 Cada decisión correcta me repara.",
         "⚡ Esto son casos reales de Stark Industries.",
         "🌠 Casi lo logramos. Continúa."
-    ],
-    collaborative: [
-        "🤝 Último paso. Ayuda a los otros estudiantes.",
-        "👥 La colaboración es la clave en ingeniería.",
-        "🎪 Sistemas complejos = trabajo en equipo.",
-        "🚀 Juntos lo conseguiremos."
-    ],
-    closure: [
-        "✨ Mi sistema está completamente reparado.",
-        "🎉 ¡Gracias por tu ayuda, especialista en requerimientos!",
-        "🌌 Volveré con Tony a la Torre Stark.",
-        "👋 Nunca olvidaré que entendiste FUNCIÓN vs CONDICIÓN."
     ]
 };
 
@@ -600,7 +641,7 @@ const STATE = {
     trophyEarned: false,        // Track if trophy earned
     characterFrame: 0,
     rewards: 0,
-    currentPhase: 'activation', // Track learning phase
+    currentPhase: 'diagnosis', // Track learning phase
     showedFinalScreen: false,   // Track if final celebration shown
     messagesMuted: false,        // Track if auto-messages are muted
     lastMessageIndex: 0,         // Track last shown message variation
@@ -619,7 +660,7 @@ const STATE = {
 function getContextualMessage() {
     const completedCount = Math.floor(STATE.completedMissions.length / 3);
     const phase = STATE.currentPhase;
-    const messages = CONTEXTUAL_MESSAGES_BY_PHASE[phase] || CONTEXTUAL_MESSAGES_BY_PHASE.activation;
+    const messages = CONTEXTUAL_MESSAGES_BY_PHASE[phase] || CONTEXTUAL_MESSAGES_BY_PHASE.diagnosis;
     
     // Rotate through messages based on progress
     // More progress = later messages in the array
@@ -664,12 +705,14 @@ function updateMessageInboxOnProgress() {
     
     // Show message based on milestones
     if (completedCount === 1) {
-        addMessageToInbox("🎯 Primera misión completada. ¡Buen comienzo!", '✅');
+        addMessageToInbox("🧭 Fase 0 completada. Diagnóstico listo para desbloquear la recuperación.", '✅');
+    } else if (completedCount === 2) {
+        addMessageToInbox("🎯 Misión 1 completada. JARVIS vuelve a activarse.", '⚙️');
     } else if (completedCount === 3) {
-        addMessageToInbox("⚡ Ya dominas tres misiones. ¡Vamos bien!", '⚡');
+        addMessageToInbox("⚡ Dos misiones de recuperación completadas. Continúa.", '⚡');
+    } else if (completedCount === 4) {
+        addMessageToInbox("🧠 Ya dominas tres misiones de recuperación. Casi listo.", '🧠');
     } else if (completedCount === 5) {
-        addMessageToInbox("🌟 Casi al final. ¡Casi despego!", '🌟');
-    } else if (completedCount === 6) {
         addMessageToInbox("🚀 ¡TORRE STARK OPERATIVA! Sistema restaurado al 100%.", '🎉');
     }
     
@@ -898,7 +941,7 @@ function setupModals() {
     // Conceptos Button (NEW)
     document.getElementById('conceptsBtn').addEventListener('click', () => {
         openModal(conceptsModal);
-        showToastMessage("💡 Estos conceptos son clave para ayudar a NOVA.", 3000);
+        showToastMessage("💡 Estos conceptos son clave para ayudar a JARVIS.", 3000);
     });
     
     // Audio Button - Story Modal
@@ -1245,7 +1288,7 @@ function resetGameProgress() {
     STATE.earnedMedals = [];
     STATE.trophyEarned = false;
     STATE.rewards = 0;
-    STATE.currentPhase = 'activation';
+    STATE.currentPhase = 'diagnosis';
     STATE.showedFinalScreen = false;
     STATE.lastPhaseInInbox = null;
     STATE.firstSubmissionShown = false;
@@ -1333,6 +1376,59 @@ function updateSystemProgress(percentage) {
     if (progressEl) {
         progressEl.textContent = Math.min(100, Math.max(0, percentage));
     }
+
+    const bounded = Math.min(100, Math.max(0, percentage));
+    const reconstructionPercent = document.getElementById('systemReconstructionPercent');
+    const reconstructionFill = document.getElementById('systemReconstructionFill');
+    const reconstructionBar = document.querySelector('.system-reconstruction-bar');
+    const reconstructionNote = document.getElementById('systemReconstructionNote');
+    const diagnosisIntegrityPercent = document.getElementById('diagnosisIntegrityPercent');
+    const diagnosisIntegrityFill = document.getElementById('diagnosisIntegrityFill');
+    const diagnosisIntegrityBar = document.querySelector('.diagnosis-integrity-bar');
+    const diagnosisIntegrityLabel = document.getElementById('diagnosisIntegrityLabel');
+
+    if (reconstructionPercent) {
+        reconstructionPercent.textContent = `${bounded}%`;
+    }
+    if (reconstructionFill) {
+        reconstructionFill.style.width = `${bounded}%`;
+    }
+    if (reconstructionBar) {
+        reconstructionBar.setAttribute('aria-valuenow', String(Math.round(bounded)));
+    }
+
+    if (reconstructionNote) {
+        const phaseZeroComplete = isMissionFullyCompleted(0);
+        reconstructionNote.textContent = phaseZeroComplete
+            ? 'Diagnóstico completado. JARVIS puede iniciar su recuperación funcional.'
+            : 'Completa la Fase 0 para desbloquear la recuperación de JARVIS.';
+    }
+
+    // Mini progression tracker only for Fase 0 integrity
+    const phaseZeroSubmissions = (MISSIONS[0] && Array.isArray(MISSIONS[0].submissions)) ? MISSIONS[0].submissions : [];
+    const phaseZeroCompleted = phaseZeroSubmissions.filter((sub) => STATE.completedMissions.includes(sub.id)).length;
+    const phaseZeroTotal = phaseZeroSubmissions.length || 3;
+    const phaseZeroPercent = Math.round((phaseZeroCompleted / phaseZeroTotal) * 100);
+
+    if (diagnosisIntegrityPercent) {
+        diagnosisIntegrityPercent.textContent = `${phaseZeroCompleted}/${phaseZeroTotal}`;
+    }
+    if (diagnosisIntegrityFill) {
+        diagnosisIntegrityFill.style.width = `${phaseZeroPercent}%`;
+    }
+    if (diagnosisIntegrityBar) {
+        diagnosisIntegrityBar.setAttribute('aria-valuenow', String(phaseZeroCompleted));
+        diagnosisIntegrityBar.setAttribute('aria-valuemax', String(phaseZeroTotal));
+    }
+    if (diagnosisIntegrityLabel) {
+        if (phaseZeroCompleted === 0) {
+            diagnosisIntegrityLabel.textContent = 'Sin diagnóstico validado todavía.';
+        } else if (phaseZeroCompleted < phaseZeroTotal) {
+            diagnosisIntegrityLabel.textContent = 'Diagnóstico en curso: consolidando mapa mental de JARVIS.';
+        } else {
+            diagnosisIntegrityLabel.textContent = 'Integridad de diagnóstico estable: recuperación desbloqueada.';
+        }
+    }
 }
 
 /**
@@ -1404,26 +1500,16 @@ function showProgressMessage(type) {
 
 /**
  * Check if a mission is locked
- * @param {number} missionId - Mission ID (1-4)
+ * @param {number} missionId - Mission ID
  * @returns {boolean} True if mission is locked
  */
 function checkMissionLocked(missionId) {
-    // Mission 1 is always available
-    if (missionId === 1) return false;
-    
-    // Check if previous mission is completed
-    const previousMissionIndex = missionId - 1;
-    
-    // Check if any activity from the previous mission was completed
-    const mission = MISSIONS[previousMissionIndex];
-    if (!mission) return true;
-    
-    // Unlock only when previous mission is fully completed
-    const hasCompletedPrevious = mission.submissions.every(sub => 
-        STATE.completedMissions.includes(sub.id)
-    );
-    
-    return !hasCompletedPrevious;
+    const missionPosition = MISSION_SEQUENCE.indexOf(missionId);
+    if (missionPosition === -1) return true;
+    if (missionPosition === 0) return false;
+
+    const previousMissionId = MISSION_SEQUENCE[missionPosition - 1];
+    return !isMissionFullyCompleted(previousMissionId);
 }
 
 /**
@@ -1647,7 +1733,7 @@ function updateHeaderMedalDisplay() {
     } else {
         const medalsCount = STATE.earnedMedals.length;
         if (trophyStatusEl) {
-            trophyStatusEl.textContent = `Completa todas las misiones (${medalsCount}/4)`;
+            trophyStatusEl.textContent = `Completa todas las misiones de recuperación (${medalsCount}/4)`;
             trophyStatusEl.style.color = 'var(--color-text-light)';
         }
     }
@@ -1689,7 +1775,7 @@ function showMedalAwardModal(missionId) {
     const celebrationMessages = {
         1: 'Has desbloqueado la primera medalla! Tu aventura hacia la maestria ha comenzado.',
         2: 'La segunda medalla es tuya! Vas ganando experiencia en el sistema.',
-        3: 'Tres medallas conquistadas! Ya eres un experto en NOVA.',
+        3: 'Tres medallas conquistadas! Ya dominas el sistema JARVIS.',
         4: 'MEDALLA FINAL DESBLOQUEADA! MAESTRO DEL SISTEMA!'
     };
 
@@ -1714,7 +1800,7 @@ function openMissionsStatusModal() {
 
     // Populate missions status
     let html = '';
-    for (let i = 1; i <= 4; i++) {
+    for (const i of MISSION_SEQUENCE) {
         const mission = MISSIONS[i];
         if (!mission) continue;
 
@@ -1727,12 +1813,12 @@ function openMissionsStatusModal() {
         html += `
             <div class="mission-status-item" style="margin-bottom: 1rem; padding: 1rem; background: ${isComplete ? 'rgba(74, 222, 128, 0.1)' : 'rgba(107, 127, 191, 0.05)'}; border-left: 4px solid ${isComplete ? '#4ade80' : '#6b7fbf'}; border-radius: 8px;">
                 <h4 style="margin: 0 0 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-                    ${isComplete ? '✅' : '🔴'} Misión ${i}: ${mission.title.split(':')[1]?.trim() || mission.title}
+                    ${isComplete ? '✅' : '🔴'} ${mission.title}
                 </h4>
                 <p style="margin: 0; font-size: 0.9rem; color: var(--color-text-light);">
                     Actividades: ${completedActivities}/${totalActivities} completadas
                 </p>
-                ${isComplete ? '<p style="margin: 0.5rem 0 0 0; font-weight: 600; color: var(--color-success);">🏅 Medalla desbloqueada</p>' : ''}
+                ${isComplete && i > 0 ? '<p style="margin: 0.5rem 0 0 0; font-weight: 600; color: var(--color-success);">🏅 Medalla desbloqueada</p>' : ''}
             </div>
         `;
     }
@@ -1758,7 +1844,7 @@ function openRewardsModal() {
 function setupMissionButtons() {
     console.log('🎯 Setting up mission buttons...');
     // Mission buttons - now with accordion behavior
-    for (let i = 1; i <= 4; i++) {
+    for (const i of MISSION_SEQUENCE) {
         const missionBtn = document.getElementById(`mission-${i}-btn`);
         console.log(`Mission ${i} button:`, missionBtn ? '✅ Found' : '❌ Not found');
         if (missionBtn) {
@@ -1797,8 +1883,11 @@ function toggleMissionAccordion(missionId) {
     // Check if mission is locked
     if (checkMissionLocked(missionId)) {
         console.log(`🔒 Mission ${missionId} is locked!`);
-        const previousMissionId = missionId - 1;
-        showToastMessage(`🔒 Debes completar la Misión ${previousMissionId} primero`, 4000);
+        const missionPosition = MISSION_SEQUENCE.indexOf(missionId);
+        const previousMissionId = MISSION_SEQUENCE[missionPosition - 1];
+        const previousMission = MISSIONS[previousMissionId];
+        const previousLabel = previousMission ? previousMission.title : `Misión ${previousMissionId}`;
+        showToastMessage(`🔒 Debes completar primero: ${previousLabel}`, 4000);
         return;
     }
     
@@ -1821,8 +1910,8 @@ function toggleMissionAccordion(missionId) {
     const isOpen = panel.classList.contains('active');
     console.log(`  Panel is currently:`, isOpen ? 'OPEN' : 'CLOSED');
     
-    // Close all other panels (only 4 missions now)
-    for (let i = 1; i <= 4; i++) {
+    // Close all other panels
+    for (const i of MISSION_SEQUENCE) {
         const otherPanel = document.getElementById(`mission-${i}-panel`);
         const otherButton = document.getElementById(`mission-${i}-btn`);
         if (otherPanel && otherButton) {
@@ -1864,6 +1953,28 @@ function populateMissionActivities(missionId, mission, container) {
         instructionsEl.textContent = mission.instructions;
         container.appendChild(instructionsEl);
     }
+
+    // Add narrative beats for highly contextual phases (e.g., Fase 0)
+    if (Array.isArray(mission.narrativeBeats) && mission.narrativeBeats.length > 0) {
+        const narrativeEl = document.createElement('div');
+        narrativeEl.className = 'mission-narrative-block';
+
+        const titleEl = document.createElement('p');
+        titleEl.className = 'mission-narrative-title';
+        titleEl.textContent = 'Estado de misión';
+        narrativeEl.appendChild(titleEl);
+
+        const listEl = document.createElement('ul');
+        listEl.className = 'mission-narrative-list';
+        mission.narrativeBeats.forEach((beat) => {
+            const li = document.createElement('li');
+            li.textContent = beat;
+            listEl.appendChild(li);
+        });
+        narrativeEl.appendChild(listEl);
+
+        container.appendChild(narrativeEl);
+    }
     
     // Add activity items
     mission.submissions.forEach((sub, index) => {
@@ -1876,11 +1987,13 @@ function populateMissionActivities(missionId, mission, container) {
             item.classList.add('completed');
         }
         
+        const pendingText = sub.activityPrompt || 'Toca para empezar';
+
         item.innerHTML = `
             <div class="activity-icon">${isCompleted ? '✅' : '📝'}</div>
             <div class="activity-info">
                 <div class="activity-title">${sub.name}</div>
-                <div class="activity-desc">${isCompleted ? 'Completada' : 'Toca para empezar'}</div>
+                <div class="activity-desc">${isCompleted ? 'Completada' : pendingText}</div>
             </div>
             <div class="activity-arrow">›</div>
         `;
@@ -2073,7 +2186,7 @@ function openActivity(submissionId, missionId) {
     // Show opening message from NOVA
     if (submission.novaMessage) {
         setTimeout(() => {
-            showToastMessage(`💭 NOVA: "${submission.novaMessage}"`, 4000);
+            showToastMessage(`💭 JARVIS: "${submission.novaMessage}"`, 4000);
         }, 800);
     }
 }
@@ -2090,6 +2203,7 @@ function renderActivity(submission, phase) {
     
     // Render instructions (if any)
     const instructionsList = document.getElementById('activityInstructionsList');
+    const instructionsSection = document.getElementById('activityInstructions');
     instructionsList.innerHTML = '';
     if (submission.instructions && Array.isArray(submission.instructions)) {
         submission.instructions.forEach(inst => {
@@ -2097,9 +2211,14 @@ function renderActivity(submission, phase) {
             li.textContent = inst;
             instructionsList.appendChild(li);
         });
+        if (instructionsSection) {
+            instructionsSection.style.display = 'block';
+        }
     } else {
         // Hide instructions section if none
-        document.getElementById('activityInstructions').style.display = 'none';
+        if (instructionsSection) {
+            instructionsSection.style.display = 'none';
+        }
     }
     
     // Render UDL hints
@@ -2144,17 +2263,17 @@ function renderActivity(submission, phase) {
         case 'padlet':
             renderPadlet(submission, contentEl);
             break;
-        case 'confirmation':
-            renderConfirmation(submission, contentEl);
+        case 'mentimeter':
+            renderMentimeter(submission, contentEl);
             break;
-        case 'verification':
-            renderVerification(submission, contentEl);
+        case 'kahoot':
+            renderKahoot(submission, contentEl);
             break;
-        case 'action':
-            renderAction(submission, contentEl);
+        case 'forms':
+            renderForms(submission, contentEl);
             break;
-        case 'celebration':
-            renderCelebration(submission, contentEl);
+        case 'external':
+            renderExternal(submission, contentEl);
             break;
         default:
             contentEl.innerHTML = '<p>Actividad en desarrollo.</p>';
@@ -2347,7 +2466,7 @@ function renderPadlet(submission, container) {
         if (localStorage.getItem(interactionKey) !== '1') {
             localStorage.setItem(interactionKey, '1');
             if (submission.padletOpenMessage) {
-                showToastMessage(`💭 NOVA: "${submission.padletOpenMessage}"`, 4000);
+                showToastMessage(`💭 JARVIS: "${submission.padletOpenMessage}"`, 4000);
             }
         }
 
@@ -2406,100 +2525,183 @@ function renderPadlet(submission, container) {
 }
 
 /**
- * Render Confirmation Activity
+ * Render Mentimeter Activity
  */
-function renderConfirmation(submission, container) {
-    const confirmHTML = `
-        <div class="activity-confirmation">
-            <p class="activity-question"><strong>${submission.question}</strong></p>
-            <button class="confirm-btn" id="confirmActionBtn" type="button">
-                ✅ ${submission.confirmText}
-            </button>
-        </div>
-    `;
-    container.innerHTML = confirmHTML;
-    
-    document.getElementById('confirmActionBtn').addEventListener('click', () => {
-        STATE.activityInteractions[STATE.currentActivity].interactions.push('confirmed');
-        enableCompleteButton();
-        showFeedback('correct', submission.feedback.correct);
-    });
-}
+function renderMentimeter(submission, container) {
+    const examples = submission.questionExamples || [];
+    const mentimeterUrl = submission.mentimeterUrl || 'https://www.mentimeter.com/';
 
-/**
- * Render Verification Activity
- */
-function renderVerification(submission, container) {
-    const verifyHTML = `
-        <div class="activity-verification">
-            <p class="activity-question"><strong>${submission.question}</strong></p>
-            <button class="verify-btn" id="verifyBtn" type="button">
-                ✓ Sí, verifico
-            </button>
-        </div>
-    `;
-    container.innerHTML = verifyHTML;
-    
-    document.getElementById('verifyBtn').addEventListener('click', () => {
-        STATE.activityInteractions[STATE.currentActivity].interactions.push('verified');
-        enableCompleteButton();
-        showFeedback('correct', submission.feedback.correct);
-    });
-}
-
-/**
- * Render Action Activity (e.g., Despegue)
- */
-function renderAction(submission, container) {
-    // Check if previous required
-    let canProceed = true;
-    if (submission.requiresPrevious) {
-        canProceed = STATE.completedMissions.includes(submission.requiresPrevious);
-    }
-    
-    const actionHTML = `
-        <div class="activity-action">
-            <p class="activity-question"><strong>${submission.question}</strong></p>
-            ${!canProceed ? `
-                <p class="action-warning">⚠️ Completa la actividad anterior primero (Verificar sistema)</p>
-            ` : ''}
-            <button class="action-btn ${!canProceed ? 'disabled' : ''}" id="actionBtn" type="button" ${!canProceed ? 'disabled' : ''}>
-                ${submission.actionLabel}
-            </button>
-        </div>
-    `;
-    container.innerHTML = actionHTML;
-    
-    if (canProceed) {
-        document.getElementById('actionBtn').addEventListener('click', () => {
-            STATE.activityInteractions[STATE.currentActivity].interactions.push('action-executed');
-            enableCompleteButton();
-            showFeedback('correct', submission.feedback.correct);
-        });
-    }
-}
-
-/**
- * Render Celebration Activity
- */
-function renderCelebration(submission, container) {
-    const celebHTML = `
-        <div class="activity-celebration">
-            <div class="celebration-content">
-                <div class="celebration-emoji">🎉</div>
-                <h3>¡Misión Cumplida!</h3>
-                <p>Has completado todas las actividades.</p>
-                <p><strong>🏆 Puntos totales: ${STATE.rewards + 10}</strong></p>
-                <p>💭 NOVA: "${submission.novaMessage}"</p>
+    container.innerHTML = `
+        <div class="activity-mentimeter">
+            <p class="activity-question"><strong>${submission.name}</strong></p>
+            <p>Participa en Mentimeter y reflexiona con el grupo:</p>
+            <ul>
+                ${examples.map(example => `<li>${example}</li>`).join('')}
+            </ul>
+            <div class="padlet-actions" style="margin-top: 1rem;">
+                <button class="padlet-open-btn" id="openMentimeterBtn" type="button">🌐 Abrir Mentimeter</button>
+                <button class="activity-action-btn activity-complete-btn" id="markMentimeterDoneBtn" type="button">✅ Ya participé</button>
             </div>
         </div>
     `;
-    container.innerHTML = celebHTML;
-    
-    // Auto-enable complete button
-    setTimeout(() => {
+
+    const openBtn = container.querySelector('#openMentimeterBtn');
+    const doneBtn = container.querySelector('#markMentimeterDoneBtn');
+
+    openBtn?.addEventListener('click', () => {
+        window.open(mentimeterUrl, '_blank', 'noopener');
+        STATE.activityInteractions[STATE.currentActivity].interactions.push('opened-mentimeter');
+    });
+
+    doneBtn?.addEventListener('click', () => {
+        STATE.activityInteractions[STATE.currentActivity].interactions.push('mentimeter-confirmed');
+        showFeedback('correct', submission.feedback.correct);
         enableCompleteButton();
-    }, 1000);
+    });
+}
+
+/**
+ * Render Conceptual Interaction Activity
+ */
+function renderKahoot(submission, container) {
+    const definitions = submission.definitions || [];
+    const kahootUrl = submission.kahootUrl || 'https://kahoot.it/';
+
+    container.innerHTML = `
+        <div class="activity-kahoot">
+            <p class="activity-question"><strong>${submission.name}</strong></p>
+            <blockquote>${submission.jarvisFailureContext || ''}</blockquote>
+            <div class="checklist-items">
+                ${definitions.map(item => `
+                    <div class="checklist-item" style="display: block;">
+                        <strong>${item.concept}</strong>
+                        <p style="margin: 0.3rem 0 0;">${item.definition}</p>
+                    </div>
+                `).join('')}
+            </div>
+            <p style="margin-top: 0.8rem;"><em>${submission.reflectionPrompt || ''}</em></p>
+            <div class="padlet-actions" style="margin-top: 0.8rem;">
+                <button class="padlet-open-btn" id="openKahootBtn" type="button">🌐 Abrir Kahoot</button>
+                <button class="activity-action-btn" id="confirmConceptsBtn" type="button">✅ Ya participé</button>
+            </div>
+        </div>
+    `;
+
+    const openKahootBtn = container.querySelector('#openKahootBtn');
+    const confirmBtn = container.querySelector('#confirmConceptsBtn');
+
+    openKahootBtn?.addEventListener('click', () => {
+        window.open(kahootUrl, '_blank', 'noopener');
+        STATE.activityInteractions[STATE.currentActivity].interactions.push('opened-kahoot');
+    });
+
+    confirmBtn?.addEventListener('click', () => {
+        STATE.activityInteractions[STATE.currentActivity].interactions.push('concepts-confirmed');
+        showFeedback('correct', submission.feedback.correct);
+        enableCompleteButton();
+    });
+}
+
+/**
+ * Render Forms-style Classification Activity
+ */
+function renderForms(submission, container) {
+    const formsUrl = submission.formsUrl || submission.formUrl || null;
+    if (formsUrl) {
+        container.innerHTML = `
+            <div class="activity-forms">
+                <p class="activity-question"><strong>${submission.name}</strong></p>
+                <p>Completa la validación en el formulario externo y luego confirma tu participación.</p>
+                <div class="padlet-actions" style="margin-top: 0.8rem;">
+                    <button class="padlet-open-btn" id="openFormsBtn" type="button">🌐 Abrir Formulario</button>
+                    <button class="activity-action-btn" id="confirmFormsBtn" type="button">✅ Ya respondí el formulario</button>
+                </div>
+            </div>
+        `;
+
+        const openFormsBtn = container.querySelector('#openFormsBtn');
+        const confirmFormsBtn = container.querySelector('#confirmFormsBtn');
+
+        openFormsBtn?.addEventListener('click', () => {
+            window.open(formsUrl, '_blank', 'noopener');
+            STATE.activityInteractions[STATE.currentActivity].interactions.push('opened-forms');
+        });
+
+        confirmFormsBtn?.addEventListener('click', () => {
+            STATE.activityInteractions[STATE.currentActivity].interactions.push('forms-confirmed');
+            showFeedback('correct', submission.feedback.correct || 'Formulario registrado correctamente.');
+            enableCompleteButton();
+        });
+
+        return;
+    }
+
+    const categories = submission.categories || [];
+    const statements = submission.statements || [];
+
+    container.innerHTML = `
+        <div class="activity-forms">
+            <p class="activity-question"><strong>${submission.question || 'Clasifica cada enunciado'}</strong></p>
+            <div class="forms-statements">
+                ${statements.map((statement, index) => `
+                    <label class="checklist-item" style="display: block; margin-bottom: 0.8rem;">
+                        <span style="display: block; margin-bottom: 0.4rem;">${index + 1}. ${statement.text}</span>
+                        <select class="forms-select" data-index="${index}">
+                            <option value="">Selecciona una categoría</option>
+                            ${categories.map(category => `<option value="${category.value}">${category.label}</option>`).join('')}
+                        </select>
+                    </label>
+                `).join('')}
+            </div>
+        </div>
+    `;
+
+    document.getElementById('validateActivityBtn').style.display = 'block';
+
+    const selects = container.querySelectorAll('.forms-select');
+    selects.forEach(select => {
+        select.addEventListener('change', () => {
+            STATE.activityInteractions[STATE.currentActivity].interactions.push('forms-selected');
+            const feedbackEl = document.getElementById('activityFeedback');
+            if (feedbackEl.style.display === 'block') {
+                feedbackEl.style.display = 'none';
+            }
+        });
+    });
+}
+
+/**
+ * Render Generic External Activity (Educaplay and similar tools)
+ */
+function renderExternal(submission, container) {
+    const externalUrl = submission.externalUrl || '#';
+    const externalLabel = submission.externalLabel || 'actividad externa';
+    const externalButtonText = submission.externalButtonText || '🌐 Abrir actividad';
+
+    container.innerHTML = `
+        <div class="activity-forms">
+            <p class="activity-question"><strong>${submission.name}</strong></p>
+            <p>Completa la actividad en ${externalLabel} y luego confirma tu participación.</p>
+            <div class="padlet-actions" style="margin-top: 0.8rem;">
+                <button class="padlet-open-btn" id="openExternalBtn" type="button">${externalButtonText}</button>
+                <button class="activity-action-btn" id="confirmExternalBtn" type="button">✅ Ya participé</button>
+            </div>
+        </div>
+    `;
+
+    const openExternalBtn = container.querySelector('#openExternalBtn');
+    const confirmExternalBtn = container.querySelector('#confirmExternalBtn');
+
+    openExternalBtn?.addEventListener('click', () => {
+        window.open(externalUrl, '_blank', 'noopener');
+        STATE.activityInteractions[STATE.currentActivity].interactions.push('opened-external');
+    });
+
+    confirmExternalBtn?.addEventListener('click', () => {
+        STATE.activityInteractions[STATE.currentActivity].interactions.push('external-confirmed');
+        showFeedback('correct', submission.feedback.correct || 'Actividad registrada correctamente.');
+        enableCompleteButton();
+    });
 }
 
 /**
@@ -2531,6 +2733,18 @@ function validateActivity(submissionId) {
             break;
         case 'checklist':
             result = validateChecklist(submission);
+            break;
+        case 'forms':
+            if (submission.formsUrl || submission.formUrl) {
+                result = { isValid: true, isCorrect: true, message: submission.feedback.correct || 'Formulario registrado correctamente.' };
+            } else {
+                result = validateForms(submission);
+            }
+            break;
+        case 'mentimeter':
+        case 'kahoot':
+        case 'external':
+            result = { isValid: true, isCorrect: true, message: submission.feedback.correct };
             break;
     }
     
@@ -2694,7 +2908,7 @@ function completeActivityFromModal(submissionId) {
     // NOVA message
     if (submission.novaMessage) {
         setTimeout(() => {
-            showToastMessage(`💭 NOVA: "${submission.novaMessage}"`, 4000);
+            showToastMessage(`💭 JARVIS: "${submission.novaMessage}"`, 4000);
         }, 2000);
     }
     
@@ -2710,7 +2924,7 @@ function completeActivityFromModal(submissionId) {
     
     // Update inbox with progress messages
     updateMessageInboxOnProgress();
-    updateNOVAMessage();
+    updateJARVISMessage();
     
     // ===== CLOSE MODAL AND CLEANUP =====
     closeModal(activityModal);
@@ -2768,17 +2982,12 @@ function completeSubmission(submissionId, submissionName) {
     STATE.rewards += 10;
     
     // Check for special missions (Padlet integration)
-    if (submissionId === '5a') {
-        handlePadletMission();
-        return;
-    }
-    
     // ===== SAVE STATE EARLY =====
     saveStateToStorage();
     
     // ===== UPDATE UI =====
     updateUI();
-    updateNOVAMessage();
+    updateJARVISMessage();
     
     // ===== CHECK IF MISSION IS COMPLETE =====
     const missionComplete = mission.submissions.every(sub => 
@@ -2805,7 +3014,7 @@ function completeSubmission(submissionId, submissionName) {
     const phase = mission.phase;
     showToastMessage(
         `✅ ¡Completado!\n📍 ${submissionName}\n🏆 +10 puntos\n\n` +
-        `💭 NOVA: "${getCompletionMessage(phase)}"`, 
+        `💭 JARVIS: "${getCompletionMessage(phase)}"`, 
         4000
     );
     
@@ -2826,7 +3035,7 @@ function completeSubmission(submissionId, submissionName) {
     // Restart auto-messages with new context (phase may have changed)
     startAutoMessages();
     
-    // Check if mission 6 is complete (final celebration)
+    // Check if final mission is complete (final celebration)
     checkFinalCompletion();
 }
 
@@ -2835,54 +3044,22 @@ function completeSubmission(submissionId, submissionName) {
  */
 function getCompletionMessage(phase) {
     const messages = {
+        diagnosis: "Diagnóstico completado. Mi comprensión del sistema vuelve a estar en línea.",
         activation: "Gracias por responder mi llamada.",
         exploration: "Ahora entiendes mi situación.",
         understanding: "Estás aprendiendo cómo funciono.",
-        application: "¡Mi sistema se está reparando!",
-        collaborative: "Juntos podemos lograrlo.",
-        closure: "¡Estoy operativa al 100%! Gracias por restaurar la Torre."
+        application: "¡Mi sistema se está reparando!"
     };
     return messages[phase] || "Progreso registrado.";
-}
-
-/**
- * Handle Padlet collaborative mission
- */
-function handlePadletMission() {
-    const userConfirm = confirm(
-        "🚀 MISIÓN COLABORATIVA\n\n" +
-        "Se abrirá el Padlet de tu clase.\n" +
-        "Contribuye con tus ideas para la restauración de la Torre Stark.\n\n" + //Changed from NOVA reference
-        "¿Abrir Padlet ahora?"
-    );
-    
-    if (userConfirm) {
-        // Open Padlet (placeholder URL - teacher will configure)
-        // window.open('https://padlet.com/tu-clase', '_blank');
-        
-        // Mark as complete
-        STATE.completedMissions.push('5a');
-        STATE.rewards += 10;
-        
-        alert("✅ ¡Misión colaborativa activada!\n🏆 +10 puntos\n\n💭 Recuerda compartir tus ideas en el Padlet.");
-        
-        saveStateToStorage();
-        updateUI();
-        updateNOVAMessage();
-        closeSubmenu();
-    }
 }
 
 /**
  * Check if all missions are complete and show final screen
  */
 function checkFinalCompletion() {
-    const completedMissionsCount = Math.floor(STATE.completedMissions.length / 3);
-    
-    // Check if mission 6 is fully complete
-    const mission6Complete = ['6a', '6b', '6c'].every(id => STATE.completedMissions.includes(id));
-    
-    if (mission6Complete && !STATE.showedFinalScreen) {
+    const mission4Complete = ['4a', '4b', '4c'].every(id => STATE.completedMissions.includes(id));
+
+    if (mission4Complete && !STATE.showedFinalScreen) {
         STATE.showedFinalScreen = true;
         saveStateToStorage();
         
@@ -2904,7 +3081,7 @@ function showFinalCelebration() {
     window.currentRewards = STATE.rewards;
     
     // Update celebration modal with actual data
-    document.getElementById('finalMissions').textContent = '6';
+    document.getElementById('finalMissions').textContent = String(TOTAL_MISSIONS);
     document.getElementById('finalPoints').textContent = STATE.rewards;
     document.getElementById('finalAccuracy').textContent = '100%';
     
@@ -2955,11 +3132,11 @@ function updateUI() {
     }
     
     // Update system percentage in info box
-    const progressPercent = Math.round((completedMissionsCount / 6) * 100);
+    const progressPercent = Math.round((completedMissionsCount / TOTAL_MISSIONS) * 100);
     updateSystemProgress(progressPercent);
     
     // Update mission badges using proper completion check
-    for (let i = 1; i <= 6; i++) {
+    for (const i of MISSION_SEQUENCE) {
         const badge = document.getElementById(`badge-${i}`);
         if (badge) {
             const isComplete = isMissionFullyCompleted(i);
@@ -2970,7 +3147,8 @@ function updateUI() {
                 badge.textContent = '✓';
                 badge.classList.add('completed');
                 if (badge.parentElement) {
-                    badge.parentElement.setAttribute('aria-label', `Misión ${i} completada`);
+                    const missionTitle = MISSIONS[i]?.title || `Misión ${i}`;
+                    badge.parentElement.setAttribute('aria-label', `${missionTitle} completada`);
                 }
                 
                 // Add animation
@@ -2985,14 +3163,16 @@ function updateUI() {
                 badge.textContent = '✓';
                 badge.classList.add('completed');
                 if (badge.parentElement) {
-                    badge.parentElement.setAttribute('aria-label', `Misión ${i} completada`);
+                    const missionTitle = MISSIONS[i]?.title || `Misión ${i}`;
+                    badge.parentElement.setAttribute('aria-label', `${missionTitle} completada`);
                 }
             } else {
                 // Not complete
                 badge.textContent = '○';
                 badge.classList.remove('completed');
                 if (badge.parentElement) {
-                    badge.parentElement.setAttribute('aria-label', `Misión ${i}`);
+                    const missionTitle = MISSIONS[i]?.title || `Misión ${i}`;
+                    badge.parentElement.setAttribute('aria-label', missionTitle);
                 }
             }
         }
@@ -3007,7 +3187,7 @@ function updateUI() {
     // Sync NOVA mood with overall progress
     updateNovaMoodFromProgress();
     
-    console.log(`✅ UI updated - ${completedMissionsCount}/6 missions completed`);
+    console.log(`✅ UI updated - ${completedMissionsCount}/${TOTAL_MISSIONS} missions completed`);
 }
 
 /**
@@ -3017,12 +3197,12 @@ function updateCurrentPhase() {
     const completedMissionsCount = Math.floor(STATE.completedMissions.length / 3);
     const oldPhase = STATE.currentPhase;
     
-    const phases = ['activation', 'exploration', 'understanding', 'application', 'collaborative', 'closure'];
-    
-    if (completedMissionsCount < 6) {
-        STATE.currentPhase = phases[completedMissionsCount] || 'activation';
+    const phases = ['diagnosis', 'activation', 'exploration', 'understanding', 'application'];
+
+    if (completedMissionsCount < TOTAL_MISSIONS) {
+        STATE.currentPhase = phases[completedMissionsCount] || 'diagnosis';
     } else {
-        STATE.currentPhase = 'closure';
+        STATE.currentPhase = 'application';
     }
     
     // Update inbox when phase changes
@@ -3066,7 +3246,7 @@ function loadStateFromStorage() {
             STATE.earnedMedals = loaded.earnedMedals || [];
             STATE.trophyEarned = loaded.trophyEarned || false;
             STATE.rewards = loaded.rewards || 0;
-            STATE.currentPhase = loaded.currentPhase || 'activation';
+            STATE.currentPhase = loaded.currentPhase || 'diagnosis';
             STATE.showedFinalScreen = loaded.showedFinalScreen || false;
             STATE.messagesMuted = loaded.messagesMuted || false;
             STATE.lastMessageIndex = loaded.lastMessageIndex || 0;
@@ -3396,4 +3576,42 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', setupWelcomeScreen);
 } else {
     setupWelcomeScreen();
+}
+
+/**
+ * Validate Forms-style classification
+ */
+function validateForms(submission) {
+    const selects = document.querySelectorAll('.forms-select');
+    if (!selects.length) {
+        return { isValid: false, isCorrect: false, message: 'No se encontraron enunciados para clasificar.' };
+    }
+
+    let allSelected = true;
+    let allCorrect = true;
+
+    selects.forEach(select => {
+        const index = parseInt(select.dataset.index, 10);
+        const selectedValue = select.value;
+        const expectedValue = submission.statements[index]?.correctCategory;
+
+        if (!selectedValue) {
+            allSelected = false;
+            return;
+        }
+
+        if (selectedValue !== expectedValue) {
+            allCorrect = false;
+        }
+    });
+
+    if (!allSelected) {
+        return { isValid: false, isCorrect: false, message: 'Completa la clasificación de todos los enunciados.' };
+    }
+
+    return {
+        isValid: true,
+        isCorrect: allCorrect,
+        message: allCorrect ? submission.feedback.correct : submission.feedback.incorrect
+    };
 }

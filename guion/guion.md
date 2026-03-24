@@ -1,363 +1,158 @@
-# 🎬 Guion Clase Simulada
+# Guion Clase Simulada - 60 Minutos (Post Lista)
 
-## Misión: Restaurar el Sistema JARVIS de Stark Industries
-
-**Duración total:** 25–30 minutos
-**Tema:** Requerimientos de software (funciones vs condiciones)
-**Metodología:** Gamificación + aprendizaje activo + narrativa interactiva
-**Plataforma:** Experiencia web JARVIS
+Mision: Restaurar el sistema JARVIS de Stark Industries
+Duracion total: 60 min
+Inicio del guion: despues de pasar lista
+Tema: Requerimientos de software (funcionales y no funcionales)
 
 ---
 
-# 1️⃣ Presentación del docente (2 minutos)
-
-**Docente**
-
-Buenas tardes.
-
-Mi nombre es **Marcos Argandoña**, soy **Ingeniero Informático y docente**.
-
-Hoy estoy postulando para impartir la asignatura de ***Especificación de Requerimientos***, vinculada al **análisis y desarrollo de sistemas**.
-
----
-
-# 2️⃣ Retroalimentación de la clase anterior (2 minutos)
-
-**Objetivo:** activar conocimientos previos.
-
-Dinámica rápida tipo *ping-pong*.
-
-**Pregunta 1**
-
-¿Qué es un **requerimiento de usuario**?
-
-Respuesta esperada:
-
-> Lo que el usuario necesita.
-
-**Pregunta 2**
-
-¿Qué es un **requerimiento del sistema**?
-
-Respuesta esperada:
-
-> Lo que el sistema debe hacer.
-
-**Pregunta 3**
-
-¿Por qué son importantes los requerimientos?
-
-Respuesta esperada:
-
-> Porque guían el desarrollo del sistema.
-
-**Cierre**
-
-Perfecto.
-Hoy veremos cómo estos requerimientos permiten que **un sistema funcione correctamente**.
-
----
-
-# 3️⃣ Transición personal (1 minuto)
-
-Antes de comenzar, no quiero hablar mucho más de mí.
-
-Si quieren conocer mi trabajo o proyectos pueden visitar:
-
-**www.makuaz.cl**
-
-*(Escribir en pizarra o mostrar QR)*
-
-Pero hoy no vinimos a hablar de mí y tampoco solo veremos teoría. Lo que hoy haremos será jugar, porque soy gamer y es algo que me apasiona.
-
-***PREGUNTAR CUANTOS SON GAMERS Y QUE JUEGOS JUEGAN***
-
-Muy interesante. A propósito de esto les quiero contar que no vine solo. Estoy esperando a alguien que ya está entre nosotros.
-
----
-
-# 4️⃣ Momento sorpresa: La IA (2 minutos)
-
-*(Mostrar una pantalla o un dispositivo al grupo)*
-
-Dentro de Stark Industries hay una IA que necesita nuestra ayuda.
-
-Su nombre es **JARVIS**.
-
-Tiene un pequeño problema: su sistema está incompleto y no puede funcionar correctamente.
-
-Solo puede comunicarse **a través de vuestros teléfonos**.
-
-*(Mostrar el QR para escanear el sitio de la actividad)*
-
-Vamos a necesitar trabajar juntos para restaurar su sistema.
-
----
-
-# 5️⃣ Ingreso a la experiencia JARVIS (2 minutos)
-
-Escaneen el código e ingresen al sitio.
-
-Si pueden, **activen el sonido**.
-
-Ahora conoceremos a JARVIS y comenzaremos nuestra misión.
-
----
-
-# 6️⃣ Historia de JARVIS (1.5 minutos)
-
-Los estudiantes escuchan o leen la historia de JARVIS.
-
-El docente permite que la narrativa se reproduzca.
-
-Objetivo: **introducir el problema y crear inmersión narrativa**.
-
----
-
-# 7️⃣ Misión 1 – Activación (3 minutos)
-
-**Objetivo pedagógico:** activar el sistema y conectar con conocimientos previos.
-
-### Actividad 1a
-
-Quiz:
-
-**¿Quién es JARVIS?**
-
----
-
-### Actividad 1b – Padlet Activación
-
-Pregunta:
-
-> ¿Qué necesita un sistema para funcionar correctamente?
-
-Los estudiantes escriben ideas en el Padlet.
-
-Ejemplos posibles:
-
-- energía
-- reglas
-- instrucciones
-- conexión
-- usuarios
-- orden
-
-Comentario docente:
-
-Interesante… aparecen palabras como **energía, reglas, orden**.
-Eso ya nos habla de **cómo deben funcionar los sistemas tecnológicos**.
-
-Mensaje JARVIS:
-
-> Estoy aprendiendo cómo restaurar mis funciones...
-
----
-
-### Actividad 1c
-
-Quiz:
-
-**¿Qué necesita JARVIS para funcionar correctamente?**
-
----
-
-# 8️⃣ Misión 2 – Explorar Problema (3 minutos)
-
-**Objetivo:** comprender el problema del sistema.
-
-Explicación docente:
-
-JARVIS no está *averiado*, pero su sistema **está incompleto**.
-
-Tiene funciones perdidas y condiciones sin definir que impiden que realice sus tareas.
-
-Actividades:
-
-- Quiz: identificar el problema
-- LEER CONCEPTOS
-- Checklist: requerimientos faltantes
-- Quiz: consecuencias de requisitos mal definidos
-
-Mensaje JARVIS:
-
-> Sin requerimientos claros, no puedo cumplir mis funciones.
-
----
-
-# 9️⃣ Misión 3 – Aplicar Conceptos (4 minutos)
-
-**Objetivo:** diferenciar función vs condición.
-
-Explicación docente:
-
-Para ayudar a JARVIS necesitamos entender dos ideas clave.
-
-- **Función** → lo que el sistema *hace* (acciones, tareas)
-- **Condición** → lo que el sistema *necesita* para operar (requisitos, precondiciones)
-
-Actividades:
-
-- procesar comandos → función
-- conexión de red disponible → condición
-- quiz conceptual
-
-Mensaje JARVIS:
-
-> Las funciones me permiten actuar.
-> Las condiciones me permiten estar listo para actuar.
-
----
-
-# 🔟 Misión 4 – Reparar Sistema (5 minutos)
-
-**Objetivo:** aplicar conceptos en situaciones reales.
-
-Explicación docente:
-
-Ahora vamos a **restaurar el sistema de JARVIS** clasificando sus requerimientos.
-
-Actividades de clasificación:
-
-- procesar solicitudes → función
-- batería suficiente → condición
-- comunicarse con dispositivos → función
-
-Mientras trabajan:
-
-- validar respuestas
-- guiar sin dar la solución directa
-- reforzar comprensión
-
-Mensaje JARVIS:
-
-> Cada requerimiento que identifican me acerca a funcionar completamente.
-
----
-
-# 1️⃣1️⃣ Misión 5 – Colaborar (4 minutos)
-
-**Objetivo:** construcción colectiva del sistema.
-
-Padlet colaborativo.
-
-Pregunta:
-
-> ¿Qué otros requerimientos (funciones y condiciones) necesita JARVIS para restaurarse completamente?
-
-Los estudiantes agregan ideas.
-
-Ejemplos posibles:
-
-Funciones:
-
-- analizar amenazas
-- comunicarse con Tony Stark
-- controlar sistemas de defensa
-
-Condiciones:
-
-- conexión a internet estable
-- permisos de acceso confirmados
-- procesador operativo
-
-Mensaje JARVIS:
-
-> Tu idea puede ser el requerimiento final que necesito para funcionar correctamente.
-
----
-
-# 1️⃣2️⃣ Misión 6 – Restauración Completa (3 minutos)
-
-**Objetivo:** cierre narrativo.
-
-Actividades finales:
-
-- verificación final del sistema
-- confirmar todos los requerimientos
-- activación de JARVIS
+## 1) Apertura de clase (3 min)
 
 Docente:
-
-Hemos identificado y restaurado todos los requerimientos de JARVIS.
-
-Ahora podemos autorizar su activación completa.
-
-*(Presionar activación/despegue)*
-
-⚡ JARVIS activado
+- "Con la lista tomada, iniciamos mision tecnica."
+- "Hoy son analistas de Limari Tech para Stark Industries."
+- "JARVIS perdio su estructura de requerimientos y debemos restaurarla."
 
 ---
 
-# 1️⃣3️⃣ Reflexión final (2 minutos)
+## 2) Activacion de conocimientos previos (5 min)
 
-Hoy no solo aprendimos conceptos teóricos.
+Preguntas:
+- Que es un requerimiento de usuario?
+- Que es un requerimiento del sistema?
+- Por que son importantes?
 
-Aprendimos que **un sistema funciona cuando cada requerimiento se define claramente: qué debe hacer (función) y qué necesita para hacerlo (condición)**.
-
-Pregunta al grupo:
-
-> ¿Entienden ahora cómo sistemas como JARVIS, ChatGPT o vuestro teléfono tienen requerimientos definidos?
-
-Ejemplos esperados:
-
-- aplicaciones móviles
-- plataformas como Instagram
-- sistemas de transporte (GPS)
-- videojuegos profesionales
+Cierre:
+- "Esta es nuestra linea base para el diagnostico del sistema."
 
 ---
 
-# 1️⃣4️⃣ Cierre (1 minuto)
+## 3) Transicion narrativa del sistema (4 min)
 
-Gracias por ayudar a restaurar a JARVIS.
-
-Ahora sabe cómo funcionan los requerimientos de software.
-
-Nos vemos en la próxima clase.
-
-⚡
+- "JARVIS no distingue dominio, limites, restricciones ni prioridades."
+- "Sin estructura de requerimientos, cualquier decision puede fallar."
+- "Recuperaremos el sistema por fases, con evidencia en cada etapa."
 
 ---
 
-# ⏱ Distribución de tiempos
+## 4) Ingreso a la experiencia (4 min)
 
-| Etapa              | Tiempo              |
-| ------------------ | ------------------- |
-| Presentación      | 2 min               |
-| Retroalimentación | 2 min               |
-| Caja y transición | 3 min               |
-| Historia           | 1.5 min             |
-| Misión 1          | 3 min               |
-| Misión 2          | 3 min               |
-| Misión 3          | 4 min               |
-| Misión 4          | 5 min               |
-| Misión 5          | 4 min               |
-| Misión 6          | 3 min               |
-| Reflexión         | 2 min               |
-| **Total**    | **≈ 29 min** |
+- Escanear QR e ingresar a la app
+- Activar sonido
+- Leer historia inicial
+
+Marco narrativo:
+- "JARVIS conserva potencia, pero perdio coherencia operativa."
 
 ---
 
-# 🎯 Resultados esperados
+## 5) Fase 0 - System Diagnosis (16 min)
 
-Los estudiantes:
+### 0a Mentimeter (5 min)
+https://www.menti.com/alq9usss1qw7
 
-- comprenden qué es un requerimiento
-- diferencian función vs condición
-- aplican conceptos en situaciones reales
-- participan activamente
-- colaboran en una solución
+Docente:
+- "Primera lectura de estado: dominio y limite."
+
+### 0b Kahoot (5 min)
+https://kahoot.it/challenge/06527434?challenge-id=d8760083-d46f-4c29-b088-030eded85ba0_1774249548621
+
+Docente:
+- "Rapidez con justificacion tecnica."
+
+### 0c Forms (6 min)
+https://forms.office.com/r/Ai6qbwdVMt
+
+Docente:
+- "Clasificacion precisa y verificable."
+
+Hito:
+- "Fase 0 completada: JARVIS recupera su arquitectura conceptual minima."
 
 ---
 
-# 🚀 Principios pedagógicos aplicados
+## 6) Mision 1 - Activacion (8 min)
 
-- Gamificación
-- Narrativa educativa
-- Aprendizaje activo
-- Participación colaborativa
-- Feedback inmediato
-- Inclusión y claridad visual
+Actividades app:
+- 1a Quiz
+- 1b Educaplay
+- 1c Quiz
+
+Link 1b:
+https://es.educaplay.com/recursos-educativos/28379550-veracidad_de_los_requerimientos.html
+
+Docente:
+- "Activar significa alinear proposito del sistema y requerimientos."
 
 ---
+
+## 7) Mision 2 - Exploracion (7 min)
+
+Actividades app:
+- 2a Quiz
+- 2b Educaplay
+- 2c Quiz
+
+Link 2b:
+https://es.educaplay.com/recursos-educativos/28379604-mision_2_reconstruccion_de_requerimientos.html
+
+Docente:
+- "El sistema no esta roto: esta desorientado por falta de estructura."
+
+---
+
+## 8) Mision 3 - Comprension (6 min)
+
+Actividades app:
+- 3a Clasificacion funcion
+- 3b Clasificacion condicion
+- 3c Kahoot
+
+Link 3c:
+https://create.kahoot.it/share/enter-kahoot-title/c0692de8-bf4e-43f1-a545-d697f71affce
+
+Docente:
+- "Funcion es lo que hace; condicion es lo que necesita para hacerlo."
+
+---
+
+## 9) Mision 4 - Aplicacion (4 min)
+
+Actividades app:
+- 4a Clasificar caso
+- 4b Clasificar caso
+- 4c Forms final
+
+Link 4c:
+https://forms.office.com/r/ieUGtxNAku
+
+Docente:
+- "Ultima etapa: decisiones justificadas con criterio tecnico."
+
+---
+
+## 10) Cierre y reflexion (3 min)
+
+Pregunta final:
+- "Que cambio en su forma de pensar para reparar JARVIS?"
+
+Cierre docente:
+- "Hoy no solo resolvieron actividades: recuperaron un sistema con pensamiento de ingenieria."
+
+---
+
+## Control de tiempo (60 min)
+
+- Apertura post lista: 3
+- Activacion de previos: 5
+- Transicion narrativa: 4
+- Ingreso a app: 4
+- Fase 0: 16
+- Mision 1: 8
+- Mision 2: 7
+- Mision 3: 6
+- Mision 4: 4
+- Cierre: 3
+
+Total: 60 min

@@ -248,11 +248,11 @@ class ActivityService {
      * @returns {Object|null} Final completion data or null
      */
     checkFinalCompletion() {
-        const mission6Complete = ['6a', '6b', '6c'].every(id => 
+        const mission4Complete = ['4a', '4b', '4c'].every(id => 
             this.gameState.isMissionCompleted(id)
         );
 
-        if (mission6Complete && !this.gameState.get('showedFinalScreen')) {
+        if (mission4Complete && !this.gameState.get('showedFinalScreen')) {
             this.gameState.set('showedFinalScreen', true);
             
             return {
@@ -275,14 +275,14 @@ class ActivityService {
 🎉 ¡MISIÓN CUMPLIDA! 🎉
 
 ✅ Sistema restaurado al 100%
-🚀 NOVA está lista para despegar
+🚀 JARVIS está otra vez en línea
 🏆 Total de puntos: ${rewards}
-⭐ Misiones completadas: 6/6
+⭐ Misiones completadas: 4/4
 
-💭 NOVA dice:
-"Gracias por ayudarme a regresar a casa.
+💭 JARVIS dice:
+"Gracias por restaurar mis sistemas.
 Aprendiste a diferenciar funciones y condiciones.
-¡Eres un excelente ingeniero de software!"
+Ahora piensas como un verdadero ingeniero de software."
 
 🌟 Recompensa desbloqueada:
 🏅 MAESTRO DEL SISTEMA

@@ -1,5 +1,7 @@
 # 🧠 Explicación simple para recordar
 
+> Nota de vigencia (marzo 2026): el contenido conceptual sigue válido. Para narrativa y secuencia de clase actualizada (JARVIS + Fase 0), combinar con `guion/guion.md`.
+
 ---
 
 ## 1️⃣ Requerimientos (idea general)

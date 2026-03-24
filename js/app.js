@@ -186,14 +186,14 @@ class NOVAGame {
             const rewards = this.gameState.getRewards();
             
             alert(
-                `⭐ Progreso: ${completedCount}/6 misiones\n` +
+                `⭐ Progreso: ${completedCount}/4 misiones\n` +
                 `📊 Sistema: ${progressPercent}%\n` +
                 `🏆 Puntos: ${rewards}`
             );
         });
 
-        // Mission buttons (1-6)
-        for (let i = 1; i <= 6; i++) {
+        // Mission buttons (1-4)
+        for (let i = 1; i <= 4; i++) {
             const btn = byId(`mission-${i}-btn`);
             if (btn) {
                 btn.addEventListener('click', () => this.handleMissionClick(i));

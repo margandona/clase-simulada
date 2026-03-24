@@ -1,5 +1,7 @@
 # 🎬 Simulación de Clase – Comisión Evaluadora
 
+> Nota de vigencia (marzo 2026): este guion de simulación conserva escenas útiles para práctica docente, pero incluye elementos antiguos (NOVA/Padlet). Para ejecución oficial usa `guion/guion.md` (60 min post lista, JARVIS con Fase 0).
+
 ## Personajes
 
 1️⃣ **Lucas** – curioso, hace preguntas técnicas

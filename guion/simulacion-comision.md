@@ -1,5 +1,6 @@
-
 # Simulación de Escenarios en Clase
+
+> Nota de vigencia (marzo 2026): este archivo contiene escenarios útiles de manejo de aula, pero su narrativa base incluye referencias históricas (NOVA/Padlet). Para guion oficial y secuencia vigente usa primero `guion/guion.md` y `guion/guion-resumen.md` (JARVIS + Fase 0 System Diagnosis).
 
 ---
 

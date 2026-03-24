@@ -1,211 +1,99 @@
-# 🚀 Chuleta de Bolsillo – Clase NOVA
+# Chuleta de Bolsillo - JARVIS (Version Gamificada)
 
-Duración total: 25–30 min
-
+Duracion: 60 min (post lista)
 Tema: Requerimientos de software
-Concepto central: Funciones vs Condiciones
+Eje narrativo: restaurar la coherencia operativa de JARVIS
 
 ---
 
-# 1️⃣ Presentación (2 min)
+## Apertura rapida (3 min)
 
-Buenas tardes.
-
-Soy **Marcos Argandoña**, Ingeniero Informático y docente.
-
-Hoy estoy postulando para impartir la asignatura Especificacion de requisitos, vinculada al análisis y desarrollo de sistemas.
-
-Hoy no veremos solo teoría…
-vamos a vivir una **experiencia interactiva**.
+- "Con la lista tomada, iniciamos protocolo de recuperacion."
+- "Hoy son analistas de Limari Tech para Stark Industries."
+- "JARVIS tiene potencia, pero perdio estructura de requerimientos."
 
 ---
 
-# 2️⃣ Retroalimentación clase anterior (2 min)
+## Fase 0 - System Diagnosis (16 min)
 
-Ping-pong rápido.
+Objetivo narrativo:
+- Recuperar mapa base de dominio, limite y restricciones.
 
-¿Qué es un requerimiento de usuario?
-→ Lo que el usuario necesita.
+0a Mentimeter (5)
+https://www.menti.com/alq9usss1qw7
 
-¿Qué es un requerimiento del sistema?
-→ Lo que el sistema debe hacer.
+0b Kahoot (5)
+https://kahoot.it/challenge/06527434?challenge-id=d8760083-d46f-4c29-b088-030eded85ba0_1774249548621
 
-¿Por qué son importantes?
-→ Guían el desarrollo.
+0c Forms (6)
+https://forms.office.com/r/Ai6qbwdVMt
 
-Cierre:
+Frase clave:
+- "Sin diagnostico estructural, cualquier reparacion puede empeorar la falla."
 
-Hoy veremos cómo estos requerimientos permiten que **un sistema funcione correctamente**.
-
----
-
-# 3️⃣ Transición (1 min)
-
-No quiero hablar más de mí.
-
-Si quieren conocer mi trabajo:
-**www.makuaz.cl**
-
-Pero hoy no vine solo.
+Hito:
+- "Fase 0 completada: JARVIS recupera arquitectura conceptual minima."
 
 ---
 
-# 4️⃣ La caja (2 min)
+## Mision 1 - Activacion (8 min)
 
-Dentro de esta caja hay un amigo que vino a ayudarnos.
+1a Quiz
+1b Educaplay
+https://es.educaplay.com/recursos-educativos/28379550-veracidad_de_los_requerimientos.html
+1c Quiz
 
-No puede comunicarse como nosotros.
-
-Solo puede hacerlo **a través de sus teléfonos**.
-
-Abrir caja → mostrar QR.
-
-Necesita nuestra ayuda.
+Idea fuerza:
+- "Un sistema puede parecer estable y fallar por requerimientos ambiguos."
 
 ---
 
-# 5️⃣ Ingreso a la experiencia (2 min)
+## Mision 2 - Exploracion (7 min)
 
-Escaneen el código.
+2a Quiz
+2b Educaplay
+https://es.educaplay.com/recursos-educativos/28379604-mision_2_reconstruccion_de_requerimientos.html
+2c Quiz
 
-Si pueden, activen el sonido.
-
-Ahora comenzaremos la misión.
-
----
-
-# 6️⃣ Historia NOVA (1.5 min)
-
-Dejar que escuchen la narrativa.
-
-Objetivo: inmersión.
+Idea fuerza:
+- "No es falla de hardware: es desorientacion por especificacion incompleta."
 
 ---
 
-# 7️⃣ Misión 1 – Activación (3 min)
+## Mision 3 - Comprension (6 min)
 
-Pregunta Padlet:
+3a Funcion
+3b Condicion
+3c Kahoot
+https://create.kahoot.it/share/enter-kahoot-title/c0692de8-bf4e-43f1-a545-d697f71affce
 
-¿Qué necesita un sistema para funcionar correctamente?
-
-Ejemplos esperados:
-
-- energía
-- reglas
-- conexión
-- instrucciones
-
-Comentario:
-
-Eso ya nos habla de **cómo funcionan los sistemas**.
-
-Mensaje NOVA:
-
-"Estoy aprendiendo cómo funcionan los sistemas humanos."
+Idea fuerza:
+- "Funcion = lo que hace. Condicion = lo que necesita para hacerlo."
 
 ---
 
-# 8️⃣ Misión 2 – Explorar problema (3 min)
+## Mision 4 - Aplicacion (4 min)
 
-Explicación:
+4a Clasificar
+4b Clasificar
+4c Forms final
+https://forms.office.com/r/ieUGtxNAku
 
-NOVA **no está roto**.
-
-Su sistema está **incompleto**.
-
-Mensaje NOVA:
-
-"Sin requerimientos claros, no puedo despegar."
+Idea fuerza:
+- "No basta responder: hay que justificar decisiones con criterio tecnico."
 
 ---
 
-# 9️⃣ Misión 3 – Aplicar conceptos (4 min)
-
-Conceptos clave:
-
-Función → lo que el sistema **hace**
-Condición → lo que el sistema **necesita**
-
-Mensaje NOVA:
-
-"Las funciones me permiten actuar.
-Las condiciones me permiten operar."
-
----
-
-# 🔟 Misión 4 – Reparar sistema (5 min)
-
-Clasificar:
-
-- calcular rutas → función
-- combustible disponible → condición
-- transmitir datos → función
-
-Mensaje NOVA:
-
-"Cada decisión repara mi sistema."
-
----
-
-# 1️⃣1️⃣ Misión 5 – Colaborar (4 min)
-
-Padlet colaborativo.
+## Cierre (3 min)
 
 Pregunta:
+- "Que cambio en su forma de pensar para reparar JARVIS?"
 
-¿Qué necesita la nave de NOVA para despegar?
-
-Ejemplos:
-
-Funciones
-
-- calcular trayectoria
-- comunicarse
-
-Condiciones
-
-- energía
-- combustible
-
-Mensaje NOVA:
-
-"Tu idea puede ser la pieza que falta para despegar."
+Cierre docente:
+- "Hoy no solo completaron actividades; ejecutaron una recuperacion de sistema."
 
 ---
 
-# 1️⃣2️⃣ Misión 6 – Despegue (3 min)
+## Miniguia de gamificacion (en una frase)
 
-Verificación sistema.
-
-Presionar despegue 🚀
-
-Celebración final.
-
----
-
-# 1️⃣3️⃣ Reflexión (2 min)
-
-Pregunta:
-
-¿Dónde ven sistemas en su vida diaria?
-
-Ejemplos:
-
-- apps
-- videojuegos
-- transporte
-- internet
-
-Idea clave:
-
-Un sistema funciona cuando **cada parte cumple su propósito**.
-
----
-
-# 1️⃣4️⃣ Cierre (1 min)
-
-Gracias por ayudar a NOVA a regresar a casa.
-
-Nos vemos en la próxima misión.
-
-🚀
+Cada fase debe sentirse como una operacion con riesgo, objetivo, evidencia y hito de recuperacion; no como una lista de tareas aisladas.

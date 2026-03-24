@@ -1,183 +1,226 @@
 /**
  * @file missions.js
- * @description Mission data configuration for JARVIS repair system
- * OPTIMIZED FOR 20-MINUTE CLASS SESSION
- * 4 missions, 9 activities total
+ * @description Mission data configuration for the JARVIS repair system
+ * Optimized for the active 20-minute classroom version
+ * 4 missions, 12 activities total
  * @module data/missions
  */
 
 export const MISSIONS = {
     1: {
         title: 'Misión 1: Activación',
-        description: 'Conecta con JARVIS y comprende su situación.',
+        description: 'Completa estas actividades para conocer a JARVIS y su crisis crítica.',
         phase: 'activation',
-        instructions: '⚡ JARVIS necesita que lo reconozcas. Completa esta misión:',
+        instructions: '💡 Primero lee "Historia de JARVIS" arriba, luego completa estas actividades:',
         submissions: [
-            { 
-                id: '1a', 
-                name: 'Quiz: ¿Quién es JARVIS?',
+            {
+                id: '1a',
+                name: 'Actividad: ¿Quién es JARVIS?',
                 toolType: 'quiz',
                 question: '¿Quién es JARVIS?',
                 options: [
-                    { text: 'La IA que controla Stark Industries', correct: true },
-                    { text: 'Un robot de defensa', correct: false },
-                    { text: 'Un sistema de vigilancia', correct: false }
+                    { text: 'La inteligencia artificial que controla Stark Industries', correct: true },
+                    { text: 'Un robot de seguridad', correct: false },
+                    { text: 'Un sistema de defensa militar', correct: false }
                 ],
                 feedback: {
-                    correct: '✓ ¡Correcto! JARVIS es la inteligencia que coordina TODO en Stark.',
-                    incorrect: 'Pista: JARVIS controla mucho más que una función.'
+                    correct: '¡Correcto! JARVIS controla toda la Torre Stark y sus sistemas.',
+                    incorrect: 'Revisa la historia de JARVIS arriba y vuelve a intentar.'
                 },
-                novaMessage: 'Gracias por identificarme. Ahora entiende mi problema.'
+                novaMessage: 'Sí, así es. Soy JARVIS. He controlado la Torre Stark perfectamente durante tres años.'
             },
-            { 
-                id: '1b', 
-                name: 'Padlet: ¿Cómo ayudarías?',
+            {
+                id: '1b',
+                name: 'Actividad: Activación en Padlet',
                 toolType: 'padlet',
                 toolLabel: 'Padlet de Activación',
                 embedUrl: 'https://padlet.com/padlets/t27dz8jyj9vcposz/embeds/preview_embed',
                 padletUrl: 'https://padlet.com/padlets/t27dz8jyj9vcposz',
-                novaMessage: 'Las ideas de los humanos siempre me fascinan.'
+                instructions: [
+                    'Haz clic en "Abrir Padlet" o interactúa con el muro',
+                    'Escribe tu idea: ¿Cómo reparas un sistema sin requerimientos claros?',
+                    'Vuelve aquí y marca la actividad como completada'
+                ],
+                padletOpenMessage: 'Mi sistema perdió sus requerimientos en la actualización. Necesito que los reconstruyamos juntos.',
+                novaMessage: 'Gracias por conectarte conmigo. Cada idea ayuda a reconstruir mi sistema.'
+            },
+            {
+                id: '1c',
+                name: 'Actividad: El Problema de JARVIS',
+                toolType: 'quiz',
+                question: '¿Cuál es el problema real de JARVIS?',
+                options: [
+                    { text: 'Su hardware está severamente dañado', correct: false },
+                    { text: 'Le faltan los REQUERIMIENTOS de su sistema', correct: true },
+                    { text: 'No tiene suficiente energía', correct: false }
+                ],
+                feedback: {
+                    correct: '¡Exacto! Tengo todas mis funciones, pero sin requerimientos no sé cómo ejecutarlas juntas.',
+                    incorrect: 'Pista: tengo todas las piezas, pero me falta el blueprint del sistema.'
+                },
+                novaMessage: 'Sin requerimientos claros, no puedo coordinar mis funciones. Es como un motor sin sincronización.'
             }
         ]
     },
     2: {
-        title: 'Misión 2: Explorar el Problema',
-        description: 'Identifica exactamente qué le falta a JARVIS.',
+        title: 'Misión 2: Exploración del Problema',
+        description: 'Identifica por qué la Torre Stark está paralizada sin requerimientos.',
         phase: 'exploration',
-        instructions: '🔍 JARVIS dice: "Tengo funciones, pero me faltan condiciones". ¿Qué significa?',
+        instructions: '🔍 Analiza por qué JARVIS no puede coordinar sus sistemas:',
         submissions: [
-            { 
-                id: '2a', 
-                name: 'Quiz: Sistema Incompleto',
+            {
+                id: '2a',
+                name: 'Actividad: Identificar sistema incompleto',
                 toolType: 'quiz',
                 question: 'Un sistema sin requerimientos claros...',
                 options: [
                     { text: 'Funciona perfectamente', correct: false },
-                    { text: 'No sabe QUÉ HACER ni BAJO QUÉ CONDICIONES hacerlo', correct: true },
-                    { text: 'Solo tiene problemas estéticos', correct: false }
+                    { text: 'No puede ejecutar sus funciones', correct: true },
+                    { text: 'Solo tiene problemas menores', correct: false }
                 ],
                 feedback: {
-                    correct: '✓ ¡Exacto! Sin requerimientos = software paralizado.',
-                    incorrect: 'Piensa: si no sabes QUÉ debes hacer, ¿puedes funcionar?'
+                    correct: '¡Correcto! Sin requisitos, un sistema no sabe qué hacer.',
+                    incorrect: 'Piensa: ¿Puede funcionar algo sin instrucciones?'
                 },
-                novaMessage: 'Sin instrucciones claras, no puedo ejecutarme.'
+                novaMessage: 'Sin requerimientos, mis funciones están desincronizadas. La Torre entera está caída.'
             },
-            { 
-                id: '2b', 
-                name: 'Checklist: Tipos de Requerimientos',
+            {
+                id: '2b',
+                name: 'Actividad: Listar requerimientos faltantes',
                 toolType: 'checklist',
-                question: '¿JARVIS necesita...? (Selecciona lo correcto)',
+                question: '¿Qué tipos de requerimientos le faltan a JARVIS?',
                 checklistItems: [
-                    { text: 'Saber QUÉ FUNCIONES ejecutar (requisitos funcionales)', value: 'functions' },
-                    { text: 'BAJO QUÉ CONDICIONES ejecutarlas (requisitos no-funcionales)', value: 'conditions' }
+                    { text: 'Funciones del sistema', value: 'functions' },
+                    { text: 'Condiciones necesarias', value: 'conditions' },
+                    { text: 'Documentación clara', value: 'documentation' },
+                    { text: 'Protocolos de seguridad', value: 'security' }
                 ],
                 feedback: {
-                    correct: '✓ ¡Perfecto! Identificaste los VERDADEROS requerimientos.',
-                    incorrect: 'Marca las opciones que tengan sentido para SOFTWARE.'
+                    correct: '¡Bien! Identificaste los requerimientos clave.',
+                    incorrect: 'Necesito al menos 2 tipos de requerimientos para funcionar.'
                 },
-                novaMessage: 'Exactamente. Funciones + Condiciones = Sistema Completo.'
+                novaMessage: 'Exacto. Mis FUNCIONES me dicen QUÉ HAGO. Mis CONDICIONES me dicen CÓMO HACERLO.'
+            },
+            {
+                id: '2c',
+                name: 'Actividad: Analizar consecuencias',
+                toolType: 'quiz',
+                question: '¿Qué pasa en software real cuando los requisitos están mal definidos?',
+                options: [
+                    { text: 'El sistema funciona igual de bien', correct: false },
+                    { text: 'Aparecen errores y el sistema falla', correct: true },
+                    { text: 'Solo afecta al diseño visual', correct: false }
+                ],
+                feedback: {
+                    correct: '¡Exacto! En ingeniería de software, los requisitos son fundamentales.',
+                    incorrect: 'Piensa: ¿Qué pasa cuando una app no sabe qué hacer?'
+                },
+                novaMessage: 'Como en software: sin requisitos claros, el sistema falla.'
             }
         ]
     },
     3: {
-        title: 'Misión 3: Aprender el Patrón',
-        description: 'Entiende la diferencia crítica: FUNCIÓN vs CONDICIÓN.',
+        title: 'Misión 3: Aplicar Conceptos',
+        description: 'Practica diferenciando funciones y condiciones.',
         phase: 'understanding',
-        instructions: '🧠 Esto es LO MÁS IMPORTANTE. Aprende bien:',
+        instructions: '💡 Primero revisa "Conceptos Clave" arriba, luego practica:',
         submissions: [
-            { 
-                id: '3a', 
-                name: 'Ejemplo 1: ¿Qué HACE JARVIS?',
+            {
+                id: '3a',
+                name: 'Ejercicio: Identificar funciones',
                 toolType: 'classification',
-                example: 'JARVIS debe calcular trayectorias de vuelo para Tony',
-                question: '¿Esto es FUNCIÓN o CONDICIÓN?',
+                example: 'JARVIS debe coordinar todos los sistemas de la Torre Stark',
+                question: '¿Es esto una FUNCIÓN o una CONDICIÓN?',
                 correctAnswer: 'function',
                 explanation: {
-                    correct: '✓ ¡CORRECTO! "CALCULAR" = ACCIÓN = FUNCIÓN. El sistema LO HACE.',
-                    incorrect: 'NO. "Calcular" es un verbo de acción. El sistema LO REALIZA = FUNCIÓN.'
+                    correct: '¡Correcto! Coordinar sistemas es una FUNCIÓN porque describe una acción del sistema.',
+                    incorrect: 'No es correcto. Coordinar sistemas es una acción = FUNCIÓN.'
                 },
-                hint: '¿QUÉ HACE el sistema? → FUNCIÓN',
-                novaMessage: 'Calcular trayectorias es mi función principal.'
+                hint: 'Pregúntate: ¿Describe lo que el sistema HACE?',
+                novaMessage: 'Coordinar sistemas de defensa es una de mis funciones críticas.'
             },
-            { 
-                id: '3b', 
-                name: 'Ejemplo 2: ¿Qué NECESITA JARVIS?',
+            {
+                id: '3b',
+                name: 'Ejercicio: Identificar condiciones',
                 toolType: 'classification',
-                example: 'JARVIS requiere conexión a internet para comunicarse con la Torre',
-                question: '¿Esto es FUNCIÓN o CONDICIÓN?',
+                example: 'JARVIS requiere conexión de red permanente con todos los sistemas',
+                question: '¿Es esto una FUNCIÓN o una CONDICIÓN?',
                 correctAnswer: 'condition',
                 explanation: {
-                    correct: '✓ ¡PERFECTO! "REQUIERE" = NECESIDAD = CONDICIÓN. El sistema LO NECESITA.',
-                    incorrect: 'NO. "Requiere" significa que lo NECESITA como prerequisito = CONDICIÓN.'
+                    correct: '¡Perfecto! Requerir conexión es una CONDICIÓN porque es una necesidad previa.',
+                    incorrect: 'No del todo. Requerir conexión es un requisito = CONDICIÓN.'
                 },
-                hint: '¿QUÉ NECESITA el sistema para funcionar? → CONDICIÓN',
-                novaMessage: 'Sin internet, no puedo conectarme a Tony. Esa es una condición crítica.'
+                hint: 'Pregúntate: ¿Describe lo que el sistema NECESITA para funcionar?',
+                novaMessage: 'Sin conexión de red, soy solo un procesador aislado. Inútil.'
+            },
+            {
+                id: '3c',
+                name: 'Quiz: Diferencias clave',
+                toolType: 'quiz',
+                question: '¿Cuál es la diferencia principal?',
+                options: [
+                    { text: 'Función = QUÉ HACE / Condición = QUÉ NECESITA', correct: true },
+                    { text: 'No hay diferencia real', correct: false },
+                    { text: 'Función es opcional, condición es obligatoria', correct: false }
+                ],
+                feedback: {
+                    correct: '¡Excelente! Dominas la diferencia clave.',
+                    incorrect: 'Recuerda: Funciones = acciones, Condiciones = requisitos.'
+                },
+                novaMessage: 'Funciones me permiten actuar. Condiciones me permiten existir.'
             }
         ]
     },
     4: {
-        title: 'Misión 4: Reparar JARVIS',
-        description: 'Clasifica requerimientos y repara el sistema. ¡COMPLETADO!',
+        title: 'Misión 4: Reparar Sistema',
+        description: 'Clasifica ejemplos y ayuda a reparar la Torre Stark.',
         phase: 'application',
-        instructions: '🔧 Ahora TÚ decides: ¿FUNCIÓN o CONDICIÓN? Repara a JARVIS:',
+        instructions: '🔧 Para cada ejemplo, decide si es función o condición:',
         submissions: [
-            { 
-                id: '4a', 
-                name: 'Clasificar: Navegar por el espacio',
+            {
+                id: '4a',
+                name: 'Clasificar: Coordinar Sistemas',
                 toolType: 'classification',
-                example: 'El sistema debe plotear y ejecutar rutas de navegación espacial',
+                example: 'El sistema debe calcular rutas de comunicación entre servidores de Stark Industries',
                 question: '¿FUNCIÓN o CONDICIÓN?',
                 correctAnswer: 'function',
                 explanation: {
-                    correct: '✓ FUNCIÓN. "Plotear rutas" = acciones que EJECUTA = FUNCIÓN.',
-                    incorrect: 'Es FUNCIÓN. El verbo "plotear/ejecutar" = acciones del sistema.'
+                    correct: '¡Correcto! Calcular rutas es una FUNCIÓN porque el sistema lo ejecuta.',
+                    incorrect: 'Incorrecto. Calcular rutas es una acción que REALIZA el sistema = FUNCIÓN.'
                 },
-                hint: 'Plotear es un VERBO DE ACCIÓN.',
-                novaMessage: '✓ Sistema de navegación activado.'
+                hint: 'Calcular es un verbo de acción.',
+                novaMessage: 'Mi módulo de comunicaciones se repara. Sistema de red volviendo online.'
             },
-            { 
-                id: '4b', 
+            {
+                id: '4b',
                 name: 'Clasificar: Energía disponible',
                 toolType: 'classification',
-                example: 'JARVIS necesita energía en su núcleo de procesamiento para operar',
+                example: 'El sistema requiere energía disponible en los reactores de la Torre',
                 question: '¿FUNCIÓN o CONDICIÓN?',
                 correctAnswer: 'condition',
                 explanation: {
-                    correct: '✓ CONDICIÓN. "Necesita energía" = prerequisito = CONDICIÓN.',
-                    incorrect: 'Es CONDICIÓN. "Necesita" = no es acción, es un requisito.'
+                    correct: '¡Exacto! Requerir energía es una CONDICIÓN porque es una necesidad previa.',
+                    incorrect: 'No es correcto. Requerir energía es un requisito = CONDICIÓN.'
                 },
-                hint: 'Necesita = PREREQUISITO = CONDICIÓN.',
-                novaMessage: '✓ Sistema de energía verificado.'
+                hint: 'Requerir indica una necesidad, no una acción.',
+                novaMessage: 'La energía es esencial para que todos mis sistemas funcionen coordinadamente.'
             },
-            { 
-                id: '4c', 
-                name: 'Clasificar: Comunicación crítica',
+            {
+                id: '4c',
+                name: 'Clasificar: Comunicar con Tierra',
                 toolType: 'classification',
-                example: 'JARVIS debe transmitir reportes de seguridad a Tony en tiempo real',
+                example: 'El sistema debe transmitir datos a la estación terrestre',
                 question: '¿FUNCIÓN o CONDICIÓN?',
                 correctAnswer: 'function',
                 explanation: {
-                    correct: '✓ FUNCIÓN. "Transmitir" = acción que ejecuta = FUNCIÓN.',
-                    incorrect: 'Es FUNCIÓN. "Transmitir" es un verbo de acción.'
+                    correct: '¡Perfecto! Transmitir datos es una FUNCIÓN porque es una acción que ejecuto.',
+                    incorrect: 'No del todo. Transmitir datos es una acción = FUNCIÓN.'
                 },
-                hint: 'Transmitir, enviar, ejecutar = FUNCIONES.',
-                novaMessage: '✓ Sistema de comunicación restaurado.'
-            },
-            { 
-                id: '4d', 
-                name: '🚀 AUTORIZAR DESPEGUE',
-                toolType: 'confirmation',
-                question: '¿JARVIS está completamente reparado?',
-                confirmText: 'SÍ. He clasificado todos correctamente.',
-                feedback: {
-                    correct: '🚀🚀🚀 ¡¡REPARACIÓN COMPLETADA!! Sistema al 100%. JARVIS vuelve a casa.',
-                    incorrect: ''
-                },
-                novaMessage: '¡¡GRACIAS!! LO LOGRAMOS. VOY A CASA.'
+                hint: 'Transmitir es un verbo de acción.',
+                novaMessage: 'Tu análisis repara mi sistema de coordinación. Otro módulo conectado.'
             }
         ]
     }
 };
 
 export default MISSIONS;
-

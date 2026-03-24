@@ -1,14 +1,14 @@
 /**
  * @file MessageService.js
- * @description NOVA message and toast notification management
+ * @description JARVIS message and toast notification management
  * @module services/MessageService
  */
 
-import { AUTO_TOAST_MESSAGES, PROGRESS_MESSAGES, NOVA_MESSAGES } from '../data/messages.js';
+import { AUTO_TOAST_MESSAGES, PROGRESS_MESSAGES, JARVIS_MESSAGES } from '../data/messages.js';
 import GameState from '../models/GameState.js';
 
 /**
- * MessageService class - Manages NOVA messages and notifications
+ * MessageService class - Manages JARVIS messages and notifications
  * @class
  */
 class MessageService {
@@ -157,7 +157,7 @@ class MessageService {
             const shouldSpeak = this.audioService && this.audioService.isEnabled();
             this.show(message, 5000, shouldSpeak);
             
-            // NOVA pulses for important progress messages
+            // JARVIS pulses for important progress messages
             if (this.characterController) {
                 if (type === 'missionComplete' || type === 'allComplete') {
                     this.characterController.celebrate();
@@ -174,7 +174,7 @@ class MessageService {
      * @returns {string} Phase message
      */
     getPhaseMessage(phase) {
-        return NOVA_MESSAGES[phase] || NOVA_MESSAGES.default;
+        return JARVIS_MESSAGES[phase] || JARVIS_MESSAGES.default;
     }
 
     /**

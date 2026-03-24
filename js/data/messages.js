@@ -10,13 +10,11 @@
  * Context-aware responses that evolve throughout the mission
  * @type {Object.<string, string>}
  */
-export const NOVA_MESSAGES = {
+export const JARVIS_MESSAGES = {
     activation: "Tony Stark dice que vienes a ayudarme… Necesito requerimientos claros.",
     exploration: "Tengo todas las funciones correctas… pero me faltan las condiciones para usarlas.",
     understanding: "Ahora veo: FUNCIONES = lo que hago. CONDICIONES = lo que necesito.",
     application: "Cada clasificación correcta restaura una parte de mi sistema.",
-    collaborative: "Tus reflexiones me ayudan a entender REALMENTE qué significa ser un sistema.",
-    closure: "Sistema completo. Volvemos a casa. Gracias.",
     default: "Analizando estructuras de requerimientos..."
 };
 
@@ -45,16 +43,6 @@ export const AUTO_TOAST_MESSAGES = {
         "Mi sistema de navegación es una FUNCIÓN. Tony lo programó bien.",
         "Pero necesito ENERGÍA para ejecutarlo. Eso es una CONDICIÓN.",
         "Clasificas correctamente → reparo un módulo de mi sistema."
-    ],
-    collaborative: [
-        "¿Dónde viste un sistema sin requisitos claros hoy?",
-        "¿Tu app favorita? ¿Redes sociales? ¿Tu computadora?",
-        "Todos necesitan REQUISITOS CLAROS para no fallar."
-    ],
-    closure: [
-        "Gracias. Entiendo ahora lo más importante.",
-        "No soy solo código. Soy REQUISITOS + CÓDIGO.",
-        "Todos los sistemas del mundo funcionan así."
     ]
 };
 
@@ -92,9 +80,7 @@ export function getCompletionMessage(phase) {
         activation: "Tony ya sabe tu nombre. Eres parte del equipo Stark.",
         exploration: "Ahora entiendes el problema de TODO software.",
         understanding: "Dominas el patrón. Eres lo que los ingenieros necesitan.",
-        application: "Clasificaste perfecto. Mi código se reactiva.",
-        collaborative: "Tu reflexión cambia cómo pienso sobre los sistemas.",
-        closure: "¡¡GRACIAS!! Vuelvo a casa. Con tu ayuda."
+        application: "Clasificaste perfecto. Mi código se reactiva."
     };
     return messages[phase] || "Progreso registrado en mi memoria.";
 }

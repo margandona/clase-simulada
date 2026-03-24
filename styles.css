@@ -686,6 +686,83 @@ button {
     font-size: 1.3em;
 }
 
+.system-reconstruction {
+    background: linear-gradient(135deg, #e8f7ef 0%, #d8edf9 100%);
+    border: 1px solid rgba(29, 78, 137, 0.15);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.system-reconstruction-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: #1f3a5f;
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.system-reconstruction-bar {
+    width: 100%;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(31, 58, 95, 0.16);
+    overflow: hidden;
+}
+
+.system-reconstruction-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #0b8f66 0%, #0aa4d1 100%);
+    transition: width 0.35s ease;
+}
+
+.system-reconstruction-note {
+    margin: var(--spacing-sm) 0 0;
+    font-size: var(--font-size-sm);
+    color: #2b4b72;
+}
+
+.diagnosis-integrity {
+    margin-top: var(--spacing-sm);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(43, 75, 114, 0.15);
+    border-radius: 10px;
+    padding: 0.55rem 0.65rem;
+}
+
+.diagnosis-integrity-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    color: #214467;
+    margin-bottom: 0.35rem;
+}
+
+.diagnosis-integrity-bar {
+    width: 100%;
+    height: 7px;
+    border-radius: 999px;
+    background: rgba(33, 68, 103, 0.2);
+    overflow: hidden;
+}
+
+.diagnosis-integrity-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #dc2626 0%, #f59e0b 50%, #059669 100%);
+    transition: width 0.3s ease;
+}
+
+.diagnosis-integrity-label {
+    margin: 0.35rem 0 0;
+    font-size: 0.78rem;
+    color: #395d84;
+}
+
 /* ============================================
    MISSIONS MENU
    ============================================== */
@@ -775,6 +852,15 @@ button {
     cursor: pointer;
 }
 
+.mission-header-required {
+    background: linear-gradient(135deg, #1f7a58 0%, #235f79 100%);
+}
+
+.mission-header-required:hover,
+.mission-header-required:focus {
+    background: linear-gradient(135deg, #249167 0%, #2a7392 100%);
+}
+
 .accordion-arrow {
     font-size: 0.8em;
     transition: transform var(--transition-smooth);
@@ -811,6 +897,36 @@ button {
     color: var(--color-text-secondary);
     line-height: 1.5;
     border-left: 4px solid #6b7fbf;
+}
+
+.mission-narrative-block {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.08) 0%, rgba(255, 198, 0, 0.1) 100%);
+    border: 1px solid rgba(255, 107, 107, 0.2);
+    border-left: 4px solid #ff6b6b;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.mission-narrative-title {
+    margin: 0 0 0.5rem;
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #a83a3a;
+}
+
+.mission-narrative-list {
+    margin: 0;
+    padding-left: 1rem;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: 1.45;
+}
+
+.mission-narrative-list li {
+    margin-bottom: 0.35rem;
 }
 
 .mission-activity-item {
@@ -878,6 +994,20 @@ button {
 .activity-desc {
     font-size: var(--font-size-sm);
     color: var(--color-text-secondary);
+}
+
+.forms-select {
+    width: 100%;
+    min-height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    border-radius: 8px;
+    padding: 0.45rem 0.55rem;
+    background: #ffffff;
+}
+
+.activity-mentimeter ul,
+.activity-kahoot .checklist-items {
+    margin-top: 0.7rem;
 }
 
 .activity-arrow {

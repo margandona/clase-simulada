@@ -174,12 +174,12 @@ class GameState {
      */
     calculateCurrentPhase() {
         const completedCount = this.getCompletedMissionsCount();
-        const phases = ['activation', 'exploration', 'understanding', 'application', 'collaborative', 'closure'];
+        const phases = ['activation', 'exploration', 'understanding', 'application'];
         
-        if (completedCount < 6) {
+        if (completedCount < 4) {
             return phases[completedCount] || 'activation';
         }
-        return 'closure';
+        return 'application';
     }
 
     /**
@@ -187,7 +187,7 @@ class GameState {
      * @returns {number} Progress percentage (0-100)
      */
     getProgressPercentage() {
-        return Math.round((this.getCompletedMissionsCount() / 6) * 100);
+        return Math.round((this.getCompletedMissionsCount() / 4) * 100);
     }
 
     /**

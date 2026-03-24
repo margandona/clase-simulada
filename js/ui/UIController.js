@@ -31,7 +31,7 @@ class UIController {
         this.updateSystemPercentage();
         this.updateMissionBadges();
         this.updateCurrentPhase();
-        this.updateNOVAMessage();
+        this.updateJARVISMessage();
     }
 
     /**
@@ -72,7 +72,7 @@ class UIController {
             completedByType[type] = (completedByType[type] || 0) + 1;
         });
 
-        for (let i = 1; i <= 6; i++) {
+        for (let i = 1; i <= 4; i++) {
             const badge = document.getElementById(`badge-${i}`);
             if (!badge) continue;
 
@@ -102,9 +102,9 @@ class UIController {
     }
 
     /**
-     * Update NOVA message in info box
+     * Update JARVIS message in info box
      */
-    updateNOVAMessage() {
+    updateJARVISMessage() {
         const phase = this.gameState.getPhase();
         const message = this.messageService.getPhaseMessage(phase);
         
