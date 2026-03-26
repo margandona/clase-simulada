@@ -183,11 +183,12 @@ const MISSIONS = {
                 activityPrompt: 'Prueba bajo presión: valida decisiones críticas del sistema.',
                 instructions: [
                     'Haz clic en "Abrir Kahoot".',
-                    'Ingresa el PIN o challenge indicado por el docente.',
+                    'Ingresa el PIN 06527434 o abre el challenge indicado.',
                     'Responde todas las preguntas del bloque conceptual.',
                     'Vuelve y presiona "Ya participé".'
                 ],
                 kahootUrl: 'https://kahoot.it/challenge/06527434?challenge-id=d8760083-d46f-4c29-b088-030eded85ba0_1774249548621',
+                kahootPin: '06527434',
                 jarvisFailureContext: 'Ya no sé cuál es mi dominio, dónde empieza/termina mi sistema, qué restricciones me limitan, quiénes son mis usuarios y qué debo hacer por ellos.',
                 definitions: [
                     {
@@ -446,13 +447,14 @@ const MISSIONS = {
                 id: '3c', 
                 name: 'Kahoot: Diferencias clave en contexto',
                 toolType: 'kahoot',
-                kahootUrl: 'https://create.kahoot.it/share/enter-kahoot-title/c0692de8-bf4e-43f1-a545-d697f71affce',
+                kahootUrl: 'https://kahoot.it/challenge/07319347?challenge-id=d8760083-d46f-4c29-b088-030eded85ba0_1774508012137',
+                kahootPin: '07319347',
                 learningGoal: 'Consolidar función vs condición con interacción competitiva',
                 udlHints: ['Ingresa al Kahoot y responde en tiempo real', 'Confirma participación al terminar'],
                 successCondition: 'Participar y finalizar el Kahoot de consolidación',
                 instructions: [
                     'Haz clic en "Abrir Kahoot".',
-                    'Ingresa el PIN o challenge de la fase de comprensión.',
+                    'Ingresa el PIN 07319347 o abre el challenge de la fase de comprensión.',
                     'Responde todas las preguntas para consolidar conceptos.',
                     'Vuelve y presiona "Ya participé".'
                 ],

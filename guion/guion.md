@@ -110,7 +110,8 @@ Actividades app:
 - 3c Kahoot
 
 Link 3c:
-https://create.kahoot.it/share/enter-kahoot-title/c0692de8-bf4e-43f1-a545-d697f71affce
+https://kahoot.it/challenge/07319347?challenge-id=d8760083-d46f-4c29-b088-030eded85ba0_1774508012137
+PIN: 07319347
 
 Docente:
 - "Funcion es lo que hace; condicion es lo que necesita para hacerlo."

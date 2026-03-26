@@ -64,8 +64,8 @@ Idea fuerza:
 
 3a Funcion
 3b Condicion
-3c Kahoot
-https://create.kahoot.it/share/enter-kahoot-title/c0692de8-bf4e-43f1-a545-d697f71affce
+3c Kahoot (PIN: 07319347)
+https://kahoot.it/challenge/07319347?challenge-id=d8760083-d46f-4c29-b088-030eded85ba0_1774508012137
 
 Idea fuerza:
 - "Funcion = lo que hace. Condicion = lo que necesita para hacerlo."

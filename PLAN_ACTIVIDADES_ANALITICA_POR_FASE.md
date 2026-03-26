@@ -63,6 +63,7 @@ Se recomienda mantener la estructura actual de 5 fases (Fase 0 + Misiones 1-4), 
 - Diseñar 8 a 12 ítems de concepto aplicado.
 - Incluir distractores que diferencien usuario vs sistema.
 - Exportar reporte de Kahoot al finalizar.
+- PIN: 06527434
 - Enlace: https://kahoot.it/challenge/06527434?challenge-id=d8760083-d46f-4c29-b088-030eded85ba0_1774249548621
 
 ---
@@ -179,7 +180,7 @@ Se recomienda mantener la estructura actual de 5 fases (Fase 0 + Misiones 1-4), 
 
 #### Instrucciones para estudiantes
 1. Haz clic en Abrir Kahoot.
-2. Ingresa el PIN o challenge de la fase de comprensión.
+2. Ingresa el PIN 07319347 o abre el challenge de la fase de comprensión.
 3. Responde todas las preguntas.
 4. Vuelve y presiona Ya participé.
 
@@ -187,7 +188,8 @@ Se recomienda mantener la estructura actual de 5 fases (Fase 0 + Misiones 1-4), 
 - Priorizar ítems de confusión frecuente.
 - Usar temporizador equilibrado para reflexión breve.
 - Exportar reporte para detectar errores patrón.
-- Enlace: https://create.kahoot.it/share/enter-kahoot-title/c0692de8-bf4e-43f1-a545-d697f71affce
+- PIN: 07319347
+- Enlace: https://kahoot.it/challenge/07319347?challenge-id=d8760083-d46f-4c29-b088-030eded85ba0_1774508012137
 
 ---
 

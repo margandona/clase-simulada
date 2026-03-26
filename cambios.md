@@ -89,8 +89,9 @@ Guion docente:
 ### 6) Mision 3 - Comprension (10 min)
 
 Actividad 3c: Kahoot (consolidacion)
+PIN: 07319347
 Link:
-- https://create.kahoot.it/share/enter-kahoot-title/c0692de8-bf4e-43f1-a545-d697f71affce
+- https://kahoot.it/challenge/07319347?challenge-id=d8760083-d46f-4c29-b088-030eded85ba0_1774508012137
 
 Guion docente:
 - "Vamos a verificar si ya distinguen funcion y condicion con precision."
